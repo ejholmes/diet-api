@@ -1,7 +1,7 @@
 class Item < ActiveRecord::Base
   attr_accessible :description, :guid, :link, :pub_date, :title, :read
 
-  belongs_to :subscription
+  belongs_to :feed
 
   default_scope order('pub_date DESC')
 
