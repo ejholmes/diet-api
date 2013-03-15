@@ -30,6 +30,11 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.3)
     arel (3.0.2)
+    bootstrap-sass (2.2.2.0)
+      sass (~> 3.2)
+    bourbon (3.1.0)
+      sass (>= 3.2.0)
+      thor
     bourne (1.1.2)
       mocha (= 0.10.5)
     builder (3.0.4)
@@ -74,8 +79,16 @@ GEM
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
     ffi (1.4.0)
+    font-awesome-sass-rails (3.0.0.1)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     foreman (0.62.0)
       thor (>= 0.13.6)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
+    formtastic-bootstrap (2.0.0)
+      formtastic (~> 2.2)
+      formtastic-bootstrap
     guard (1.6.2)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -237,6 +250,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass
+  bourbon
   capybara
   chai-jquery-rails
   coffee-rails (~> 3.2.1)
@@ -244,7 +259,9 @@ DEPENDENCIES
   ejs
   factory_girl_rails
   faker
+  font-awesome-sass-rails
   foreman
+  formtastic-bootstrap
   guard-rspec
   guard-spork
   haml

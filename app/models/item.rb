@@ -3,7 +3,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :subscription
 
-  default_scope order('pub_date ASC')
+  default_scope order('pub_date DESC')
 
   def read!
     self.read = true
@@ -54,7 +54,7 @@ class Item < ActiveRecord::Base
     end
 
     def guid
-      item.guid.content
+      item.guid ? item.guid.content : link
     end
 
     def pub_date

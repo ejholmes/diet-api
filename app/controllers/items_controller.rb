@@ -6,4 +6,14 @@ class ItemsController < ApplicationController
     @subscriptions = Feed.all
     respond_with @items
   end
+
+  def read
+    @item = Item.find(params[:id])
+    @item.read!
+    redirect_to @item.link
+  end
+
+  def refresh
+    Feed.all.map(&:update)
+  end
 end

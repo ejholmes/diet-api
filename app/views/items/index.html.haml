@@ -1,10 +1,11 @@
-%div
-  %h1 Subscriptions
-  = link_to 'Subscribe', '#'
-  %ul
-    = render @subscriptions
+.row-fluid
+  .span2
+    = form_tag subscribe_path do
+      = text_field_tag :url
+    %ul.feeds
+      = render @subscriptions
 
-%div
-  %h1 Feed
-  %ul
-    = render @items
+  .span10
+    %h2 Feed
+    %ul.items
+      = render @items
