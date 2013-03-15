@@ -11,6 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130315063318) do
+
+  create_table "feeds", :force => true do |t|
+    t.string   "xml_url"
+    t.string   "html_url"
+    t.string   "text"
+    t.string   "title"
+    t.string   "feed_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "pub_date"
+    t.string   "link"
+    t.string   "guid"
+    t.boolean  "read",        :default => false
+    t.integer  "feed_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "items", ["guid"], :name => "guid_index", :unique => true
 
 end

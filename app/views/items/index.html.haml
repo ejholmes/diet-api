@@ -1,0 +1,10 @@
+%div
+  %h1 Subscriptions
+  = link_to 'Subscribe', '#'
+  %ul
+    = render @subscriptions
+
+%div
+  %h1 Feed
+  %ul
+    = render @items

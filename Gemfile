@@ -50,7 +50,7 @@ group :development, :test do
   gem "rspec-rails"
 end
 
-group :development do
+group :test do
   gem "capybara"
   gem "poltergeist"
   gem "webmock"
