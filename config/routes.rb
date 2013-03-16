@@ -1,7 +1,11 @@
 Reader::Application.routes.draw do
   # Items
-  get '/refresh', to: 'items#refresh'
-  get '/read/:id', to: 'items#read', as: :read
+  resources :items do
+    member do
+      get :read
+      get :unread
+    end
+  end
 
   # Subscriptions
   post '/subscribe', to: 'subscriptions#subscribe', as: :subscribe
