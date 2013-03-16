@@ -29,7 +29,7 @@ describe Item::Processor do
   describe '.process' do
     context 'when the item exists' do
       it 'calls update' do
-        feed_items.stub(:exists?).and_return(true)
+        processor.stub(:existing).and_return(true)
         processor.should_receive(:update)
         processor.process
       end
@@ -37,7 +37,7 @@ describe Item::Processor do
 
     context 'when the item does not exist' do
       it 'calls create' do
-        feed_items.stub(:exists?).and_return(false)
+        processor.stub(:existing).and_return(nil)
         processor.should_receive(:create)
         processor.process
       end

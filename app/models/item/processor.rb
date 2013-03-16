@@ -7,7 +7,7 @@ class Item::Processor
   end
 
   def process
-    if items.exists?(guid: guid)
+    if existing
       update
     else
       create
@@ -27,7 +27,7 @@ private
   delegate :title, :description, :link, to: :item
 
   def existing
-    items.where(guid: guid).first
+    @existing ||= items.where(guid: guid).first
   end
 
   def attributes
