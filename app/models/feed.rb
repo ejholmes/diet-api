@@ -2,7 +2,7 @@ require 'rss'
 require 'open-uri'
 
 class Feed < ActiveRecord::Base
-  autoload :Updater, 'feed/updater'
+  autoload :Refresher, 'feed/refresher'
 
   attr_accessible :html_url, :text, :title, :feed_type, :xml_url, :updating, :last_update
 
@@ -21,6 +21,6 @@ class Feed < ActiveRecord::Base
   end
 
   def refresh!
-    Feed::Updater.new(self).update
+    Feed::Refresher.new(self).update
   end
 end

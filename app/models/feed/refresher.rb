@@ -1,4 +1,4 @@
-class Feed::Updater
+class Feed::Refresher
   attr_reader :feed
 
   def initialize(feed)
