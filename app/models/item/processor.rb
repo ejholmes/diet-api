@@ -1,4 +1,4 @@
-class Item::Creator
+class Item::Processor
   attr_reader :feed, :item
 
   def initialize(feed, item)
@@ -6,7 +6,7 @@ class Item::Creator
     @item = item
   end
 
-  def create_or_update
+  def process
     if items.exists?(guid: guid)
       update
     else

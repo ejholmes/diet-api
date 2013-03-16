@@ -14,10 +14,10 @@ describe Feed do
     it { should be_a RSS::Rss }
   end
 
-  describe '.update' do
+  describe '.refresh!' do
     it 'updates the feed items' do
-      Item::Creator.should_receive(:new).exactly(10).times.and_return(stub(:create_or_update => nil))
-      feed.update
+      Item::Processor.should_receive(:new).exactly(10).times.and_return(stub(:process => nil))
+      feed.refresh!
     end
   end
 end

@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Item::Creator do
+describe Item::Processor do
   let(:feed) { double('feed') }
   let(:feed_items) { double('feed items') }
   let(:item) { double('item').as_null_object }
-  let(:creator) { described_class.new(feed, item) }
+  let(:processor) { described_class.new(feed, item) }
 
   before do
     feed.stub(:items).and_return(feed_items)
@@ -13,7 +13,7 @@ describe Item::Creator do
   describe '.create' do
     it 'creates a feed item' do
       feed_items.should_receive(:create)
-      creator.create
+      processor.create
     end
   end
 
@@ -22,24 +22,24 @@ describe Item::Creator do
       item.stub(:guid).and_return(stub(:content => 'http://guid.org'))
       feed_items.stub(:where).with(guid: 'http://guid.org').and_return(stub(:first => item))
       item.should_receive(:update_attributes)
-      creator.update
+      processor.update
     end
   end
 
-  describe '.create_or_update' do
+  describe '.process' do
     context 'when the item exists' do
       it 'calls update' do
         feed_items.stub(:exists?).and_return(true)
-        creator.should_receive(:update)
-        creator.create_or_update
+        processor.should_receive(:update)
+        processor.process
       end
     end
 
     context 'when the item does not exist' do
       it 'calls create' do
         feed_items.stub(:exists?).and_return(false)
-        creator.should_receive(:create)
-        creator.create_or_update
+        processor.should_receive(:create)
+        processor.process
       end
     end
   end
