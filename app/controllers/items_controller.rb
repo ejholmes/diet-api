@@ -15,5 +15,6 @@ class ItemsController < ApplicationController
 
   def refresh
     Feed.all.map(&:update)
+    redirect_to root_path
   end
 end

@@ -11,8 +11,8 @@ class Feed < ActiveRecord::Base
   end
 
   def update
-    xml.items.each do |item|
-      Item::Creator.new(self, item).create_or_update
+    xml.items.each do |xml_item|
+      Item::Creator.new(self, xml_item).create_or_update
     end
   end
 end
