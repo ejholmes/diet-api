@@ -8,6 +8,15 @@ describe Subscription do
     stub_request(:get, url).to_return(body: feed_xml(:svn))
   end
 
+  describe '#subscribe_to' do
+    it 'delegates to .subscribe' do
+      subscription = double('subscription')
+      Subscription.should_receive(:new).and_return(subscription)
+      subscription.should_receive(:subscribe)
+      described_class.subscribe_to(url)
+    end
+  end
+
   describe '.subscribe' do
     subject { subscription.subscribe }
 
