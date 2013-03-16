@@ -27,27 +27,23 @@ class Item < ActiveRecord::Base
     end
 
     def update
-      items.where(guid: guid).first.update_attributes(
-        title: title,
-        description: description,
-        link: link,
-        pub_date: pub_date
-      )
+      items.where(guid: guid).first.update_attributes(attributes)
     end
 
     def create
-      items.create(
-        title: title,
-        description: description,
-        guid: guid,
-        link: link,
-        pub_date: pub_date
-      )
+      items.create(attributes.merge(guid: guid))
     end
 
   private
 
     delegate :title, :description, :link, to: :item
+
+    def attributes
+      { title: title,
+        description: description,
+        link: link,
+        pub_date: pub_date }
+    end
 
     def items
       feed.items
