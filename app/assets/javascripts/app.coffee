@@ -48,7 +48,7 @@ class ItemView extends Backbone.View
     @listenTo @model, 'change:active', @display
 
   render: ->
-    @$el.html(_.template(@template)(@model.toJSON()))
+    @$el.html _.template(@template)(@model.toJSON())
     @model.trigger('change:read')
     this
 
@@ -63,6 +63,17 @@ class ItemView extends Backbone.View
   setStatus: ->
     @$el.toggleClass('read', @model.get('read'))
     @$el.toggleClass('unread', !@model.get('read'))
+
+class FeedView extends Backbone.View
+  tagName: 'li'
+  className: 'feed'
+  template: """
+  <a href="#"><%= title %></a>
+  """
+
+  render: ->
+    @$el.html _.template(@template)(@model.toJSON())
+    this
 
 class ItemsView extends Backbone.View
   el: '#items'
@@ -82,9 +93,16 @@ class FeedsView extends Backbone.View
   el: '#feeds'
 
   initialize: ->
+    _.bindAll this, 'addOne'
     @listenTo @collection, 'reset', @render
 
+  addOne: (feed) ->
+    view = new FeedView(model: feed, collection: @collection)
+    @$el.append(view.render().$el)
+
   render: ->
+    _.each @collection.models, @addOne
+    $('#sidebar').height($('#main').height())
 
 class @App extends Backbone.View
   el: '#app'

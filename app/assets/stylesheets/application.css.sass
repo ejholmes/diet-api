@@ -5,11 +5,22 @@
 // Bourbon for css3 mixins
 @import bourbon
 
-#content
-  padding: 20px
-
 input#subscribe
   margin-top: 15px
+
+#sidebar,
+#main
+  box-sizing: border-box
+  float: left
+  padding: 20px
+
+#sidebar
+  width: 20%
+  background: hsla(204, 45%, 98%, 1)
+  border-right: 1px solid hsla(213, 17%, 88%, 1)
+
+#main
+  width: 80%
 
 ul#items
   margin: 0
@@ -17,11 +28,14 @@ ul#items
   list-style: none
 
   li.item
-    cursor: pointer
     margin: 20px 0
+
+    .title
+      cursor: pointer
 
     &.read .title
       font-weight: normal
+      color: #ccc
 
     &.unread .title
       font-weight: bold
@@ -32,7 +46,18 @@ ul#items
     &.active > div.description
       display: block
 
+a#subscribe
+  text-decoration: none
+  color: #ccc
+
+  &:hover
+    color: #666
+
 ul#feeds
-  margin: 15px 0 0 0
+  margin: 0
   padding: 0
   list-style: none
+
+  li.feed
+    font-weight: bold
+    margin: 5px

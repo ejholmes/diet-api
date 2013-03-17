@@ -1,8 +1,21 @@
-#app
-  .row-fluid
-  .span2
+#app.clearfix
+  #sidebar
     %ul#feeds
+    %a#subscribe{:href => '#'}
+      %i.icon-plus
+      Subscribe...
 
-  .span10
-    %h2 Feed
+  #main
+    .btn-group
+      %a.btn.active
+        %i.icon-check
+        Read
+      %a.btn
+        %i.icon-check-empty
+        Unread
+
+    .btn-group
+      %a.btn
+        %i.icon-check
+        Mark all read
     %ul#items
