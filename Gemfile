@@ -4,6 +4,7 @@ gem 'rails',        '~> 3.2.12'
 gem 'jquery-rails', '~> 2.2.1'
 gem 'haml',         '~> 4.0.0'
 gem 'thin',         '~> 1.5.0'
+gem 'rabl',         '~> 0.7.10'
 
 # Twitter bootstrap
 gem 'bootstrap-sass',          '~> 2.2.2.0'

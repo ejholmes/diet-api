@@ -8,6 +8,10 @@ class Feed < ActiveRecord::Base
 
   has_many :items, dependent: :destroy
 
+  def unread_count
+    items.where(read: false).count
+  end
+
   def self.next
     where(updating: false).order('last_update ASC NULLS FIRST').first
   end

@@ -71,7 +71,7 @@ class FeedView extends Backbone.View
   tagName: 'li'
   className: 'feed'
   template: """
-  <a href="#"><%= title %></a>
+  <a href="#"><%= title %> <span class="badge badge-info"><%= unread_count %></a>
   """
 
   render: ->
