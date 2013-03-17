@@ -58,16 +58,11 @@ class ItemView extends Backbone.View
     @model.toggleActive()
 
   display: ->
-    if @model.get('active')
-      @$el.addClass('active')
-    else
-      @$el.removeClass('active')
+    @$el.toggleClass('active', @model.get('active'))
 
   setStatus: ->
-    if @model.get('read')
-      @$el.addClass('read').removeClass('unread')
-    else
-      @$el.addClass('unread').removeClass('read')
+    @$el.toggleClass('read', @model.get('read'))
+    @$el.toggleClass('unread', !@model.get('read'))
 
 class ItemsView extends Backbone.View
   el: '#items'
