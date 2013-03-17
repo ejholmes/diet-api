@@ -2,14 +2,15 @@ Reader::Application.routes.draw do
   # Items
   resources :items do
     member do
-      get :read
-      get :unread
+      put :read
+      delete :read, to: 'items#unread', as: :unread
     end
   end
 
   # Subscriptions
-  post '/subscribe', to: 'subscriptions#subscribe', as: :subscribe
-  delete '/unsubscribe', to: 'subscriptions#unsubscribe', as: :unsubscribe
+  get '/user/subscriptions', to: 'subscriptions#index', as: :subscriptions
+  post '/user/subscriptions', to: 'subscriptions#subscribe', as: :subscribe
+  delete '/user/subscriptions/:id', to: 'subscriptions#unsubscribe', as: :unsubscribe
 
   root to: 'items#index'
 end

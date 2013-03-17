@@ -8,7 +8,10 @@ class Item < ActiveRecord::Base
   default_scope order('pub_date DESC')
 
   def read!
-    self.read = true
-    self.save!
+    update_attributes!(read: true)
+  end
+
+  def unread!
+    update_attributes!(read: false)
   end
 end

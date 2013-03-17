@@ -1,20 +1,26 @@
 class ItemsController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, only: :index
+  respond_to :json
 
   def index
     @items = Item.includes(:feed).all
-    @subscriptions = Feed.all
     respond_with @items
   end
 
   def read
-    @item = Item.find(params[:id])
-    @item.read!
-    redirect_to @item.link
+    item.read!
+    respond_with item
   end
 
-  def refresh
-    Feed.refresh
-    redirect_to root_path
+  def unread
+    item.unread!
+    respond_with item
   end
+
+private
+
+  def item
+    @item ||= Item.find(params[:id])
+  end
+
 end

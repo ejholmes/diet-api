@@ -13,3 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+var read = function(id) {
+  $.ajax('/items/' + id + '/read', {
+    type: 'PUT'
+  })
+}
+
+var unread = function(id) {
+  $.ajax('/items/' + id + '/read', {
+    type: 'DELETE'
+  })
+}

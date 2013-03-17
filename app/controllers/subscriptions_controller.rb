@@ -1,8 +1,21 @@
 class SubscriptionsController < ApplicationController
-  respond_to :html, :json
+  respond_to :json
+
+  def index
+    @subscriptions = Feed.all
+    respond_with @subscriptions
+  end
 
   def subscribe
-    current_user.subscribe_to(params[:url]).refresh!
-    redirect_to root_path
+    @subscription = current_user.subscribe_to(params[:url]).refresh!
+    respond_to do |format|
+      format.json { render json: @subscription, status: 201 }
+    end
+  end
+
+  def unsubscribe
+    @subscription = Feed.find(params[:id])
+    @subscription.destroy
+    respond_with @subscription
   end
 end

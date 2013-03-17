@@ -1,5 +1,5 @@
 %li.item{:class => item.read? ? 'read' : 'unread'}
   %h3
-    = link_to item.title, read_path(item), target: '_blank'
+    = link_to item.title, item.link, target: '_blank', data: { read_path: read_item_path(item) }
     .label.label-inverse= item.feed.title
   %div.description= item.description.html_safe

@@ -4,14 +4,22 @@ The best RSS feed aggregator. Ever. Period.
 
 ## API
 
-### POST /subscribe?url=url
+### GET /user/subscriptions
+
+List subscriptions.
+
+### POST /user/subscriptions?url=url
 
 Subscribe to a feed.
 
+### DELETE /user/subscriptions/:id
+
+Unsubscribe from a feed.
+
 ### PUT /items/:id/read
 
-Mark the item as read
+Mark the item as read.
 
-## PUT /items/:id/unread
+### DELETE /items/:id/read
 
-Mark the item as unread
+Mark the item as unread.
