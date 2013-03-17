@@ -68,12 +68,15 @@ class ItemsView extends Backbone.View
   el: '#items'
 
   initialize: ->
+    _.bindAll this, 'addOne'
     @listenTo @collection, 'reset', @render
 
+  addOne: (item) ->
+    view = new ItemView(model: item, collection: @collection)
+    @$el.append(view.render().$el)
+
   render: ->
-    _.each @collection.models, (item) =>
-      view = new ItemView(model: item, collection: @collection)
-      @$el.append(view.render().$el)
+    _.each @collection.models, @addOne
 
 class FeedsView extends Backbone.View
   el: '#feeds'
