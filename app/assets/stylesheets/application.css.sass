@@ -5,9 +5,6 @@
 // Bourbon for css3 mixins
 @import bourbon
 
-input#subscribe
-  margin-top: 15px
-
 #sidebar,
 #main
   box-sizing: border-box
@@ -19,16 +16,30 @@ input#subscribe
   background: hsla(204, 45%, 98%, 1)
   border-right: 1px solid hsla(213, 17%, 88%, 1)
 
+  a#subscribe
+    display: block
+    margin-top: 20px
+    text-decoration: none
+    color: #ccc
+
+    &:hover
+      color: #666
+
 #main
   width: 80%
 
 ul#items
-  margin: 0
+  margin: 20px 0 0 0
   padding: 0
   list-style: none
 
   li.item
-    margin: 20px 0
+    padding: 20px
+    margin: 0 -20px
+    border-bottom: 1px solid #eee
+
+    &:first-child
+      border-top: 1px solid #eee
 
     .title
       cursor: pointer
@@ -42,16 +53,14 @@ ul#items
 
     & > div.description
       display: none
+      margin: 20px 0
 
-    &.active > div.description
-      display: block
+    &.active
+      .title
+        color: #000
 
-a#subscribe
-  text-decoration: none
-  color: #ccc
-
-  &:hover
-    color: #666
+      & > div.description
+        display: block
 
 ul#feeds
   margin: 0

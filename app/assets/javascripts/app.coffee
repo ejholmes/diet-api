@@ -46,8 +46,10 @@ class ItemView extends Backbone.View
   initialize: ->
     @listenTo @model, 'change:read', @setStatus
     @listenTo @model, 'change:active', @display
+    @id = "item-#{@model.get('id')}"
 
   render: ->
+    @$el.attr id: @id
     @$el.html _.template(@template)(@model.toJSON())
     @model.trigger('change:read')
     this
@@ -59,6 +61,7 @@ class ItemView extends Backbone.View
 
   display: ->
     @$el.toggleClass('active', @model.get('active'))
+    window.location.hash = "##{@id}" if @model.get('active')
 
   setStatus: ->
     @$el.toggleClass('read', @model.get('read'))
