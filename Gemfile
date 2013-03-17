@@ -17,6 +17,8 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bourbon',      '~> 3.1'
   gem 'uglifier',     '>= 1.0.3'
+  gem 'underscore-rails', '~> 1.4.3'
+  gem 'backbone-rails',   '~> 0.9.2'
 end
 
 group :development do

@@ -11,18 +11,28 @@
 input#subscribe
   margin-top: 15px
 
-ul.items
+ul#items
   margin: 0
   padding: 0
   list-style: none
 
-  li.item.read h3
-    font-weight: normal
+  li.item
+    cursor: pointer
+    margin: 20px 0
 
-  li.item > div.description
-    display: none
+    &.read .title
+      font-weight: normal
 
-ul.feeds
+    &.unread .title
+      font-weight: bold
+
+    & > div.description
+      display: none
+
+    &.active > div.description
+      display: block
+
+ul#feeds
   margin: 15px 0 0 0
   padding: 0
   list-style: none

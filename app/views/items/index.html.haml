@@ -1,11 +1,8 @@
-.row-fluid
+#app
+  .row-fluid
   .span2
-    %ul.feeds
-      = render @subscriptions
-    = form_tag subscribe_path do
-      = text_field_tag :url, nil, placeholder: 'Subscribe', id: 'subscribe'
+    %ul#feeds
 
   .span10
     %h2 Feed
-    %ul.items
-      = render @items
+    %ul#items
