@@ -2,6 +2,8 @@
 
 The best RSS feed aggregator. Ever. Period.
 
+![](https://dl.dropbox.com/u/1906634/Captured/Reader.png)
+
 ## API
 
 ### GET /user/subscriptions
