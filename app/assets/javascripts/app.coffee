@@ -36,7 +36,7 @@ class ItemView extends Backbone.View
   tagName: 'li'
   className: 'item'
   template: """
-  <span class="title"><%= title %></span>
+  <span class="title"><%= feed.title %> &raquo; <%= title %></span>
   <div class="description"><%= description %></div>
   """
 
