@@ -1,0 +1,7 @@
+%li.item{:class => item.read? ? 'read' : 'unread', 'data-model' => { id: item.id, read: item.read }.to_json }
+  %span.title
+    = item.feed.title.html_safe
+    &raquo;
+    = item.title.html_safe
+  .description
+    = item.description.html_safe

@@ -1,6 +1,7 @@
 #app.clearfix
   #sidebar
     %ul#feeds
+      = render @feeds
     #subscribe
       %a{:href => '#'}
         %i.icon-plus
@@ -10,16 +11,13 @@
   #main
     #controls
       .btn-group
-        %a.btn.active.all All
-        %a.btn.unread Unread
+        = link_to 'All', items_path, class: %w[btn read].tap { |classes| classes << 'active' unless request.params[:unread].present? }
+        = link_to 'Unread', items_path(unread: 1), class: %w[btn unread].tap { |classes| classes << 'active' if request.params[:unread].present? }
 
       .btn-group
-        %a.btn.refresh
-          %i.icon-refresh
-          Refresh
+        = link_to '<i class="icon-refresh"></i> Refresh'.html_safe, request.fullpath, class: 'btn refresh'
 
       .btn-group
-        %a.btn.mark-all-read
-          %i.icon-check
-          Mark all read
+        = link_to '<i class="icon-check"></i> Mark all read'.html_safe, read_all_items_path, method: :put, class: 'btn mark-all-read'
     %ul#items
+      = render @items

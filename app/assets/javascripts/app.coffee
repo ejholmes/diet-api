@@ -2,12 +2,6 @@
 #= require backbone
 
 class Item extends Backbone.Model
-  defaults:
-    'active': false
-
-  toggleActive: ->
-    @set('active', !@get('active'))
-
   # Mark as read
   read: ->
     return if @get('read')
@@ -22,94 +16,31 @@ class Item extends Backbone.Model
 
 class Feed extends Backbone.Model
   @subscribe: (url, callback) ->
-    $.ajax "/user/subscriptions?url=#{url}", type: 'POST', success: callback
-
-  @markAllRead: ->
-    $.ajax '/items/read', type: 'PUT'
-
-class FeedsCollection extends Backbone.Collection
-  model: Feed
-  url: '/user/subscriptions'
-
-class ItemsCollection extends Backbone.Collection
-  model: Item
-  url: '/items'
+    $.ajax "/user/subscriptions?url=#{url}",
+      type: 'POST'
+      success: callback
 
 class ItemView extends Backbone.View
-  tagName: 'li'
-  className: 'item'
-  template: """
-  <span class="title"><%= feed.title %> &raquo; <%= title %></span>
-  <div class="description"><%= description %></div>
-  """
-
   events:
     'click' : 'toggle'
 
   initialize: ->
+    @model = new Item(@$el.data('model'))
     @listenTo @model, 'change:read', @setStatus
-    @listenTo @model, 'change:active', @display
-    @id = "item-#{@model.get('id')}"
-
-  render: ->
-    @$el.attr id: @id
-    @$el.html _.template(@template)(@model.toJSON())
-    @model.trigger('change:read')
-    this
 
   toggle: ->
-    _.each @collection.models, (item) => item.set('active', false) unless item == @model
     @model.read()
-    @model.toggleActive()
-
-  display: ->
-    @$el.toggleClass('active', @model.get('active'))
-    window.location.hash = "##{@id}" if @model.get('active')
+    @$el.toggleClass('active')
 
   setStatus: ->
     @$el.toggleClass('read', @model.get('read'))
     @$el.toggleClass('unread', !@model.get('read'))
 
-class FeedView extends Backbone.View
-  tagName: 'li'
-  className: 'feed'
-  template: """
-  <a href="#"><%= title %> <span class="badge badge-info"><%= unread_count %></a>
-  """
-
-  render: ->
-    @$el.html _.template(@template)(@model.toJSON())
-    this
-
 class ItemsView extends Backbone.View
-  el: '#items'
+  el: 'ul#items'
 
   initialize: ->
-    _.bindAll this, 'addOne'
-    @listenTo @collection, 'reset', @render
-
-  addOne: (item) ->
-    view = new ItemView(model: item, collection: @collection)
-    @$el.append(view.render().$el)
-
-  render: ->
-    @$el.html('')
-    _.each @collection.models, @addOne
-
-class FeedsView extends Backbone.View
-  el: '#feeds'
-
-  initialize: ->
-    _.bindAll this, 'addOne'
-    @listenTo @collection, 'reset', @render
-
-  addOne: (feed) ->
-    view = new FeedView(model: feed, collection: @collection)
-    @$el.append(view.render().$el)
-
-  render: ->
-    _.each @collection.models, @addOne
-    $('#sidebar').height($('#main').height())
+    @$('li.item').each -> new ItemView(el: this)
 
 class SubscribeView extends Backbone.View
   el: '#subscribe'
@@ -134,38 +65,10 @@ class SubscribeView extends Backbone.View
 
   subscribe: ->
     Feed.subscribe @$input.val(), =>
-      @el.removeClass('subscribing')
-
-class ControlsView extends Backbone.View
-  el: '#controls'
-
-  initialize: ->
-    _.bindAll this, 'markAllRead', 'refresh'
-
-    @$all         = @$('a.all')
-    @$unread      = @$('a.unread')
-    @$refresh     = @$('a.refresh')
-    @$markAllRead = @$('a.mark-all-read')
-
-    @$refresh.on 'click', @refresh
-    @$markAllRead.on 'click', @markAllRead
-
-  refresh: (e) ->
-    e.preventDefault()
-    @collection.fetch()
-
-  markAllRead: (e) ->
-    e.preventDefault()
-    Feed.markAllRead()
+      window.location = window.location
 
 class @App extends Backbone.View
-  el: '#app'
-
   initialize: ->
-    @items = new ItemsCollection
-    @feeds = new FeedsCollection
     @views =
-      items: new ItemsView(collection: @items)
-      feeds: new FeedsView(collection: @feeds)
-    @controls = new ControlsView(collection: @items)
-    @subscribe = new SubscribeView
+      items: new ItemsView
+      subscribe: new SubscribeView

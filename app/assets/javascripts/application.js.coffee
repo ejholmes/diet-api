@@ -4,7 +4,6 @@
 #= require ./app
 
 $ ->
-  $('#app').each ->
-    window.app = app = new window.App
-    app.items.fetch()
-    app.feeds.fetch()
+  $('#sidebar').css 'min-height', document.height
+
+  $('#app').each -> new window.App

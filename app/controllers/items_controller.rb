@@ -3,13 +3,23 @@ class ItemsController < ApplicationController
   respond_to :json
 
   def index
-    @items = items.all
+    if feed_id = params[:feed_id]
+      @items = items.where(feed_id: feed_id)
+    elsif unread = params[:unread]
+      @items = items.where(read: false)
+    else
+      @items = items.all
+    end
+    @feeds = Feed.all
     respond_with items
   end
 
   def all_read
     items.read!
-    render nothing: true, status: 200
+    respond_to do |format|
+      format.json { render nothing: true, status: 200 }
+      format.html { redirect_to items_path }
+    end
   end
 
   def read

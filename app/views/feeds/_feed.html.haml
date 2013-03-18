@@ -1,0 +1,5 @@
+%li.feed
+  = link_to items_path(feed: feed.id) do
+    = feed.title
+    %span.badge.badge-info
+      = feed.unread_count
