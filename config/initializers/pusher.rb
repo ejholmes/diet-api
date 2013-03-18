@@ -1,7 +1,9 @@
 require 'pusher'
 
-uri = URI(ENV['PUSHER_URL'] || raise("Please specify the PUSHER_URL"))
+if url = ENV['PUSHER_URL']
+  uri = URI(url)
 
-Pusher.app_id = uri.path.gsub('/apps/', '').to_i
-Pusher.key = uri.user
-Pusher.secret = uri.password
+  Pusher.app_id = uri.path.gsub('/apps/', '').to_i
+  Pusher.key = uri.user
+  Pusher.secret = uri.password
+end

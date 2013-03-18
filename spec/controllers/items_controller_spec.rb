@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe ItemsController do
+  let(:user) { create :user }
+  let(:feed) { create :feed, user: user }
+
+  before do
+    login_user user
+  end
+
   describe 'GET index' do
     before do
       get :index
@@ -10,7 +17,7 @@ describe ItemsController do
   end
 
   describe 'PUT read' do
-    let(:item) { create :item }
+    let(:item) { create :item, feed: feed }
 
     before do
       put :read, id: item.id, format: :json
@@ -20,7 +27,7 @@ describe ItemsController do
   end
 
   describe 'DELETE read' do
-    let(:item) { create :item }
+    let(:item) { create :item, feed: feed }
 
     before do
       delete :read, id: item.id, format: :json

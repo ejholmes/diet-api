@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Subscription do
   let(:url) { Faker::Internet.url }
-  let(:subscription) { described_class.new(url) }
+  let(:user) { create :user }
+  let(:subscription) { described_class.new(url, user: user) }
 
   before do
     stub_request(:get, url).to_return(body: feed_xml(:svn))
