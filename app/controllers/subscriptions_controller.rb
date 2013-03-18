@@ -16,6 +16,8 @@ class SubscriptionsController < ApplicationController
   def unsubscribe
     @subscription = Feed.find(params[:id])
     @subscription.destroy
-    respond_with @subscription
+    respond_with @subscription do |format|
+      format.html { redirect_to items_path }
+    end
   end
 end

@@ -239,6 +239,8 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
+    turbolinks (1.0.0)
+      coffee-rails
     tzinfo (0.3.37)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -287,6 +289,7 @@ DEPENDENCIES
   sinon-chai-rails
   sinon-rails
   thin (~> 1.5.0)
+  turbolinks
   uglifier (>= 1.0.3)
   underscore-rails (~> 1.4.3)
   webmock (~> 1.11.0)

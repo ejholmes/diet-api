@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   def index
     if feed_id = params[:feed_id]
       @items = items.where(feed_id: feed_id)
+      @feed  = Feed.find(feed_id)
     elsif unread = params[:unread]
       @items = items.where(read: false)
     else

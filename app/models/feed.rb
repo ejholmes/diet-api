@@ -8,6 +8,8 @@ class Feed < ActiveRecord::Base
 
   has_many :items, dependent: :destroy
 
+  default_scope order('title ASC')
+
   def unread_count
     items.where(read: false).count
   end

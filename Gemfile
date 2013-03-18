@@ -6,6 +6,9 @@ gem 'haml',         '~> 4.0.0'
 gem 'thin',         '~> 1.5.0'
 gem 'rabl',         '~> 0.7.10'
 
+# Turbolinks
+gem 'turbolinks'
+
 # Twitter bootstrap
 gem 'bootstrap-sass',          '~> 2.2.2.0'
 gem 'font-awesome-sass-rails', '~> 3.0.0.1'
