@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :feed
 
-  default_scope order('pub_date DESC')
+  default_scope order('created_at DESC')
 
   scope :unread, -> { where(read: false) }
   scope :read,   -> { where(read: true)  }
