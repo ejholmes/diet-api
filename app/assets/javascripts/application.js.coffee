@@ -5,7 +5,6 @@
 #= require ./app
 
 setup = ->
-  $('#sidebar').css 'min-height', document.height
   $('#app').each -> new window.App
 
 $(document).on 'page:load', setup

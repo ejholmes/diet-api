@@ -18,15 +18,13 @@
     #content.content
       .messages
         - if flash[:notice] || flash[:alert]
-          .row
-            .span12
-              - if flash[:notice]
-                %p.flash.alert.alert-info
-                  %button{:type => 'button', :class => 'close', 'data-dismiss' => 'alert'} ×
-                  = flash[:notice]
-              - if flash[:alert]
-                %p.flash.alert
-                  %button{:type => 'button', :class => 'close', 'data-dismiss' => 'alert'} ×
-                  = flash[:alert]
+          - if flash[:notice]
+            %p.flash.alert.alert-info
+              %button{:type => 'button', :class => 'close', 'data-dismiss' => 'alert'} ×
+              = flash[:notice]
+          - if flash[:alert]
+            %p.flash.alert
+              %button{:type => 'button', :class => 'close', 'data-dismiss' => 'alert'} ×
+              = flash[:alert]
 
       = yield

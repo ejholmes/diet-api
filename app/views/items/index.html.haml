@@ -7,8 +7,14 @@
         %i.icon-plus
         Subscribe...
       %input{:type => 'text', :placeholder => 'e.g. http://feeds.feedburner.com/37signals'}
+    %a#feedback{:href => 'mailto:eric@ejholmes.net', target: '_blank'}
+      %i.icon-comment
+      Feedback
 
   #main
+    .pull-right
+      = link_to 'Sign out', destroy_user_session_path, method: :delete
+
     #controls
       .btn-group
         = link_to 'All', items_path, class: %w[btn read].tap { |classes| classes << 'active' unless request.params[:unread].present? }

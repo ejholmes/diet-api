@@ -1,11 +1,13 @@
 FactoryGirl.define do
-  #sequence :email do |n|
-    #"email#{n}@factory.com"
-  #end
+  sequence :email do |n|
+    "email#{n}@factory.com"
+  end
 
-  #factory :user do
-    #email
-  #end
+  factory :user do
+    email
+    password 'pass'
+    password_confirmation 'pass'
+  end
 
   factory :feed do
     html_url { Faker::Internet.url }

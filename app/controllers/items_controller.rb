@@ -2,16 +2,18 @@ class ItemsController < ApplicationController
   respond_to :html, only: :index
   respond_to :json
 
+  before_filter :authenticate_user!
+
   def index
     if feed_id = params[:feed_id]
       @items = items.where(feed_id: feed_id)
-      @feed  = Feed.find(feed_id)
+      @feed  = current_user.feeds.find(feed_id)
     elsif unread = params[:unread]
       @items = items.where(read: false)
     else
       @items = items.all
     end
-    @feeds = Feed.all
+    @feeds = current_user.feeds.all
     respond_with items
   end
 
@@ -36,11 +38,11 @@ class ItemsController < ApplicationController
 private
 
   def items
-    @items ||= Item.includes(:feed)
+    @items ||= current_user.items.includes(:feed)
   end
 
   def item
-    @item ||= Item.find(params[:id])
+    @item ||= current_user.items.find(params[:id])
   end
 
 end

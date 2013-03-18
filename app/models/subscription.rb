@@ -2,18 +2,19 @@ require 'rss'
 require 'open-uri'
 
 class Subscription
-  attr_reader :url
+  attr_reader :url, :user
 
-  def self.subscribe_to(url)
-    new(url).subscribe
+  def self.subscribe_to(*args)
+    new(*args).subscribe
   end
 
-  def initialize(url)
+  def initialize(url, options = {})
     @url = url
+    @user = options.fetch(:user)
   end
 
   def subscribe
-    Feed.create(
+    feeds.create(
       xml_url: xml_url,
       html_url: html_url,
       title: title,
@@ -22,6 +23,10 @@ class Subscription
   end
 
 private
+
+  def feeds
+    user.feeds
+  end
 
   def feed
     @feed ||= RSS::Parser.parse(open(url))

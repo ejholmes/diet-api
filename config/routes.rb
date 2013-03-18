@@ -1,4 +1,6 @@
 Reader::Application.routes.draw do
+  devise_for :users
+
   # Items
   resources :items do
     collection do

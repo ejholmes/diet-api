@@ -1,8 +1,8 @@
 %li[item]{:class => item.read? ? 'read' : 'unread', 'data-model' => { id: item.id, read: item.read, feed_id: item.feed_id }.to_json }
   %span.title
-    = item.feed.title.html_safe
+    = item.feed.title
     &raquo;
-    = item.title.html_safe
+    = item.title
     %time{:datetime => item.pub_date}= item.pub_date.strftime('%A, %b %d')
   .content
     = link_to item.link, target: '_blank' do

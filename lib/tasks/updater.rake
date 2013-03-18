@@ -3,8 +3,10 @@ namespace :updater do
     STDOUT.sync = true
     loop do
       feed = Feed.next
-      puts "Updating #{feed.title}"
-      feed.refresh!
+      if feed
+        puts "Updating #{feed.title}"
+        feed.refresh!
+      end
       sleep 5
     end
   end

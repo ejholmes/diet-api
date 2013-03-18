@@ -6,6 +6,9 @@ gem 'haml',         '~> 4.0.0'
 gem 'thin',         '~> 1.5.0'
 gem 'rabl',         '~> 0.7.10'
 
+# Authentication
+gem 'devise'
+
 # Turbolinks
 gem 'turbolinks'
 

@@ -6,6 +6,7 @@ class Feed < ActiveRecord::Base
 
   attr_accessible :html_url, :text, :title, :feed_type, :xml_url, :updating, :last_update
 
+  belongs_to :user
   has_many :items, dependent: :destroy
 
   default_scope order('title ASC')

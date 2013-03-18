@@ -1,8 +1,10 @@
 class SubscriptionsController < ApplicationController
   respond_to :json
 
+  before_filter :authenticate_user!
+
   def index
-    @subscriptions = Feed.all
+    @subscriptions = current_user.feeds.all
     respond_with @subscriptions
   end
 
@@ -14,7 +16,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def unsubscribe
-    @subscription = Feed.find(params[:id])
+    @subscription = current_user.feeds.find(params[:id])
     @subscription.destroy
     respond_with @subscription do |format|
       format.html { redirect_to items_path }

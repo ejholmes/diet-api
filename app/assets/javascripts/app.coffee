@@ -96,6 +96,7 @@ class SubscribeView extends Backbone.View
   click: (e) ->
     e.preventDefault()
     @$el.addClass('subscribing')
+    @$input.focus()
 
   subscribe: ->
     Feed.subscribe @$input.val(), -> Turbolinks.visit(window.location)

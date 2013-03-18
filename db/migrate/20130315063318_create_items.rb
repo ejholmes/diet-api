@@ -11,7 +11,5 @@ class CreateItems < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_index :items, :guid, :unique => true, :name => 'guid_index'
   end
 end
