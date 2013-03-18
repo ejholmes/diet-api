@@ -4,7 +4,7 @@ namespace :updater do
     loop do
       feed = Feed.next
       if feed
-        puts "Updating #{feed.title}"
+        puts "Updating #{feed.title} for #{feed.user.email}"
         feed.refresh!
       end
       sleep 5
