@@ -2,6 +2,12 @@
 #= require backbone
 
 class Item extends Backbone.Model
+  defaults:
+    'active': false
+
+  toggleActive: ->
+    @set('active', !@get('active'))
+
   # Mark as read
   read: ->
     return if @get('read')
@@ -27,10 +33,15 @@ class ItemView extends Backbone.View
   initialize: ->
     @model = new Item(@$el.data('model'))
     @listenTo @model, 'change:read', @setStatus
+    @listenTo @model, 'change:active', @display
 
   toggle: ->
     @model.read()
-    @$el.toggleClass('active')
+    @model.toggleActive()
+
+  display: ->
+    @$el.toggleClass('active', @model.get('active'))
+    window.location.hash = @$el.attr('id') if @model.get('active')
 
   setStatus: ->
     @$el.toggleClass('read', @model.get('read'))

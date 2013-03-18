@@ -1,4 +1,4 @@
-%li.feed{:class => (@feed && @feed == feed) ? 'active' : nil}
+%li[feed]{:class => (@feed && @feed == feed) ? 'active' : nil}
   = link_to items_path(feed_id: feed.id) do
     = feed.title
     %span.badge.badge-info

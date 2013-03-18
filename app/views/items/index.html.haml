@@ -12,7 +12,7 @@
     #controls
       .btn-group
         = link_to 'All', items_path, class: %w[btn read].tap { |classes| classes << 'active' unless request.params[:unread].present? }
-        = link_to 'Unread', items_path(unread: 1), class: %w[btn unread].tap { |classes| classes << 'active' if request.params[:unread].present? }
+        = link_to 'Unread', unread_items_path, class: %w[btn unread].tap { |classes| classes << 'active' if request.params[:unread].present? }
 
       - if @feed
         .btn-group

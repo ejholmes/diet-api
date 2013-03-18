@@ -2,6 +2,7 @@ Reader::Application.routes.draw do
   # Items
   resources :items do
     collection do
+      get :unread, to: 'items#index', as: :unread, defaults: { unread: 1 }
       put :read, to: 'items#all_read', as: :read_all
     end
 
