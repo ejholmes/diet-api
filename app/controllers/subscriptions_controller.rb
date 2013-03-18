@@ -7,7 +7,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscribe
-    @subscription = current_user.subscribe_to(params[:url]).refresh!
+    @subscription = current_user.subscribe_to(params[:url])
     respond_to do |format|
       format.json { render json: @subscription, status: 201 }
     end

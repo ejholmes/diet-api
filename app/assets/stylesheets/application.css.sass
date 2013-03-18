@@ -16,14 +16,26 @@
   background: hsla(204, 45%, 98%, 1)
   border-right: 1px solid hsla(213, 17%, 88%, 1)
 
-  a#subscribe
+#subscribe
+  margin-top: 20px
+
+  a
     display: block
-    margin-top: 20px
     text-decoration: none
     color: #ccc
 
     &:hover
       color: #666
+
+  input
+    display: none
+
+  &.subscribing
+    a
+      display: none
+
+    input
+      display: block
 
 #main
   width: 80%

@@ -1,18 +1,16 @@
 #app.clearfix
   #sidebar
     %ul#feeds
-    %a#subscribe{:href => '#'}
-      %i.icon-plus
-      Subscribe...
+    #subscribe
+      %a{:href => '#'}
+        %i.icon-plus
+        Subscribe...
+      %input{:type => 'text', :placeholder => 'e.g. http://feeds.feedburner.com/37signals'}
 
   #main
     .btn-group
-      %a.btn.active
-        %i.icon-check
-        Read
-      %a.btn
-        %i.icon-check-empty
-        Unread
+      %a.btn.active All
+      %a.btn Unread
 
     .btn-group
       %a.btn

@@ -12,17 +12,17 @@ class Item extends Backbone.Model
   read: ->
     return if @get('read')
     @set('read', true)
-    $.ajax "/items/#{@get('id')}/read",
-      type: 'PUT'
+    $.ajax "/items/#{@get('id')}/read", type: 'PUT'
 
   # Mark as unread
   unread: ->
     return unless @get('read')
     @set('read', false)
-    $.ajax "/items/#{@get('id')}/read",
-      type: 'DELETE'
+    $.ajax "/items/#{@get('id')}/read", type: 'DELETE'
 
 class Feed extends Backbone.Model
+  @subscribe: (url, callback) ->
+    $.ajax "/user/subscriptions?url=#{url}", type: 'POST', success: callback
 
 class FeedsCollection extends Backbone.Collection
   model: Feed
@@ -107,6 +107,31 @@ class FeedsView extends Backbone.View
     _.each @collection.models, @addOne
     $('#sidebar').height($('#main').height())
 
+class SubscribeView extends Backbone.View
+  el: '#subscribe'
+
+  events:
+    'click' : 'click'
+
+  initialize: ->
+    _.bindAll this, 'click'
+
+    @$button = @$('a')
+    @$input  = @$('input:text')
+
+    @$button.on 'click', @click
+    @$input.on 'keypress', (e) =>
+      code = e.keyCode || e.which
+      @subscribe() if code == 13
+
+  click: (e) ->
+    e.preventDefault()
+    @$el.addClass('subscribing')
+
+  subscribe: ->
+    Feed.subscribe @$input.val(), =>
+      @el.removeClass('subscribing')
+
 class @App extends Backbone.View
   el: '#app'
 
@@ -116,3 +141,4 @@ class @App extends Backbone.View
     @views =
       items: new ItemsView(collection: @items)
       feeds: new FeedsView(collection: @feeds)
+    @subscribe = new SubscribeView
