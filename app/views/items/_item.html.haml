@@ -1,4 +1,4 @@
-%li[item]{:class => item.read? ? 'read' : 'unread', 'data-model' => { id: item.id, read: item.read, feed_id: item.feed_id }.to_json }
+%li[item]{:class => item.read? ? 'read' : 'unread', 'data-model' => { id: item.id, read: item.read, description: item.description, feed_id: item.feed_id }.to_json }
   %span.title
     = item.feed.title
     &raquo;
@@ -7,4 +7,4 @@
   .content
     = link_to item.link, target: '_blank' do
       %h3= item.title.html_safe
-    = simple_format item.description
+    .description

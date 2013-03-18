@@ -41,7 +41,11 @@ class ItemView extends Backbone.View
 
   display: ->
     @$el.toggleClass('active', @model.get('active'))
-    window.location.hash = @$el.attr('id') if @model.get('active')
+    if @model.get('active')
+      window.location.hash = @$el.attr('id')
+      @$('.description').html(@model.get('description'))
+    else
+      @$('.description').html('')
 
   setStatus: ->
     @$el.toggleClass('read', @model.get('read'))
