@@ -23,6 +23,14 @@ class Feed < ActiveRecord::Base
     scoped.map(&:refresh!)
   end
 
+  def html_uri
+    @html_uri ||= URI(html_url)
+  end
+
+  def domain
+    html_uri.host
+  end
+
   def xml
     @xml ||= RSS::Parser.parse(open(xml_url))
   end
