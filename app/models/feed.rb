@@ -23,6 +23,10 @@ class Feed < ActiveRecord::Base
     scoped.map(&:refresh!)
   end
 
+  def items?
+    items.any?
+  end
+
   def xml
     @xml ||= RSS::Parser.parse(open(xml_url))
   end
