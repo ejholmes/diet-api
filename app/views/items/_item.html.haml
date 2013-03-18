@@ -1,7 +1,10 @@
-%li[item]{:class => item.read? ? 'read' : 'unread', 'data-model' => { id: item.id, read: item.read }.to_json }
+%li[item]{:class => item.read? ? 'read' : 'unread', 'data-model' => { id: item.id, read: item.read, feed_id: item.feed_id }.to_json }
   %span.title
     = item.feed.title.html_safe
     &raquo;
     = item.title.html_safe
-  .description
-    = item.description.html_safe
+    %time{:datetime => item.pub_date}= item.pub_date.strftime('%A, %b %d')
+  .content
+    = link_to item.link, target: '_blank' do
+      %h3= item.title.html_safe
+    = simple_format item.description

@@ -28,7 +28,7 @@ class Feed extends Backbone.Model
 
 class ItemView extends Backbone.View
   events:
-    'click' : 'toggle'
+    'click .title' : 'toggle'
 
   initialize: ->
     @model = new Item(@$el.data('model'))
@@ -52,6 +52,29 @@ class ItemsView extends Backbone.View
 
   initialize: ->
     @$('li.item').each -> new ItemView(el: this)
+
+class FeedView extends Backbone.View
+  badge: """
+  <span class="badge badge-info"></span>
+  """
+  initialize: ->
+    @model = new Feed(@$el.data('model'))
+
+    @$count = $('<span class="badge badge-info" />')
+    @$el.append(@$count)
+
+    @listenTo @model, 'change:unread_count', @update
+    @model.trigger('change:unread_count')
+
+  update: ->
+    count = @model.get('unread_count')
+    @$count.html(count) if count
+
+class FeedsView extends Backbone.View
+  el: 'ul#feeds'
+
+  initialize: ->
+    @$('li.feed').each -> new FeedView(el: this)
 
 class SubscribeView extends Backbone.View
   el: '#subscribe'
@@ -81,4 +104,5 @@ class @App extends Backbone.View
   initialize: ->
     @views =
       items: new ItemsView
+      feeds: new FeedsView
       subscribe: new SubscribeView

@@ -1,5 +1,6 @@
 namespace :updater do
   task :run => :environment do
+    STDOUT.sync = true
     loop do
       feed = Feed.next
       puts "Updating #{feed.title}"

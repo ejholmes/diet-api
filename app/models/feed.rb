@@ -15,7 +15,7 @@ class Feed < ActiveRecord::Base
   end
 
   def self.next
-    where(updating: false).order('last_update ASC NULLS FIRST').first
+    unscoped.where(updating: false).order('last_update ASC NULLS FIRST').first
   end
 
   def self.refresh

@@ -56,6 +56,11 @@ ul#items
     .title
       cursor: pointer
 
+      time
+        float: right
+        font-weight: normal
+        color: #ccc
+
     &.read .title
       font-weight: normal
       color: #ccc
@@ -63,7 +68,7 @@ ul#items
     &.unread .title
       font-weight: bold
 
-    & > div.description
+    & > div.content
       display: none
       margin: 20px 0
 
@@ -71,7 +76,7 @@ ul#items
       .title
         color: #000
 
-      & > div.description
+      & > div.content
         display: block
 
 ul#feeds
