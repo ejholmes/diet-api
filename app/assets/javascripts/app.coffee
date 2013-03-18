@@ -64,8 +64,7 @@ class SubscribeView extends Backbone.View
     @$el.addClass('subscribing')
 
   subscribe: ->
-    Feed.subscribe @$input.val(), =>
-      window.location = window.location
+    Feed.subscribe @$input.val(), -> Turbolinks.visit(window.location)
 
 class @App extends Backbone.View
   initialize: ->
