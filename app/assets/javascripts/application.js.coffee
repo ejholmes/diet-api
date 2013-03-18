@@ -4,6 +4,9 @@
 #= require bootstrap
 #= require ./app
 
+$ ->
+  window.refreshes = window.pusher.subscribe('refreshes')
+
 setup = ->
   $('#app').each -> new window.App
 

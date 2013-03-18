@@ -7,7 +7,10 @@
     %title
       = content_for?(:title) ? yield(:title) : 'Reader'
     = javascript_include_tag 'application.js'
+    = javascript_include_tag 'http://js.pusher.com/1.12/pusher.min.js'
     = csrf_meta_tags
+    :coffee
+      window.pusher = new Pusher('#{Pusher.key}')
 
     /[if lt IE 9]
       %script{:src => 'http://html5shim.googlecode.com/svn/trunk/html5.js', :type => 'text/javascript'}

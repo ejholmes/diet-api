@@ -60,6 +60,9 @@ class FeedView extends Backbone.View
   initialize: ->
     @model = new Feed(@$el.data('model'))
 
+    window.refreshes.bind 'refresh', (data) =>
+      Turbolinks.visit(window.location) if data.feed_id = @model.get('id')
+
     @$count = $('<span class="badge badge-info" />')
     @$el.append(@$count)
 
