@@ -31,21 +31,21 @@ class ItemView extends Backbone.View
     'click .title' : 'toggle'
 
   initialize: ->
-    @model = new Item(@$el.data('model'))
     @listenTo @model, 'change:read', @setStatus
-    @listenTo @model, 'change:active', @display
+    @listenTo @model, 'change:active', =>
+      if @model.get('active') then @show() else @hide()
 
   toggle: ->
     @model.read()
     @model.toggleActive()
 
-  display: ->
-    @$el.toggleClass('active', @model.get('active'))
-    if @model.get('active')
-      window.location.hash = @$el.attr('id')
-      @$('.description').html(@model.get('description'))
-    else
-      @$('.description').html('')
+  show: ->
+    @$el.addClass('active')
+    window.location.hash = @$el.attr('id')
+    @$('.description').html(@model.get('description'))
+
+  hide: ->
+    @$el.removeClass('active')
 
   setStatus: ->
     @$el.toggleClass('read', @model.get('read'))
@@ -55,15 +55,15 @@ class ItemsView extends Backbone.View
   el: 'ul#items'
 
   initialize: ->
-    @$('li.item').each -> new ItemView(el: this)
+    @$('li.item').each ->
+      model = new Item($(this).data('model'))
+      new ItemView(el: this, model: model)
 
 class FeedView extends Backbone.View
   badge: """
   <span class="badge badge-info"></span>
   """
   initialize: ->
-    @model = new Feed(@$el.data('model'))
-
     window.refreshes.bind 'refresh', (data) =>
       Turbolinks.visit(window.location) if data.feed_id = @model.get('id')
 
@@ -81,7 +81,11 @@ class FeedsView extends Backbone.View
   el: 'ul#feeds'
 
   initialize: ->
-    @$('li.feed').each -> new FeedView(el: this)
+    collection = @collection
+    @$('li.feed').each ->
+      model = new Feed($(this).data('model'))
+      collection.add(model)
+      new FeedView(el: this, model: model)
 
 class SubscribeView extends Backbone.View
   el: '#subscribe'
@@ -110,7 +114,9 @@ class SubscribeView extends Backbone.View
 
 class @App extends Backbone.View
   initialize: ->
+    @items = new Backbone.Collection
+    @feeds = new Backbone.Collection
     @views =
-      items: new ItemsView
-      feeds: new FeedsView
+      items: new ItemsView(collection: @items)
+      feeds: new FeedsView(collection: @feeds)
       subscribe: new SubscribeView
