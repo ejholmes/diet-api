@@ -6,11 +6,10 @@ class Feed::Refresher
   end
 
   def update
-    transaction do
-      updating!
-      items.each { |xml_item| process(xml_item) }
-      updated!
-    end
+    updating!
+    items.each { |xml_item| process(xml_item) }
+  ensure
+    updated!
   end
 
 private
@@ -20,10 +19,6 @@ private
 
   def process(xml_item)
     Item::Processor.new(feed, xml_item).process
-  end
-
-  def transaction(&block)
-    Feed.transaction(&block)
   end
 
   def updating!
