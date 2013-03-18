@@ -12,7 +12,7 @@ class Feed < ActiveRecord::Base
   default_scope order('title ASC')
 
   def unread_count
-    items.where(read: false).count
+    items.unread.count
   end
 
   def self.next
@@ -24,7 +24,7 @@ class Feed < ActiveRecord::Base
   end
 
   def items?
-    items.any?
+    items.unread.any?
   end
 
   def xml

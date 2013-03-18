@@ -7,6 +7,9 @@ class Item < ActiveRecord::Base
 
   default_scope order('pub_date DESC')
 
+  scope :unread, -> { where(read: false) }
+  scope :read,   -> { where(read: true)  }
+
   def self.read!
     scoped.map(&:read!)
   end
