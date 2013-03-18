@@ -1,6 +1,10 @@
 Reader::Application.routes.draw do
   # Items
   resources :items do
+    collection do
+      put :read, to: 'items#all_read', as: :read_all
+    end
+
     member do
       put :read
       delete :read, to: 'items#unread', as: :unread

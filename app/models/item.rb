@@ -7,6 +7,10 @@ class Item < ActiveRecord::Base
 
   default_scope order('pub_date DESC')
 
+  def self.read!
+    scoped.map(&:read!)
+  end
+
   def read!
     update_attributes!(read: true)
   end

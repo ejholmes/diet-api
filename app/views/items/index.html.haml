@@ -8,12 +8,18 @@
       %input{:type => 'text', :placeholder => 'e.g. http://feeds.feedburner.com/37signals'}
 
   #main
-    .btn-group
-      %a.btn.active All
-      %a.btn Unread
+    #controls
+      .btn-group
+        %a.btn.active.all All
+        %a.btn.unread Unread
 
-    .btn-group
-      %a.btn
-        %i.icon-check
-        Mark all read
+      .btn-group
+        %a.btn.refresh
+          %i.icon-refresh
+          Refresh
+
+      .btn-group
+        %a.btn.mark-all-read
+          %i.icon-check
+          Mark all read
     %ul#items

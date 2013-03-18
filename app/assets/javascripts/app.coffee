@@ -24,6 +24,9 @@ class Feed extends Backbone.Model
   @subscribe: (url, callback) ->
     $.ajax "/user/subscriptions?url=#{url}", type: 'POST', success: callback
 
+  @markAllRead: ->
+    $.ajax '/items/read', type: 'PUT'
+
 class FeedsCollection extends Backbone.Collection
   model: Feed
   url: '/user/subscriptions'
@@ -90,6 +93,7 @@ class ItemsView extends Backbone.View
     @$el.append(view.render().$el)
 
   render: ->
+    @$el.html('')
     _.each @collection.models, @addOne
 
 class FeedsView extends Backbone.View
@@ -132,6 +136,28 @@ class SubscribeView extends Backbone.View
     Feed.subscribe @$input.val(), =>
       @el.removeClass('subscribing')
 
+class ControlsView extends Backbone.View
+  el: '#controls'
+
+  initialize: ->
+    _.bindAll this, 'markAllRead', 'refresh'
+
+    @$all         = @$('a.all')
+    @$unread      = @$('a.unread')
+    @$refresh     = @$('a.refresh')
+    @$markAllRead = @$('a.mark-all-read')
+
+    @$refresh.on 'click', @refresh
+    @$markAllRead.on 'click', @markAllRead
+
+  refresh: (e) ->
+    e.preventDefault()
+    @collection.fetch()
+
+  markAllRead: (e) ->
+    e.preventDefault()
+    Feed.markAllRead()
+
 class @App extends Backbone.View
   el: '#app'
 
@@ -141,4 +167,5 @@ class @App extends Backbone.View
     @views =
       items: new ItemsView(collection: @items)
       feeds: new FeedsView(collection: @feeds)
+    @controls = new ControlsView(collection: @items)
     @subscribe = new SubscribeView

@@ -3,8 +3,13 @@ class ItemsController < ApplicationController
   respond_to :json
 
   def index
-    @items = Item.includes(:feed).all
-    respond_with @items
+    @items = items.all
+    respond_with items
+  end
+
+  def all_read
+    items.read!
+    render nothing: true, status: 200
   end
 
   def read
@@ -18,6 +23,10 @@ class ItemsController < ApplicationController
   end
 
 private
+
+  def items
+    @items ||= Item.includes(:feed)
+  end
 
   def item
     @item ||= Item.find(params[:id])
