@@ -5,6 +5,7 @@ gem 'jquery-rails', '~> 2.2.1'
 gem 'haml',         '~> 4.0.0'
 gem 'thin',         '~> 1.5.0'
 gem 'rabl',         '~> 0.7.10'
+gem 'pg',           '~> 0.14.1'
 
 # Authentication
 gem 'devise'
@@ -61,8 +62,4 @@ group :development, :test do
   gem 'sinon-chai-rails'
   gem 'sinon-rails'
   gem 'ejs'
-end
-
-group :production do
-  gem 'pg', '~> 0.14.1'
 end

@@ -46,7 +46,7 @@ private
   end
 
   def pub_date
-    item.pubDate
+    item.pubDate.to_s
   end
 
 end
