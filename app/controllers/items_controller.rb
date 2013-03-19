@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
     else
       @items = items
     end
-    @items = @items.page params[:page]
+    @items = @items.includes(:feed).page params[:page]
     @feeds = current_user.feeds.all
     respond_with items
   end
