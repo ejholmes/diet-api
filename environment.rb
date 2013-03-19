@@ -1,9 +1,10 @@
+require 'i18n'
 require 'active_support'
 
 require 'bundler/setup'
 Bundler.require :default
 require 'uri'
-require 'sinatra/base'
+require 'grape'
 require 'active_record'
 
 def database_config
@@ -20,3 +21,5 @@ def database_config
 end
 
 ActiveRecord::Base.establish_connection(database_config)
+
+require_relative './app/models'

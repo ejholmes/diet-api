@@ -15,8 +15,9 @@ Spork.prefork do
   ENV['RACK_ENV'] ||= 'test'
   ENV['DATABASE_URL'] ||= 'postgres://localhost:5432/reader_test'
 
-  require File.expand_path('../../app', __FILE__)
+  require File.expand_path('../../api', __FILE__)
   Bundler.require :default, :test
+  require 'rspec'
   require 'shoulda/matchers/integrations/rspec'
   require 'rspec/autorun'
   require 'webmock/rspec'

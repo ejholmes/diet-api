@@ -1,9 +1,12 @@
 source :rubygems
 
 gem 'rake'
-gem 'sinatra',      '~> 1.4.1'
+gem 'grape'
+gem 'i18n'
 gem 'activesupport'
 gem 'json'
+gem 'multi_json'
+gem 'thin'
 
 # RSS/Atom
 gem 'feedzirra'
@@ -17,6 +20,7 @@ gem 'activerecord', '~> 3.2.12'
 
 group :development, :test do
   gem 'faker'
+  gem 'foreman'
 end
 
 group :test do

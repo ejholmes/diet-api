@@ -1,6 +1,20 @@
 #!/usr/bin/env rake
 require File.expand_path('../environment', __FILE__)
 
+namespace :updater do
+  task :run do
+    STDOUT.sync = true
+    loop do
+      feed = Feed.next
+      if feed
+        puts "Updating #{feed.title}"
+        feed.refresh!
+      end
+      sleep 5
+    end
+  end
+end
+
 task :default => [:spec]
 
 require 'rspec/core/rake_task'
