@@ -1,9 +1,9 @@
-class Item::Processor
-  attr_reader :feed, :item
+class EntryProcessor
+  attr_reader :feed, :entry
 
-  def initialize(feed, item)
+  def initialize(feed, entry)
     @feed = feed
-    @item = item
+    @entry = entry
   end
 
   def process
@@ -24,7 +24,7 @@ class Item::Processor
 
 private
 
-  delegate :title, :content, :url, :published, to: :item
+  delegate :title, :content, :url, :published, to: :entry
 
   def existing
     @existing ||= items.where(guid: guid).first
@@ -42,7 +42,7 @@ private
   end
 
   def guid
-    item.entry_id || url
+    entry.entry_id || url
   end
 
 end

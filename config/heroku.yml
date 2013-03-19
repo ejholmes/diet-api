@@ -1,7 +1,0 @@
-production:
-  app: rss-reader
-  stack: cedar
-
-workers:
-  app: rss-reader-workers
-  stack: cedar

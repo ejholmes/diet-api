@@ -1,10 +1,4 @@
 class Item < ActiveRecord::Base
-  autoload :Processor, 'item/processor'
-
-  paginates_per 25
-
-  attr_accessible :description, :guid, :link, :pub_date, :title, :read
-
   belongs_to :feed
 
   default_scope order('created_at DESC')
@@ -12,15 +6,18 @@ class Item < ActiveRecord::Base
   scope :unread, -> { where(read: false) }
   scope :read,   -> { where(read: true)  }
 
-  def self.read!
-    scoped.map(&:read!)
-  end
+  class << self
+    # TODO: Make this more efficient.
+    def read!
+      scoped.map(&:read!)
+    end
 
-  def self.filtered(params = {})
-    scope = scoped
-    scope = scope.where(feed_id: params[:feed_id]) if params[:feed_id]
-    scope = scope.unread if params[:unread] && params[:unread] == 1
-    scope
+    def filtered(params = {})
+      scope = scoped
+      scope = scope.where(feed_id: params[:feed_id]) if params[:feed_id]
+      scope = scope.unread if params[:unread] && params[:unread] == 1
+      scope
+    end
   end
 
   def read!

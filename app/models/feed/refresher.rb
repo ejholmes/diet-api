@@ -1,16 +1,14 @@
 class Feed::Refresher
-  attr_reader :feed, :count
+  attr_reader :feed
 
   def initialize(feed)
     @feed = feed
-    @count = items.count
   end
 
   def update
     updating!
     entries.reverse.each { |entry| process(entry) }
   ensure
-    notify if items.count > count
     updated!
   end
 
@@ -20,15 +18,11 @@ private
   delegate :entries, to: :xml
 
   def process(entry)
-    Item::Processor.new(feed, entry).process
+    EntryProcessor.new(feed, entry).process
   end
 
   def items
     feed.items
-  end
-
-  def notify
-    Pusher['refreshes'].trigger('refresh', feed_id: feed.id)
   end
 
   def updating!

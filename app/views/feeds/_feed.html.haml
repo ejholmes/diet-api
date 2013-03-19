@@ -1,4 +1,0 @@
-%li[feed]{:class => (@feed && @feed == feed) ? 'active' : nil, 'data-model' => { id: feed.id, unread_count: feed.unread_count}.to_json }
-  = link_to items_path(feed_id: feed.id), title: feed.title do
-    %img.favicon{:src => "http://s2.googleusercontent.com/s2/favicons?domain=#{feed.domain}&alt=feed"}
-    = truncate feed.title, length: 20

@@ -12,16 +12,15 @@ end
 
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
-  ENV["RAILS_ENV"] ||= 'test'
+  ENV['RACK_ENV'] ||= 'test'
+  ENV['DATABASE_URL'] ||= 'postgres://localhost:5432/reader_test')
 
-  require 'rails/application'
-  Spork.trap_method(Rails::Application::RoutesReloader, :reload!) # Rails 3.1
-
-  require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
+  require File.expand_path('../../app', __FILE__)
   require 'shoulda/matchers/integrations/rspec'
   require 'rspec/autorun'
   require 'webmock/rspec'
+  require 'factory_girl'
+  require File.expand_path('../factories', __FILE__)
 
   WebMock.disable_net_connect! allow_localhost: true
 
