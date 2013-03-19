@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails',        '~> 3.2.12'
 gem 'jquery-rails', '~> 2.2.1'
@@ -36,6 +36,7 @@ group :development do
   gem 'heroku'
   gem 'heroku_san'
   gem 'foreman'
+  gem 'rack-mini-profiler'
 end
 
 group :development, :test do
