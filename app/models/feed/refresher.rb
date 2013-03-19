@@ -8,7 +8,7 @@ class Feed::Refresher
 
   def update
     updating!
-    entries.each { |entry| process(entry) }
+    entries.reverse.each { |entry| process(entry) }
   ensure
     notify if items.count > count
     updated!
