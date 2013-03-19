@@ -8,7 +8,7 @@ $ ->
   window.refreshes = window.pusher.subscribe('refreshes')
 
 setup = ->
-  $('#app').each -> new window.App
+  $('#app').each -> window.app = new window.App
 
 $(document).on 'page:fetch', -> $('body').addClass('loading')
 $(document).on 'page:change', -> $('body').removeClass('loading')

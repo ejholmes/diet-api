@@ -12,13 +12,23 @@ class Item extends Backbone.Model
   read: ->
     return if @get('read')
     @set('read', true)
-    $.ajax "/items/#{@get('id')}/read", type: 'PUT'
+    $.ajax "/items/#{@get('id')}/read",
+      type: 'PUT'
+      success: =>
+        feed  = window.app.feeds.get(@get('feed_id'))
+        count = feed.get('unread_count')
+        feed.set('unread_count', count - 1) if count > 0
 
   # Mark as unread
   unread: ->
     return unless @get('read')
     @set('read', false)
-    $.ajax "/items/#{@get('id')}/read", type: 'DELETE'
+    $.ajax "/items/#{@get('id')}/read",
+      type: 'DELETE'
+      success: =>
+        feed  = window.app.feeds.get(@get('feed_id'))
+        count = feed.get('unread_count')
+        feed.set('unread_count', count + 1)
 
 class Feed extends Backbone.Model
   @subscribe: (url, callback) ->
@@ -75,7 +85,10 @@ class FeedView extends Backbone.View
 
   update: ->
     count = @model.get('unread_count')
-    @$count.html(count) if count
+    if count? && count > 0
+      @$count.html(count)
+    else
+      @$count.html('')
 
 class FeedsView extends Backbone.View
   el: 'ul#feeds'
