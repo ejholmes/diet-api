@@ -27,7 +27,7 @@ class API < Grape::API
       requires :url, type: String, desc: 'URL to an RSS or Atom feed.'
     end
     post do
-      Subscriptions.new(params[:url])
+      Subscriptions.new(params[:url]).subscribe
     end
   end
 end

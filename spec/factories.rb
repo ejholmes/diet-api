@@ -13,7 +13,6 @@ FactoryGirl.define do
     html_url { Faker::Internet.url }
     text { Faker::Lorem.paragraphs.join('\n') }
     title { Faker::Lorem.word }
-    feed_type { 'rss' }
     xml_url { Faker::Internet.url }
   end
 

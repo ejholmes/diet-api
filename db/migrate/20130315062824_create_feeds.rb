@@ -5,7 +5,6 @@ class CreateFeeds < ActiveRecord::Migration
       t.string :html_url
       t.text :text
       t.string :title
-      t.string :feed_type
 
       t.timestamps
     end

@@ -3,7 +3,6 @@ class Subscription
 
   def initialize(url)
     @url = url
-    subscribe
   end
 
   def subscribe
@@ -11,18 +10,16 @@ class Subscription
       xml_url: xml_url,
       html_url: html_url,
       title: title,
-      feed_type: type
+      text: description
     )
   end
 
 private
 
+  delegate :title, :description, to: :feed
+
   def feed
     @feed ||= Feedzirra::Feed.fetch_and_parse(url)
-  end
-
-  def title
-    feed.title
   end
 
   def html_url
@@ -31,10 +28,6 @@ private
   
   def xml_url
     url
-  end
-
-  def type
-    'rss'
   end
 
 end
