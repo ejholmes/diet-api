@@ -1,40 +1,41 @@
 source :rubygems
 
 gem 'rake'
-gem 'grape'
-gem 'grape-entity'
-gem 'i18n'
-gem 'activesupport'
-gem 'json'
-gem 'multi_json'
-gem 'thin'
+gem 'grape',         '~> 0.4.0'
+gem 'grape-entity',  '~> 0.2.0'
+gem 'i18n',          '~> 0.6.4'
+gem 'activesupport', '~> 3.2.12'
+gem 'json',          '~> 1.7.7'
+gem 'multi_json',    '~> 1.7.0'
+#gem 'kaminari',      '~> 0.14.1'
+gem 'thin',          '~> 1.5.0'
 
 # RSS/Atom
-gem 'feedzirra'
+gem 'feedzirra', '~> 0.0.31'
 
 # Readability
-gem 'readit'
+gem 'readit',    '~> 0.0.9'
 
 # Database
 gem 'pg',           '~> 0.14.1'
 gem 'activerecord', '~> 3.2.12'
 
 group :development, :test do
-  gem 'faker'
-  gem 'foreman'
+  gem 'faker',   '~> 1.1.2'
+  gem 'foreman', '~> 0.62.0'
 end
 
 group :test do
   gem 'webmock',            '~> 1.11.0'
   gem 'shoulda-matchers',   '~> 1.4.2'
   gem 'database_cleaner',   '~> 0.9.1'
-  gem 'factory_girl'
-  gem 'rack-test'
+  gem 'factory_girl',       '~> 4.2.0'
+  gem 'rack-test',          '~> 0.6.2'
 end
 
 group :development, :test do
-  gem 'guard-rspec'
-  gem 'guard-spork'
+  gem 'guard-rspec', '~> 2.5.1'
+  gem 'guard-spork', '~> 1.5.0'
   gem 'ruby_gntp'
   gem 'rb-fsevent'
 end

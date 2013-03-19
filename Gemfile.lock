@@ -141,25 +141,25 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 3.2.12)
-  activesupport
+  activesupport (~> 3.2.12)
   database_cleaner (~> 0.9.1)
-  factory_girl
-  faker
-  feedzirra
-  foreman
-  grape
-  grape-entity
-  guard-rspec
-  guard-spork
-  i18n
-  json
-  multi_json
+  factory_girl (~> 4.2.0)
+  faker (~> 1.1.2)
+  feedzirra (~> 0.0.31)
+  foreman (~> 0.62.0)
+  grape (~> 0.4.0)
+  grape-entity (~> 0.2.0)
+  guard-rspec (~> 2.5.1)
+  guard-spork (~> 1.5.0)
+  i18n (~> 0.6.4)
+  json (~> 1.7.7)
+  multi_json (~> 1.7.0)
   pg (~> 0.14.1)
-  rack-test
+  rack-test (~> 0.6.2)
   rake
   rb-fsevent
-  readit
+  readit (~> 0.0.9)
   ruby_gntp
   shoulda-matchers (~> 1.4.2)
-  thin
+  thin (~> 1.5.0)
   webmock (~> 1.11.0)
