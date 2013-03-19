@@ -5,19 +5,12 @@ class API < Grape::API
   format :json
 
   helpers do
-    def current_user
-      @current_user ||= User.new
-    end
-
-    def feeds
-      Feed
-    end
   end
 
   resource :subscriptions do
     desc 'Lists the authenticated users subscriptions.'
     get do
-      feeds.all
+      Feed.all
     end
 
     desc 'Subscribe to a new feed.'

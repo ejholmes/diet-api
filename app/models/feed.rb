@@ -1,5 +1,4 @@
 class Feed < ActiveRecord::Base
-  #belongs_to :user
   has_many :items, dependent: :destroy
 
   class << self
@@ -22,15 +21,5 @@ class Feed < ActiveRecord::Base
 
   def refresh!
     Feed::Refresher.new(self).update
-  end
-
-  def as_json(state)
-    { id: id,
-      title: title,
-      text: text,
-      html_url: html_url,
-      xml_url: xml_url,
-      last_update: last_update,
-      feed_type: feed_type }.to_json
   end
 end

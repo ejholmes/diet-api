@@ -51,7 +51,7 @@ namespace :db do
     task :dump do
       require "active_record/schema_dumper"
 
-      path = File.expand_path('../schema.rb', __FILE__)
+      path = File.expand_path('../db/schema.rb', __FILE__)
 
       File.open(path, "w:utf-8") do |fd|
         ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, fd)
