@@ -5,7 +5,7 @@ class Feed::Refresher
     @feed = feed
   end
 
-  def update
+  def refresh
     updating!
     entries.reverse.each { |entry| process(entry) }
   ensure
@@ -19,10 +19,6 @@ private
 
   def process(entry)
     EntryProcessor.new(feed, entry).process
-  end
-
-  def items
-    feed.items
   end
 
   def updating!

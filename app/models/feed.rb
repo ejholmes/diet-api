@@ -20,6 +20,6 @@ class Feed < ActiveRecord::Base
   end
 
   def refresh!
-    Feed::Refresher.new(self).update
+    Feed::Refresher.new(self).refresh
   end
 end
