@@ -6,12 +6,7 @@ describe Feed do
   it { should have_many(:items) }
 
   before do
-    stub_request(:get, feed.xml_url).to_return(body: feed_xml(:svn))
-  end
-
-  describe '.xml' do
-    subject { feed.xml }
-    it { should be_a String }
+    feed.stub(:xml).and_return(Feedzirra::Feed.parse(feed_xml(:svn)))
   end
 
   describe '.refresh!' do
