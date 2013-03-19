@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - 1.9.3
+env:
+  - RACK_ENV=test
+  - DATABASE_URL=postgres://postgres:@localhost:5432/reader_test
+script:
+  - bundle exec rake spec --trace
+before_script:
+  - bundle exec rake db:create db:migrate
