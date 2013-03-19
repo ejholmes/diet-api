@@ -9,6 +9,7 @@ gem 'pg',           '~> 0.14.1'
 gem 'pusher',       '~> 0.11.2'
 gem 'kaminari',     '~> 0.14.1'
 gem 'feedzirra',    '~> 0.0.24'
+gem 'rack-mini-profiler'
 
 # Authentication
 gem 'devise'
@@ -36,7 +37,6 @@ group :development do
   gem 'heroku'
   gem 'heroku_san'
   gem 'foreman'
-  gem 'rack-mini-profiler'
 end
 
 group :development, :test do
