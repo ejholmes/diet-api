@@ -1,10 +1,11 @@
-%li[item]{:class => item.read? ? 'read' : 'unread', 'data-model' => { id: item.id, read: item.read, description: item.description, feed_id: item.feed_id }.to_json }
-  %span.title
-    = strip_tags item.feed.title
-    &raquo;
-    = strip_tags item.title
-    %time{:datetime => item.pub_date}= item.pub_date.strftime('%A, %b %d')
-  .content
-    = link_to item.link, target: '_blank' do
-      %h3= strip_tags item.title
-    .description
+- cache item do
+  %li[item]{:class => item.read? ? 'read' : 'unread', 'data-model' => { id: item.id, read: item.read, description: item.description, feed_id: item.feed_id }.to_json }
+    %span.title
+      = strip_tags item.feed.title
+      &raquo;
+      = strip_tags item.title
+      %time{:datetime => item.pub_date}= item.pub_date.strftime('%A, %b %d')
+    .content
+      = link_to item.link, target: '_blank' do
+        %h3= strip_tags item.title
+      .description

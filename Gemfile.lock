@@ -64,6 +64,7 @@ GEM
     colorize (0.5.8)
     crack (0.3.2)
     daemons (1.1.9)
+    dalli (2.6.2)
     database_cleaner (0.9.1)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
@@ -145,6 +146,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.2)
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.21)
@@ -276,6 +278,7 @@ DEPENDENCIES
   capybara (~> 2.0.2)
   chai-jquery-rails
   coffee-rails (~> 3.2.1)
+  dalli
   database_cleaner (~> 0.9.1)
   devise
   ejs
@@ -291,6 +294,7 @@ DEPENDENCIES
   heroku_san
   jquery-rails (~> 2.2.1)
   konacha
+  memcachier
   pg (~> 0.14.1)
   poltergeist (~> 1.1.0)
   pusher

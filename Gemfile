@@ -64,3 +64,8 @@ group :development, :test do
   gem 'sinon-rails'
   gem 'ejs'
 end
+
+group :production do
+  gem 'memcachier'
+  gem 'dalli'
+end
