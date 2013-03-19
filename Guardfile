@@ -2,7 +2,7 @@
 # More info at https://github.com/guard/guard#readme
 
 guard 'spork', rspec_env: { 'RACK_ENV' => 'test' } do
-  watch('app.rb')
+  watch('api.rb')
   watch('environment.rb')
   watch('Gemfile')
   watch('Gemfile.lock')

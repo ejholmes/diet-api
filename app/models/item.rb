@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
   class << self
     # TODO: Make this more efficient.
     def read!
-      scoped.map(&:read!)
+      scoped.update_all(read: true)
     end
 
     def filtered(params = {})

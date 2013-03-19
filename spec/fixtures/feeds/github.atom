@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <id>tag:github.com,2008:/blog</id>
+  <link rel="alternate" type="text/html" href="https://github.com/blog"/>
+  <link rel="self" type="application/atom+xml" href="https://github.com/blog.atom"/>
+  <title>The GitHub Blog</title>
+  <updated>2013-03-18T15:35:01-07:00</updated>
+  <entry>
+    <id>tag:github.com,2008:Post/1439</id>
+    <published>2013-03-18T15:23:55-07:00</published>
+    <updated>2013-03-18T15:35:01-07:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1439-closing-issues-across-repositories"/>
+    <title>Closing Issues Across Repositories</title>
+    <content type="html">&lt;p&gt;Starting today, you can use commit messages to close issues
+in other repositories.&lt;/p&gt;
+
+&lt;p&gt;Now you can include &quot;fixes user/repo#45&quot; in your commit message,
+and it will close the referenced issue, provided you have the 
+permission to push to that repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github-dev.s3.amazonaws.com/assets/12/1/d0e61e70-900e-11e2-8547-9794335adea3.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://github-dev.s3.amazonaws.com/assets/12/1/d0e61e70-900e-11e2-8547-9794335adea3.png&quot; alt=&quot;closing issue in another repo&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You can already &lt;a href=&quot;https://github.com/blog/1386-closing-issues-via-commit-messages&quot;&gt;close issues via commit messages&lt;/a&gt;.
+The only change is now the issue and commit don't
+have to be in the same repository network.&lt;/p&gt;
+
+&lt;p&gt;This should make things a lot better for those of you with
+&lt;a href=&quot;https://help.github.com/articles/issues-only-access-permissions&quot;&gt;issues-only repositories&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Happy bug fixing!&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/b1b1d33e0655e841d4fd8467359c58d0?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>ymendel</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1436</id>
+    <published>2013-03-15T10:12:12-07:00</published>
+    <updated>2013-03-18T14:11:23-07:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1436-moving-and-renaming-files-on-github"/>
+    <title>Moving and Renaming Files on GitHub</title>
+    <content type="html">&lt;p&gt;Starting today, you can move and rename files within your repositories on GitHub.&lt;/p&gt;
+
+&lt;h2&gt;Renaming a file&lt;/h2&gt;
+
+&lt;p&gt;You&#8217;ll notice that editing a file now lets you enter a new name for your file.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/296432/253622/e99286f8-8bda-11e2-97f6-7241552ce613.gif&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/296432/253622/e99286f8-8bda-11e2-97f6-7241552ce613.gif&quot; alt=&quot;Renaming a file&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;But let&#8217;s see what else this field can do.&lt;/p&gt;
+
+&lt;h2&gt;Moving files to new locations&lt;/h2&gt;
+
+&lt;p&gt;You can also move files to entirely new locations using just the filename field.
+To navigate down into a folder, just type the name of the folder you want to move the 
+file into followed by &lt;code&gt;/&lt;/code&gt;. The folder can be one that&#8217;s already part of your repository,
+or it can even be a brand-new folder that doesn&#8217;t exist yet!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/296432/253654/035356de-8bdc-11e2-9ee4-189afb57cac3.gif&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/296432/253654/035356de-8bdc-11e2-9ee4-189afb57cac3.gif&quot; alt=&quot;moving a file to a new location&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It&#8217;s just as easy to move files into folders &lt;em&gt;above&lt;/em&gt; the file&#8217;s current location too. 
+To move a file up, place your cursor at the beginning of the filename field and either:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Type &lt;code&gt;../&lt;/code&gt; to jump up a whole directory level.&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;backspace&lt;/code&gt; to move up a directory, while keeping the parent folder&#8217;s name 
+around for quick changes.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;Creating files in new locations&lt;/h2&gt;
+
+&lt;p&gt;This functionality is also available when 
+&lt;a href=&quot;https://github.com/blog/1327-creating-files-on-github&quot;&gt;creating files&lt;/a&gt; too, and means 
+you can now create new files anywhere in your repositories, even if the folder doesn&#8217;t 
+exist yet! &lt;img class=&quot;emoji&quot; title=&quot;:smiley:&quot; alt=&quot;:smiley:&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/icons/emoji/smiley.png&quot; height=&quot;20&quot; width=&quot;20&quot; align=&quot;absmiddle&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;Help and further information&lt;/h3&gt;
+
+&lt;p&gt;For help with these features, be sure to read our help articles on &lt;a href=&quot;https://help.github.com/articles/renaming-a-file&quot;&gt;renaming&lt;/a&gt;,
+&lt;a href=&quot;https://help.github.com/articles/moving-a-file-to-a-new-location&quot;&gt;moving&lt;/a&gt;, and
+&lt;a href=&quot;https://help.github.com/articles/creating-new-files&quot;&gt;creating&lt;/a&gt; files.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;emoji&quot; title=&quot;:sparkles:&quot; alt=&quot;:sparkles:&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/icons/emoji/sparkles.png&quot; height=&quot;20&quot; width=&quot;20&quot; align=&quot;absmiddle&quot;&gt; Enjoy! &lt;img class=&quot;emoji&quot; title=&quot;:sparkles:&quot; alt=&quot;:sparkles:&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/icons/emoji/sparkles.png&quot; height=&quot;20&quot; width=&quot;20&quot; align=&quot;absmiddle&quot;&gt;&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/ee5bae7fa46b3195869c285ecbb4619e?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>cobyism</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1437</id>
+    <published>2013-03-13T10:45:45-07:00</published>
+    <updated>2013-03-13T10:45:45-07:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1437-better-live-updates"/>
+    <title>Better live updates</title>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/blog/1174-auto-updating-comments&quot;&gt;Pull Request live updates&lt;/a&gt; just
+became a little more awesome.  We now automatically update the commits tab, 
+and let you know when the diff tab is out out of date as your pull
+request branch is updated.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/69/242102/9a9545a0-89ef-11e2-8fe4-ecb51988dc0b.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/69/242102/9a9545a0-89ef-11e2-8fe4-ecb51988dc0b.jpg&quot; alt=&quot;screenshot&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/df5e7adb20adae6c120b04e7cafb15a0?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>rsanheim</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1435</id>
+    <published>2013-03-12T12:15:38-07:00</published>
+    <updated>2013-03-12T13:40:42-07:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1435-ciara-mcguire-is-a-githubber"/>
+    <title>Ciara McGuire is a GitHubber!</title>
+    <content type="html">&lt;p&gt;This week we're welcoming our newest member of the Community team, Ciara McGuire. Hailing from the other side of the pond, Ciara will be helping us to increase our conference outreach in Europe and Asia. &lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/443094/250799/1746d724-8b55-11e2-9f3d-0140e323d218.gif&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/443094/250799/1746d724-8b55-11e2-9f3d-0140e323d218.gif&quot; alt=&quot;ciara-GIF-med&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Follow Ciara on &lt;a href=&quot;https://github.com/ciaramcguire&quot;&gt;GitHub&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/ciaramcguire&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/060dc0e5e351d467dec8bb4936bde683?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>kamzilla</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1434</id>
+    <published>2013-03-11T11:15:56-07:00</published>
+    <updated>2013-03-11T11:23:08-07:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1434-sf-drinkup-44"/>
+    <title>SF Drinkup #44</title>
+    <content type="html">&lt;p&gt;Join us Thursday evening for another SF Drinkup. After our first &lt;a href=&quot;https://github.com/blog/1433-introducing-passion-projects&quot;&gt;Passion Projects talk&lt;/a&gt;, we're heading over to &lt;a href=&quot;http://alchemistsf.com/&quot;&gt;Alchemist&lt;/a&gt; for some &lt;img class=&quot;emoji&quot; title=&quot;:beers:&quot; alt=&quot;:beers:&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/icons/emoji/beers.png&quot; height=&quot;20&quot; width=&quot;20&quot; align=&quot;absmiddle&quot;&gt; and to talk all things GitHub.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/443094/245091/6a4c17e8-8a76-11e2-8659-81ba32bf67f0.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/443094/245091/6a4c17e8-8a76-11e2-8659-81ba32bf67f0.jpg&quot; alt=&quot;alchemist&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Facts:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&quot;http://alchemistsf.com/&quot;&gt;Alchemist&lt;/a&gt; - &lt;a href=&quot;https://maps.google.com/?q=679+3rd+Street,+San+Francisco,+CA,+USA&quot;&gt;679 3rd Street San Francisco, CA, USA&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;Thursday, March 14 at 8:00pm&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://maps.google.com/?q=679+3rd+Street,+San+Francisco,+CA,+USA&quot;&gt;
+&lt;img src=&quot;https://f.cloud.github.com/assets/443094/245092/764d1272-8a76-11e2-9fd6-85f2abba09a6.png&quot; alt=&quot;Screen Shot 2013-03-11 at 10 55 45 AM&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;      &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Photo Credits:&lt;/strong&gt; &lt;a href=&quot;http://www.flickr.com/photos/93671691@N06&quot;&gt;Alchemist&lt;/a&gt;&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/060dc0e5e351d467dec8bb4936bde683?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>kamzilla</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1433</id>
+    <published>2013-03-07T11:15:26-08:00</published>
+    <updated>2013-03-07T11:15:26-08:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1433-introducing-passion-projects"/>
+    <title>Introducing Passion Projects</title>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://passion-projects.github.com/&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/631369/231426/8185767a-8706-11e2-9131-c751d0d9980d.png&quot; alt=&quot;passion_projects_banner&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We're always looking for opportunities to better support women in technology. We sponsor women-focused meetups and events all over the world. This year, we'd like to try something a little closer to home. Today we're proud to announce &lt;a href=&quot;http://passion-projects.github.com/&quot;&gt;Passion Projects&lt;/a&gt;, a monthly talk series designed to help surface and celebrate the work of some of the most passionate women in our industry. &lt;/p&gt;
+
+&lt;p&gt;We've invited some of our personal heroines in engineering, design, community management, and entrepreneurship to share one of their nearest and dearest passion projects with our community.&lt;/p&gt;
+
+&lt;h2&gt;Our First Event&lt;/h2&gt;
+
+&lt;p&gt;Join us on March 14th for drinks and a chat with one of our favorite Rubyists, Rachel Myers.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/631369/231375/5ae56b62-8704-11e2-8f41-ff1c64f02bbd.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/631369/231375/5ae56b62-8704-11e2-8f41-ff1c64f02bbd.jpg&quot; alt=&quot;rachel&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Rachel is currently stationed at &lt;a href=&quot;http://www.modcloth.com/&quot;&gt;ModCloth, Inc&lt;/a&gt;. She's an open source enthusiast who volunteers with the non-profit organization &lt;a href=&quot;http://workshops.railsbridge.org/&quot;&gt;Railsbridge&lt;/a&gt; to teach (more) women to code. She'll also be giving the keynote at &lt;a href=&quot;http://2013.scottishrubyconference.com/&quot;&gt;Scottish Ruby Conf&lt;/a&gt; this year. You can find Rachel on &lt;a href=&quot;https://github.com/rachelmyers&quot;&gt;GitHub&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/rachelmyers&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The nitty gritty:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;March 14th, 2013 from 6:00-7:00pm&lt;/li&gt;
+&lt;li&gt;Space is limited &#8212; you must &lt;a href=&quot;http://passion-projects.eventbrite.com/&quot;&gt;register to attend this event&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;GitHub HQ, 548 4th Street, San Francisco, CA&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/631369/231346/32c783f0-8703-11e2-898b-5cde0d2d8b0f.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/631369/231346/32c783f0-8703-11e2-898b-5cde0d2d8b0f.png&quot; alt=&quot;Screen Shot 2013-03-06 at 8 45 18 PM&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;More About Passion Projects&lt;/h2&gt;
+
+&lt;p&gt;The idea for Passion Projects was spurred from an internal conversation about building a more female-friendly engineering culture here at GitHub. We originally wanted a series of internal tech talks with female engineers from companies where we know women love to work. We decided these talks would be better shared with our community (that's you!).&lt;/p&gt;
+
+&lt;h2&gt;Why?&lt;/h2&gt;
+
+&lt;p&gt;When we ask other women how they got into technology, it's not uncommon to hear that they saw someone else doing what they do now and decided &quot;I can do that.&quot; Not everyone is lucky enough to be surrounded by women pursuing the careers that interest and inspire them. We're hoping Passion Projects will be a good opportunity for women interested in technology to hear about some positive experiences from other women in our industry doing what they love.&lt;/p&gt;
+
+&lt;h2&gt;Get Involved&lt;/h2&gt;
+
+&lt;p&gt;We'd love to hear from you! Tell us about the women who have inspired you at &lt;a href=&quot;mailto:passion@github.com&quot;&gt;passion@github.com&lt;/a&gt;. If you're a conference or meetup organizer who's looking for sponsorships, drop us a line at &lt;a href=&quot;mailto:sponsorships@github.com&quot;&gt;sponsorships@github.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;emoji&quot; title=&quot;:ok_woman:&quot; alt=&quot;:ok_woman:&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/icons/emoji/ok_woman.png&quot; height=&quot;20&quot; width=&quot;20&quot; align=&quot;absmiddle&quot;&gt;&lt;img class=&quot;emoji&quot; title=&quot;:computer:&quot; alt=&quot;:computer:&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/icons/emoji/computer.png&quot; height=&quot;20&quot; width=&quot;20&quot; align=&quot;absmiddle&quot;&gt;&lt;img class=&quot;emoji&quot; title=&quot;:sparkles:&quot; alt=&quot;:sparkles:&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/icons/emoji/sparkles.png&quot; height=&quot;20&quot; width=&quot;20&quot; align=&quot;absmiddle&quot;&gt;&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/8209444173472be8823f570f77ed8b8b?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>nrrrdcore</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1432</id>
+    <published>2013-03-06T12:10:43-08:00</published>
+    <updated>2013-03-06T12:17:07-08:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1432-ben-balter-is-a-githubber"/>
+    <title>Ben Balter is a GitHubber</title>
+    <content type="html">&lt;p&gt;Here at GitHub, we're always humbled to see all the &lt;a href=&quot;https://github.com/WhiteHouse/petitions&quot;&gt;awesome&lt;/a&gt; &lt;a href=&quot;https://github.com/Chicago/osd-bike-racks&quot;&gt;ways&lt;/a&gt; &lt;a href=&quot;https://github.com/alphagov/static/pull/94#issuecomment-9482523&quot;&gt;government&lt;/a&gt; &lt;a href=&quot;https://github.com/nysenate/OpenLegislation&quot;&gt;uses&lt;/a&gt; &lt;a href=&quot;https://github.com/nasa/mct&quot;&gt;GitHub&lt;/a&gt;, which is why today we're especially excited to announce that Ben Balter will be joining the GitHub team as the first ever Government Bureaucat, helping government to do all sorts of governmenty things well, more awesomely.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/70/227988/b7ba84aa-8671-11e2-982d-443b1bc6c9d2.jpeg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/70/227988/b7ba84aa-8671-11e2-982d-443b1bc6c9d2.jpeg&quot; alt=&quot;&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Ben's been called one of the &quot;baddest of the badass innovators&quot; within government and we have to agree. Ben comes to GitHub by way of the White House, having served in the inaugural class of Presidential Innovation Fellows, while also somehow simultaneously earning both a JD and an MBA, and among other claims of fame, is proud to have made the first commit to GitHub on behalf of the Federal Government (did we mention he's an open-source developer too?).&lt;/p&gt;
+
+&lt;p&gt;You can find Ben on &lt;a href=&quot;http://twitter.com/benbalter&quot;&gt;Twitter&lt;/a&gt; and &lt;a href=&quot;https://github.com/benbalter&quot;&gt;GitHub&lt;/a&gt;, and be on the lookout for some local gov. awesomeness coming to a government near you.&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/9375a9529679f1b42b567a640d775e7d?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>schacon</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1431</id>
+    <published>2013-03-05T18:10:28-08:00</published>
+    <updated>2013-03-06T10:53:55-08:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1431-grant-rodgers-is-a-githubber"/>
+    <title>Grant Rodgers is a GitHubber</title>
+    <content type="html">&lt;p&gt;This week we are welcoming Grant Rodgers to the GitHub team. With his superb search skills Grant has found Jimmy Hoffa's body, a houseboat on Lake Union, and a place on our search team. He will be working to improve the search experience across the site and to make all sorts of data discoverable.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;center&gt;
+&lt;a href=&quot;https://f.cloud.github.com/assets/6323/225686/021a13d2-8602-11e2-8774-91200c5b3b9b.gif&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/6323/225686/021a13d2-8602-11e2-8774-91200c5b3b9b.gif&quot; alt=&quot;grant-GIF2&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;
+&lt;/center&gt;
+
+&lt;p&gt;Follow Grant on &lt;a href=&quot;https://github.com/grantr&quot;&gt;GitHub&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/grantr&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/4d5b5dd4e263d780a5dfe7ac8b8ac98c?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>TwP</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1428</id>
+    <published>2013-03-05T10:35:27-08:00</published>
+    <updated>2013-03-05T17:53:56-08:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1428-chrissie-brodigan-is-a-githubber"/>
+    <title>Chrissie Brodigan is a GitHubber!</title>
+    <content type="html">&lt;p&gt;Today we're welcoming Chrissie Brodigan to the team. Chrissie is an experienced UX designer with a big heart for open source, research, and adventure. She'll be joining us to lead up user research efforts and make GitHub easier to use.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;center&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/317429/225658/a4f68376-8600-11e2-809f-e587897f9daa.gif&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/317429/225658/a4f68376-8600-11e2-809f-e587897f9daa.gif&quot; alt=&quot;chrissie-GIF-1&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+&lt;/center&gt;
+
+&lt;p&gt;You can follow Chrissie on &lt;a href=&quot;https://github.com/chrissiebrodigan&quot;&gt;GitHub&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://twitter.com/tenaciouscb&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/8209444173472be8823f570f77ed8b8b?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>nrrrdcore</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1430</id>
+    <published>2013-03-05T10:31:35-08:00</published>
+    <updated>2013-03-05T10:31:35-08:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1430-matt-diephouse-is-a-githubber"/>
+    <title>Matt Diephouse is a GitHubber</title>
+    <content type="html">&lt;p&gt;This week we welcome Matt Diephouse. Reigning from Columbus, OH, Matt will be using his Mac skills, passion for great software, and boyish good looks to make the world a better place.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://a248.e.akamai.net/camo.github.com/754daa6521ec200022cc20cfefe42c4578e2cce5/687474703a2f2f636c2e6c792f696d6167652f3072336a3358314d3365315a2f636f6e74656e74&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://a248.e.akamai.net/camo.github.com/754daa6521ec200022cc20cfefe42c4578e2cce5/687474703a2f2f636c2e6c792f696d6167652f3072336a3358314d3365315a2f636f6e74656e74&quot; alt=&quot;Matt Diephouse&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Follow Matt on &lt;a href=&quot;https://github.com/mdiep&quot;&gt;GitHub&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/mdiep&quot;&gt;Twitter&lt;/a&gt;.&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/20bfe76b3d6105641f879fe45cfc9272?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>bkeepers</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1429</id>
+    <published>2013-03-05T10:06:04-08:00</published>
+    <updated>2013-03-05T10:06:04-08:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1429-denver-drinkup"/>
+    <title>Denver Drinkup</title>
+    <content type="html">&lt;p&gt;We're in Denver this week for &lt;a href=&quot;http://www.sigcse.org/sigcse2013/&quot;&gt;SIGCSE&lt;/a&gt;. If you're attending the conference, be sure to stop by and say hello. Then join &lt;a href=&quot;https://github.com/johndbritton&quot; class=&quot;user-mention&quot;&gt;@johndbritton&lt;/a&gt;, &lt;a href=&quot;https://github.com/matthewmccullough&quot; class=&quot;user-mention&quot;&gt;@matthewmccullough&lt;/a&gt;, &lt;a href=&quot;https://github.com/juliamae&quot; class=&quot;user-mention&quot;&gt;@juliamae&lt;/a&gt;, &lt;a href=&quot;https://github.com/tlberglund&quot; class=&quot;user-mention&quot;&gt;@tlberglund&lt;/a&gt;, &lt;a href=&quot;https://github.com/ElizabethN&quot; class=&quot;user-mention&quot;&gt;@ElizabethN&lt;/a&gt;, &lt;a href=&quot;https://github.com/VxJasonxV&quot; class=&quot;user-mention&quot;&gt;@VxJasonxV&lt;/a&gt;, and &lt;a href=&quot;https://github.com/kamzilla&quot; class=&quot;user-mention&quot;&gt;@kamzilla&lt;/a&gt; at &lt;a href=&quot;http://www.yardhouse.com/default.aspx&quot;&gt;Yard House&lt;/a&gt; on Thursday night. &lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/443094/219593/66510d80-8538-11e2-8ca9-2775c2ccd067.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/443094/219593/66510d80-8538-11e2-8ca9-2775c2ccd067.jpg&quot; alt=&quot;yard-house&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;strong&gt;When:&lt;/strong&gt; Thursday, March 7th, 8:30pm&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Where:&lt;/strong&gt; &lt;a href=&quot;http://www.yardhouse.com/default.aspx&quot;&gt;Yard House&lt;/a&gt; - &lt;a href=&quot;http://goo.gl/maps/Cl0SC&quot;&gt;1555 Court Place&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;You do not have to attend the conference to attend the Drinkup.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;http://goo.gl/maps/Psc33&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/443094/223048/dbbdc106-85bc-11e2-8a00-7f798cc099cf.png&quot; alt=&quot;1555 Court Place&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/060dc0e5e351d467dec8bb4936bde683?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>kamzilla</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1427</id>
+    <published>2013-02-27T12:15:30-08:00</published>
+    <updated>2013-02-27T12:31:58-08:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1427-grand-rapids-drinkup"/>
+    <title>Grand Rapids Drinkup</title>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://grdevday.org/&quot;&gt;GRDevDay&lt;/a&gt; is taking place this Saturday, and with so many amazing developers together, we couldn't resist the urge to throw an after party. Join &lt;a href=&quot;https://github.com/bkeepers&quot; class=&quot;user-mention&quot;&gt;@bkeepers&lt;/a&gt; and the rest of the Grand Rapids development community for a few drinks and good times.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.kitchen67.com/&quot;&gt;&lt;img src=&quot;https://a248.e.akamai.net/camo.github.com/c493fd1600c2b8c479fde9972c9ceaf4fc760b6d/687474703a2f2f7777772e6b69746368656e36372e636f6d2f696d616765732f696d616765312e6a7067&quot; alt=&quot;Kitchen 67&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;strong&gt;When:&lt;/strong&gt; Saturday, March 2, at 6pm. &lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Where:&lt;/strong&gt; &lt;a href=&quot;http://www.kitchen67.com/&quot;&gt;Kitchen 67&lt;/a&gt;, at &lt;a href=&quot;http://goo.gl/maps/UWE57&quot;&gt;1977 E. Beltline Ave NE&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;http://goo.gl/maps/UWE57&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/173/202723/9ac91636-811c-11e2-803b-b79bc111b743.png&quot; alt=&quot;1977 E. Beltline Ave NE&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/20bfe76b3d6105641f879fe45cfc9272?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>bkeepers</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1423</id>
+    <published>2013-02-27T05:09:09-08:00</published>
+    <updated>2013-02-27T05:09:09-08:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1423-montreal-drinkup"/>
+    <title>Montreal Drinkup</title>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://confoo.ca/&quot;&gt;ConFoo&lt;/a&gt; is happening this week in Montreal, and when &lt;a href=&quot;https://github.com/ben&quot; class=&quot;user-mention&quot;&gt;@ben&lt;/a&gt; is travelling, he likes to drink with awesome people. Whether you're in town for the conference, are a native Montrealite, or are flying in just to drink with us, come on by and say hi!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.brasseriebenelux.com/&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/39902/197939/6aef1a5a-804a-11e2-85be-1c15a9a871f8.jpg&quot; alt=&quot;united_colors_of_benelux&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;strong&gt;When:&lt;/strong&gt; Saturday, March 2, at 7pm. &lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Where:&lt;/strong&gt; &lt;a href=&quot;http://www.brasseriebenelux.com/&quot;&gt;Benelux&lt;/a&gt;, at &lt;a href=&quot;http://maps.google.ca/maps?q=benelux+brasserie&amp;amp;hl=fr&amp;amp;sll=45.510498,-73.570708&amp;amp;sspn=0.01227,0.01929&amp;amp;t=v&amp;amp;hq=benelux+brasserie&amp;amp;z=16&amp;amp;iwloc=A&quot;&gt;245 Sherbrooke ouest&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;http://maps.google.ca/maps?q=benelux+brasserie&amp;amp;hl=fr&amp;amp;sll=45.510498,-73.570708&amp;amp;sspn=0.01227,0.01929&amp;amp;t=v&amp;amp;hq=benelux+brasserie&amp;amp;z=16&amp;amp;iwloc=A&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/39902/196576/d936bc72-8020-11e2-8b39-a846b3474436.jpg&quot; alt=&quot;245 Rue Sherbrooke Ouest Montre al Montre al Que bec H2X Canada - Google Maps&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/0d410939c9e80980cf0430772567dfb4?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>ben</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1425</id>
+    <published>2013-02-26T15:48:45-08:00</published>
+    <updated>2013-02-26T15:48:45-08:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1425-pittsburgh-drinkup"/>
+    <title>Pittsburgh Drinkup</title>
+    <content type="html">&lt;p&gt;Join &lt;a href=&quot;https://github.com/kneath&quot; class=&quot;user-mention&quot;&gt;@kneath&lt;/a&gt; and me this Thursday at &lt;a href=&quot;http://steelcactuspgh.com&quot;&gt;Steel Cactus&lt;/a&gt; in Shadyside. Yinz invited.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/2723/198642/56975154-8062-11e2-9099-024e5276156b.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/2723/198642/56975154-8062-11e2-9099-024e5276156b.jpg&quot; alt=&quot;562809_270831649694608_2081759738_n&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Facts:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&quot;http://steelcactuspgh.com&quot;&gt;Steel Cactus Authentic Mexican Restaurante &amp;amp; Cantina&lt;/a&gt; - &lt;a href=&quot;https://maps.google.com/?q=5505+Walnut+St.,+Pittsburgh,+PA,+USA&quot;&gt;5505 Walnut St.&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;Thursday, February 28 at 8:00pm&lt;/li&gt;
+&lt;li&gt;We've got the upper roof deck reserved for all things GitHub, so once you're there, just head upstairs.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;a href=&quot;https://maps.google.com/?%0Aq=5505+Walnut+St.,+Pittsburgh,+PA,+USA&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/2723/198622/c3b3eaf0-8061-11e2-8812-529a4fed5ac5.png&quot; alt=&quot;Screen Shot 2013-02-26 at 2 13 27 PM&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Bring a friend, have a few beers on us, and we're looking forward to seeing you at our first Steel City drinkup!&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/6f63cde8b16b035280ca615f621a6c8c?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>holman</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Post/1426</id>
+    <published>2013-02-26T15:37:49-08:00</published>
+    <updated>2013-02-26T15:37:49-08:00</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/blog/1426-spam-spam-spam-spam"/>
+    <title>Spam spam spam spam!</title>
+    <content type="html">&lt;p&gt;We get a lot of spam on &lt;a href=&quot;https://gist.github.com&quot;&gt;Gist&lt;/a&gt; and we have a decent system for removing it from public view. Unfortunately, from time to time, something nasty will sneak through. &lt;/p&gt;
+
+&lt;p&gt;We just rolled out a feature to make it easier for you &#8212; our amazing users &#8212; to let us know when something looks spammy. This flags the gist so our awesome support staff can look into it further. &lt;/p&gt;
+
+&lt;p&gt;If you see a spammy or abusive gist of any kind, click the gear, and choose &quot;Report as Abuse&quot;. &lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://f.cloud.github.com/assets/242/198881/2e02f146-806a-11e2-9872-6e32591262e1.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://f.cloud.github.com/assets/242/198881/2e02f146-806a-11e2-9872-6e32591262e1.png&quot; alt=&quot;Picture 202013-02-26 20at 203 13 24 20PM&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <media:thumbnail url="https://secure.gravatar.com/avatar/c6858f4b8ec263c8c3c58759494e926a?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+    <author>
+      <name>adelcambre</name>
+    </author>
+  </entry>
+</feed>

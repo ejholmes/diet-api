@@ -4,7 +4,16 @@ class API < Grape::API
   version 'v1', using: :header, vendor: 'reader'
   format :json
 
-  helpers do
+  resource :items do
+    desc 'Lists all items.'
+    get do
+      Item.all
+    end
+
+    desc 'Lists only unread items.'
+    get :unread do
+      Item.unread.all
+    end
   end
 
   resource :subscriptions do
@@ -18,7 +27,7 @@ class API < Grape::API
       requires :url, type: String, desc: 'URL to an RSS or Atom feed.'
     end
     post do
-      current_user.subscribe_to(params[:url])
+      Subscriptions.new(params[:url])
     end
   end
 end
