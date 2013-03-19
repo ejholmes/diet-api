@@ -70,4 +70,5 @@ end
 group :production do
   gem 'memcachier'
   gem 'dalli'
+  gem 'unicorn'
 end
