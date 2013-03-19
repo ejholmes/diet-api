@@ -19,6 +19,17 @@ describe API do
         expect(last_response.status).to eq 200
         expect(last_response.body).to eq Array(item.entity).to_json
       end
+
+      context 'with a feed specified' do
+        it 'responds with a list of items in that feed' do
+          feed = create :feed
+          item = create :item, feed: feed
+          3.times { create :item }
+          get "/items?feed=#{feed.id}"
+          expect(last_response.status).to eq 200
+          expect(last_response.body).to eq Array(item.entity).to_json
+        end
+      end
     end
 
     describe 'GET /items/unread' do

@@ -14,8 +14,7 @@ class Item < ActiveRecord::Base
 
     def filtered(params = {})
       scope = scoped
-      scope = scope.where(feed_id: params[:feed_id]) if params[:feed_id]
-      scope = scope.unread if params[:unread] && params[:unread] == 1
+      scope = scope.where(feed_id: params[:feed]) if params[:feed]
       scope
     end
   end

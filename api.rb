@@ -25,12 +25,12 @@ class API < Grape::API
   resource :items do
     desc 'Lists all items.'
     get do
-      present items
+      present items.filtered(params)
     end
 
     desc 'Lists only unread items.'
     get :unread do
-      present items.unread
+      present items.filtered(params).unread
     end
 
     desc 'Mark an item as read.'
