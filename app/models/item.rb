@@ -1,4 +1,6 @@
 class Item < ActiveRecord::Base
+  self.per_page = 25
+
   belongs_to :feed
 
   default_scope order('created_at DESC')
@@ -14,7 +16,7 @@ class Item < ActiveRecord::Base
 
     def filtered(params = {})
       scope = scoped
-      scope = scope.where(feed_id: params[:feed]) if params[:feed]
+      scope = scope.where(feed_id: params[:subscription]) if params[:subscription]
       scope
     end
   end
@@ -38,6 +40,6 @@ class Item < ActiveRecord::Base
     expose :read
     expose :description
     expose :pub_date
-    expose :feed, using: Feed::Entity
+    expose :feed_id
   end
 end

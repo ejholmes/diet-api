@@ -1,6 +1,10 @@
 require 'i18n'
 require 'active_support'
 
+ActiveSupport.on_load :active_record do
+  require 'will_paginate/active_record'
+end
+
 require 'bundler/setup'
 Bundler.require :default
 require 'uri'
@@ -21,5 +25,6 @@ def database_config
 end
 
 ActiveRecord::Base.establish_connection(database_config)
+ActiveRecord::Base.logger = Logger.new(STDOUT) unless ENV['RACK_ENV'] == 'test'
 
 require_relative './app/models'

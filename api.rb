@@ -20,22 +20,38 @@ class API < Grape::API
     def items
       Item.scoped
     end
+
+    def filtered_items
+      items.filtered(params).paginate(page: params[:page])
+    end
   end
 
   resource :items do
+    INDEX_PARAMS = proc {
+      optional :subscription, type: String, desc: 'Subscription id to scope to.'
+      optional :page, type: Integer, desc: 'Page to return. Defaults to first page.'
+    }
+
     desc 'Lists all items.'
+    params &INDEX_PARAMS
     get do
-      present items.filtered(params)
+      present filtered_items
     end
 
     desc 'Lists only unread items.'
+    params &INDEX_PARAMS
     get :unread do
-      present items.filtered(params).unread
+      present filtered_items.unread
+    end
+
+    desc 'Mark all items as read.'
+    put :read do
+      items.read!
     end
 
     desc 'Mark an item as read.'
     params do
-      requires :id, type: String, desc: "Item id."
+      requires :id, type: String, desc: 'Item id.'
     end
     put ':id/read' do
       item.read!
@@ -44,7 +60,7 @@ class API < Grape::API
 
     desc 'Mark an item as unread.'
     params do
-      requires :id, type: String, desc: "Item id."
+      requires :id, type: String, desc: 'Item id.'
     end
     put ':id/unread' do
       item.unread!

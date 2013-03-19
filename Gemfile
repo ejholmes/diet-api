@@ -1,13 +1,14 @@
 source :rubygems
 
 gem 'rake'
+gem 'rack',          '~> 1.5.2'
 gem 'grape',         '~> 0.4.0'
 gem 'grape-entity',  '~> 0.2.0'
 gem 'i18n',          '~> 0.6.4'
 gem 'activesupport', '~> 3.2.12'
 gem 'json',          '~> 1.7.7'
 gem 'multi_json',    '~> 1.7.0'
-#gem 'kaminari',      '~> 0.14.1'
+gem 'will_paginate', '~> 3.0.3'
 gem 'thin',          '~> 1.5.0'
 
 # RSS/Atom

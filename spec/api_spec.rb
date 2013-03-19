@@ -25,9 +25,17 @@ describe API do
           feed = create :feed
           item = create :item, feed: feed
           3.times { create :item }
-          get "/items?feed=#{feed.id}"
+          get "/items?subscription=#{feed.id}"
           expect(last_response.status).to eq 200
           expect(last_response.body).to eq Array(item.entity).to_json
+        end
+      end
+
+      context 'with pagination' do
+        it 'responds with a paginated list of items' do
+          100.times { create :item }
+          get '/items?page=2'
+          expect(JSON.parse(last_response.body).length).to eq 25
         end
       end
     end
@@ -39,6 +47,17 @@ describe API do
         get '/items/unread'
         expect(last_response.status).to eq 200
         expect(last_response.body).to eq Array(item.entity).to_json
+      end
+    end
+
+    describe 'PUT /items/read' do
+      it 'marks all items as read' do
+        5.times { create :item, read: true  }
+        5.times { create :item, read: false }
+        put '/items/read'
+        Item.all.each { |item| expect(item).to be_read }
+        expect(last_response.status).to eq 200
+        expect(last_response.body).to eq '10'
       end
     end
 

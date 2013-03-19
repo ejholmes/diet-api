@@ -38,5 +38,6 @@ class Feed < ActiveRecord::Base
     expose :unread_count
     expose :html_url
     expose :xml_url
+    expose :last_updated
   end
 end
