@@ -11,8 +11,9 @@ class ItemsController < ApplicationController
     elsif unread = params[:unread]
       @items = items.where(read: false)
     else
-      @items = items.all
+      @items = items
     end
+    @items = @items.page params[:page]
     @feeds = current_user.feeds.all
     respond_with items
   end

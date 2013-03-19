@@ -28,3 +28,4 @@
         = link_to '<i class="icon-check"></i> Mark all read'.html_safe, read_all_items_path, method: :put, class: 'btn mark-all-read'
     %ul#items
       = render @items
+      = paginate @items

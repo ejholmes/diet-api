@@ -1,6 +1,8 @@
 class Item < ActiveRecord::Base
   autoload :Processor, 'item/processor'
 
+  paginates_per 25
+
   attr_accessible :description, :guid, :link, :pub_date, :title, :read
 
   belongs_to :feed

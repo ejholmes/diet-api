@@ -7,6 +7,7 @@ gem 'thin',         '~> 1.5.0'
 gem 'rabl',         '~> 0.7.10'
 gem 'pg',           '~> 0.14.1'
 gem 'pusher'
+gem 'kaminari'
 
 # Authentication
 gem 'devise'
