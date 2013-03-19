@@ -27,4 +27,18 @@ class Item < ActiveRecord::Base
   def unread!
     update_attributes!(read: false)
   end
+
+  def entity
+    Entity.new(self)
+  end
+
+  class Entity < Grape::Entity
+    expose :id
+    expose :title
+    expose :link
+    expose :read
+    expose :description
+    expose :pub_date
+    expose :feed, using: Feed::Entity
+  end
 end

@@ -31,6 +31,7 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'webmock/rspec'
   require 'factory_girl'
+  require 'rack/test'
   require File.expand_path('../factories', __FILE__)
 
   WebMock.disable_net_connect! allow_localhost: true

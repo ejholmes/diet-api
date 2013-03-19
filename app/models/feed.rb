@@ -7,6 +7,10 @@ class Feed < ActiveRecord::Base
     end
   end
 
+  def unread_count
+    items.unread.count
+  end
+
   def html_uri
     @html_uri ||= URI(html_url)
   end
@@ -21,5 +25,18 @@ class Feed < ActiveRecord::Base
 
   def refresh!
     Feed::Refresher.new(self).refresh
+  end
+
+  def entity
+    Entity.new(self)
+  end
+
+  class Entity < Grape::Entity
+    expose :id
+    expose :title
+    expose :text
+    expose :unread_count
+    expose :html_url
+    expose :xml_url
   end
 end

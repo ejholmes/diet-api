@@ -2,6 +2,7 @@ source :rubygems
 
 gem 'rake'
 gem 'grape'
+gem 'grape-entity'
 gem 'i18n'
 gem 'activesupport'
 gem 'json'
@@ -28,6 +29,7 @@ group :test do
   gem 'shoulda-matchers',   '~> 1.4.2'
   gem 'database_cleaner',   '~> 0.9.1'
   gem 'factory_girl'
+  gem 'rack-test'
 end
 
 group :development, :test do

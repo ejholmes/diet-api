@@ -17,11 +17,23 @@ describe Feed do
   end
 
   describe '.domain' do
+    subject { feed.domain }
+
     before do
       feed.html_url = 'http://github.com'
     end
 
-    subject { feed.domain }
     it { should eq 'github.com' }
+  end
+
+  describe '.unread_count' do
+    subject { feed.unread_count }
+
+    before do
+      2.times { create :item, feed: feed, read: true }
+      3.times { create :item, feed: feed, read: false }
+    end
+
+    it { should eq 3 }
   end
 end
