@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = items.filtered(params).page params[:page]
+    @feed = current_user.feeds.find(params[:feed_id]) if params[:feed_id]
     @feeds = current_user.feeds.all
     respond_with items
   end

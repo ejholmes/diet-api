@@ -8,6 +8,7 @@ gem 'rabl',         '~> 0.7.10'
 gem 'pg',           '~> 0.14.1'
 gem 'pusher',       '~> 0.11.2'
 gem 'kaminari',     '~> 0.14.1'
+gem 'feedzirra',    '~> 0.0.24'
 
 # Authentication
 gem 'devise'

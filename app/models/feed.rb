@@ -32,7 +32,7 @@ class Feed < ActiveRecord::Base
   end
 
   def xml
-    @xml ||= RSS::Parser.parse(open(xml_url))
+    @xml ||= Feedzirra::Feed.fetch_and_parse(xml_url)
   end
 
   def refresh!

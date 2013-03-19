@@ -1,6 +1,3 @@
-require 'rss'
-require 'open-uri'
-
 class Subscription
   attr_reader :url, :user
 
@@ -29,15 +26,15 @@ private
   end
 
   def feed
-    @feed ||= RSS::Parser.parse(open(url))
+    @feed ||= Feedzirra::Feed.fetch_and_parse(url)
   end
 
   def title
-    feed.channel.title
+    feed.title
   end
 
   def html_url
-    feed.channel.link
+    feed.url
   end
   
   def xml_url

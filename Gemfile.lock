@@ -63,6 +63,7 @@ GEM
     coffee-script-source (1.6.1)
     colorize (0.5.8)
     crack (0.3.2)
+    curb (0.8.3)
     daemons (1.1.9)
     dalli (2.6.2)
     database_cleaner (0.9.1)
@@ -87,6 +88,13 @@ GEM
       i18n (~> 0.5)
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
+    feedzirra (0.0.24)
+      activesupport (>= 2.3.8)
+      builder (>= 2.1.2)
+      curb (>= 0.2.3)
+      loofah (>= 0.3.1)
+      nokogiri (> 0.0.0)
+      sax-machine (>= 0.0.12)
     ffi (1.4.0)
     font-awesome-sass-rails (3.0.0.1)
       railties (>= 3.1.1)
@@ -144,6 +152,8 @@ GEM
     launchy (2.2.0)
       addressable (~> 2.3)
     listen (0.7.3)
+    loofah (1.2.1)
+      nokogiri (>= 1.4.4)
     lumberjack (1.0.2)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -225,6 +235,8 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    sax-machine (0.1.0)
+      nokogiri (> 0.0.0)
     selenium-webdriver (2.31.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
@@ -287,6 +299,7 @@ DEPENDENCIES
   ejs
   factory_girl_rails (~> 4.2.1)
   faker
+  feedzirra (~> 0.0.24)
   font-awesome-sass-rails (~> 3.0.0.1)
   foreman
   formtastic-bootstrap (~> 2.0.0)
@@ -301,7 +314,7 @@ DEPENDENCIES
   memcachier
   pg (~> 0.14.1)
   poltergeist (~> 1.1.0)
-  pusher
+  pusher (~> 0.11.2)
   rabl (~> 0.7.10)
   rails (~> 3.2.12)
   rb-fsevent

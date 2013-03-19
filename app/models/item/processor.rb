@@ -24,7 +24,7 @@ class Item::Processor
 
 private
 
-  delegate :title, :description, :link, to: :item
+  delegate :title, :content, :url, :published, to: :item
 
   def existing
     @existing ||= items.where(guid: guid).first
@@ -32,9 +32,9 @@ private
 
   def attributes
     { title: title,
-      description: description,
-      link: link,
-      pub_date: pub_date }
+      description: content,
+      link: url,
+      pub_date: published }
   end
 
   def items
@@ -42,11 +42,7 @@ private
   end
 
   def guid
-    item.guid ? item.guid.content : link
-  end
-
-  def pub_date
-    item.pubDate.to_s
+    item.entry_id || url
   end
 
 end

@@ -3,24 +3,28 @@ class Feed::Refresher
 
   def initialize(feed)
     @feed = feed
-    @count = feed.items.count
+    @count = items.count
   end
 
   def update
     updating!
-    items.each { |xml_item| process(xml_item) }
+    entries.each { |entry| process(entry) }
   ensure
-    notify if feed.items.count > count
+    notify if items.count > count
     updated!
   end
 
 private
 
   delegate :xml, to: :feed
-  delegate :items, to: :xml
+  delegate :entries, to: :xml
 
-  def process(xml_item)
-    Item::Processor.new(feed, xml_item).process
+  def process(entry)
+    Item::Processor.new(feed, entry).process
+  end
+
+  def items
+    feed.items
   end
 
   def notify
