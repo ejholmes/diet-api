@@ -2,7 +2,11 @@ source :rubygems
 
 gem 'rake'
 gem 'sinatra',      '~> 1.4.1'
+gem 'activesupport'
 gem 'json'
+
+# RSS/Atom
+gem 'feedzirra'
 
 # Readability
 gem 'readit'

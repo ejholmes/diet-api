@@ -1,6 +1,4 @@
 class Feed < ActiveRecord::Base
-  autoload :Refresher, 'feed/refresher'
-
   belongs_to :user
   has_many :items, dependent: :destroy
 

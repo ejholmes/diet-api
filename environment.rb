@@ -1,3 +1,5 @@
+require 'active_support'
+
 require 'bundler/setup'
 Bundler.require :default
 require 'uri'
