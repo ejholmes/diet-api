@@ -6,8 +6,8 @@ gem 'haml',         '~> 4.0.0'
 gem 'thin',         '~> 1.5.0'
 gem 'rabl',         '~> 0.7.10'
 gem 'pg',           '~> 0.14.1'
-gem 'pusher'
-gem 'kaminari'
+gem 'pusher',       '~> 0.11.2'
+gem 'kaminari',     '~> 0.14.1'
 
 # Authentication
 gem 'devise'

@@ -296,7 +296,7 @@ DEPENDENCIES
   heroku
   heroku_san
   jquery-rails (~> 2.2.1)
-  kaminari
+  kaminari (~> 0.14.1)
   konacha
   memcachier
   pg (~> 0.14.1)
