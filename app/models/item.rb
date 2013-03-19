@@ -16,6 +16,13 @@ class Item < ActiveRecord::Base
     scoped.map(&:read!)
   end
 
+  def self.filtered(params = {})
+    scope = scoped
+    scope = scope.where(feed_id: params[:feed_id]) if params[:feed_id]
+    scope = scope.unread if params[:unread] && params[:unread] == 1
+    scope
+  end
+
   def read!
     update_attributes!(read: true)
   end

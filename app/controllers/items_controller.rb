@@ -5,15 +5,7 @@ class ItemsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    if feed_id = params[:feed_id]
-      @items = items.where(feed_id: feed_id)
-      @feed  = current_user.feeds.find(feed_id)
-    elsif unread = params[:unread]
-      @items = items.where(read: false)
-    else
-      @items = items
-    end
-    @items = @items.includes(:feed).page params[:page]
+    @items = items.filtered(params).page params[:page]
     @feeds = current_user.feeds.all
     respond_with items
   end
