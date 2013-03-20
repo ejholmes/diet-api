@@ -1,6 +1,10 @@
 require 'securerandom'
 
 class User < ActiveRecord::Base
+  include Grape::Entity::DSL
+
+  autoload :Readability, 'models/user/readability'
+
   attr_accessible :email
 
   # Validations
@@ -11,11 +15,14 @@ class User < ActiveRecord::Base
   has_many :feeds
   has_many :items, through: :feeds
 
-  before_validation do
+  serialize :readability, Readability
+
+  before_validation on: :create do
     self.token = SecureRandom.hex
   end
 
   def self.authenticate(token)
+    return nil unless token.present?
     User.where(token: token).first
   end
 
@@ -27,8 +34,7 @@ class User < ActiveRecord::Base
     Entity.new(self)
   end
 
-  class Entity < Grape::Entity
-    expose :email
-    expose :token
+  entity :email, :token do
+    expose :readability, using: User::Readability::Entity
   end
 end

@@ -19,6 +19,14 @@ module FixtureHelpers
   end
 end
 
+module AuthenticationMacros
+  def with_authenticated_user
+    before do
+      User.stub(:authenticate).and_return(current_user)
+    end
+  end
+end
+
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV['RACK_ENV'] = 'test'
@@ -34,6 +42,8 @@ Spork.prefork do
   require File.expand_path('../factories', __FILE__)
 
   WebMock.disable_net_connect! allow_localhost: true
+
+  OmniAuth.config.test_mode = true
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -78,6 +88,7 @@ Spork.prefork do
     end
 
     config.include FixtureHelpers
+    config.extend AuthenticationMacros
     config.include FactoryGirl::Syntax::Methods
 
     if defined?(::ActiveRecord)

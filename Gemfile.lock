@@ -28,7 +28,6 @@ GEM
     descendants_tracker (0.0.1)
     diff-lcs (1.2.1)
     eventmachine (1.0.3)
-    excon (0.16.10)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
     faker (1.1.2)
@@ -72,12 +71,7 @@ GEM
       childprocess (>= 0.2.3)
       guard (>= 1.1)
       spork (>= 0.8.4)
-    hashie (2.0.3)
-    heroku-api (0.3.8)
-      excon (~> 0.16.10)
-    heroku_san (4.2.5)
-      heroku-api (>= 0.1.2)
-      rake
+    hashie (1.2.0)
     i18n (0.6.4)
     json (1.7.7)
     listen (0.7.3)
@@ -92,6 +86,16 @@ GEM
     multi_xml (0.5.3)
     nokogiri (1.4.7)
     oauth (0.4.7)
+    omniauth (1.0.3)
+      hashie (~> 1.2)
+      rack
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-readability (0.0.1)
+      multi_json
+      omniauth (~> 1.0.0.rc2)
+      omniauth-oauth (~> 1.0.0.rc2)
     pg (0.14.1)
     pry (0.9.12)
       coderay (~> 1.0.5)
@@ -163,11 +167,12 @@ DEPENDENCIES
   grape-entity (~> 0.2.0)
   guard-rspec (~> 2.5.1)
   guard-spork (~> 1.5.0)
-  heroku_san (~> 4.2)
+  hashie (~> 1.2.0)
   i18n (~> 0.6.4)
   json (~> 1.7.7)
   multi_json (~> 1.7.0)
   nokogiri
+  omniauth-readability
   pg (~> 0.14.1)
   rack (~> 1.5.2)
   rack-test (~> 0.6.2)

@@ -4,17 +4,18 @@ describe API do
   include Rack::Test::Methods
 
   def app
-    API
+    App.app
   end
 
   let(:current_user) { create :user }
 
   before do
     Subscription.any_instance.stub(:feed).and_return(Feedzirra::Feed.parse(atom_feed(:github)))
-    User.stub(:authenticate).and_return(current_user)
   end
 
   describe 'Items' do
+    with_authenticated_user
+
     let(:feed) { create :feed, user: current_user}
 
     describe 'GET /items' do
@@ -96,6 +97,8 @@ describe API do
   end
 
   describe 'Subscriptions' do
+    with_authenticated_user
+
     describe 'GET /subscriptions' do
       it 'responds with a list of items' do
         subscription = create :feed, user: current_user
@@ -123,6 +126,8 @@ describe API do
   end
 
   describe 'Import' do
+    with_authenticated_user
+
     describe 'POST /import/google_reader' do
       it 'imports all subscriptions' do
         Importer::GoogleReader.should_receive(:new).and_return(stub(import: nil))
@@ -153,5 +158,66 @@ describe API do
         end
       end
     end
+
+    describe 'Readability' do
+      with_authenticated_user
+
+      describe 'Authorize' do
+        before do
+          OmniAuth.config.mock_auth[:readability] = OmniAuth::AuthHash.new(
+            provider: 'readability',
+            credentials: {
+              token: 'token',
+              secret: 'secret'
+            }
+          )
+        end
+
+        describe 'GET /users/readability/authorize' do
+          it 'authorizes readability for the current user' do
+            get '/user/readability/authorize'
+            follow_redirect!
+            follow_redirect!
+            expect(last_response.status).to eq 200
+            expect(last_response.body).to eq 'Ok'.to_json
+          end
+        end
+      end
+
+      describe 'PUT /user/readability' do
+        context 'when the user has already authorized readability' do
+          before do
+            current_user.readability.stub(:authorized?).and_return(true)
+          end
+
+          it 'enables readability' do
+            put '/user/readability'
+            expect(last_response.status).to eq 200
+            expect(last_response.body).to eq current_user.entity.to_json
+          end
+        end
+
+        context 'when the user has not authorized readability' do
+          before do
+            current_user.readability.stub(:authorized?).and_return(false)
+          end
+
+          it 'returns an error' do
+            put '/user/readability'
+            expect(last_response.status).to eq 400
+            expect(last_response.body).to eq({ error: 'You need to authorize readability first.'}.to_json)
+          end
+        end
+      end
+
+      describe 'DELETE /user/readability' do
+        it 'disables readability' do
+          delete '/user/readability'
+          expect(last_response.status).to eq 200
+          expect(last_response.body).to eq current_user.entity.to_json
+        end
+      end
+    end
   end
+
 end

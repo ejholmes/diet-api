@@ -9,6 +9,8 @@ describe User do
   it { should have_many(:feeds) }
   it { should have_many(:items).through(:feeds) }
 
+  it { should serialize(:readability).as(User::Readability) }
+
   describe '#new' do
     it 'initializes a token' do
       user = described_class.new(email: 'foo@example.com')
@@ -38,5 +40,10 @@ describe User do
       Subscription.should_receive(:new).with(url, user: user).and_return(stub(subscribe: nil))
       user.subscribe_to(url)
     end
+  end
+
+  describe '.readability' do
+    subject { user.readability }
+    it { should be_a User::Readability }
   end
 end

@@ -12,7 +12,11 @@ class Updater
       feed = Feed.next
       if feed
         puts "Updating #{feed.title}"
-        feed.refresh!
+        begin
+          feed.refresh!
+        rescue
+          # Whatever
+        end
       end
     end
   end

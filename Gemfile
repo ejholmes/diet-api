@@ -7,6 +7,7 @@ gem 'grape-entity',  '~> 0.2.0'
 gem 'i18n',          '~> 0.6.4'
 gem 'activesupport', '~> 3.2.12'
 gem 'json',          '~> 1.7.7'
+gem 'hashie',        '~> 1.2.0'
 gem 'multi_json',    '~> 1.7.0'
 gem 'will_paginate', '~> 3.0.3'
 gem 'sanitize'
@@ -18,6 +19,7 @@ gem 'feedzirra', '~> 0.0.31'
 
 # Readability
 gem 'readit',    '~> 0.0.9'
+gem 'omniauth-readability'
 
 # Database
 gem 'pg',           '~> 0.14.1'
@@ -25,7 +27,6 @@ gem 'activerecord', '~> 3.2.12'
 
 group :development do
   gem 'shotgun', '~> 0.9'
-  gem 'heroku_san', '~> 4.2'
 end
 
 group :development, :test do

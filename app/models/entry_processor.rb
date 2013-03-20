@@ -19,12 +19,17 @@ class EntryProcessor
   end
 
   def create
-    items.create(attributes.merge(guid: guid))
+    item = items.create(attributes.merge(guid: guid))
+    bookmark item.link if readability.enabled?
+    item
   end
 
 private
 
   delegate :url, :published, to: :entry
+  delegate :user, to: :feed
+  delegate :readability, to: :user
+  delegate :bookmark, to: :readability
 
   def existing
     @existing ||= items.where(guid: guid).first
