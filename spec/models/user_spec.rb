@@ -9,7 +9,7 @@ describe User do
   it { should have_many(:feeds) }
   it { should have_many(:items).through(:feeds) }
 
-  it { should serialize(:readability).as(Hash) }
+  it { should serialize(:readability).as(User::Readability) }
 
   describe '#new' do
     it 'initializes a token' do

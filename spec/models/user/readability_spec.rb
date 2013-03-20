@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User::Readability do
   let(:hash) { Hash.new }
-  let(:readability) { described_class.new(hash) }
+  let(:readability) { described_class.new.tap { |o| o.replace(hash) } }
   subject { readability }
 
   describe '.token' do
@@ -52,12 +52,12 @@ describe User::Readability do
         readability.stub(:authorized?).and_return(true)
       end
 
-      context 'when enabled' do
+      context 'and enabled' do
         let(:hash) { { enabled: true } }
         it { should be_enabled }
       end
 
-      context 'when enabled' do
+      context 'and enabled' do
         let(:hash) { { enabled: false } }
         it { should_not be_enabled }
       end
@@ -68,12 +68,12 @@ describe User::Readability do
         readability.stub(:authorized?).and_return(false)
       end
 
-      context 'when enabled' do
+      context 'and enabled' do
         let(:hash) { { enabled: true } }
         it { should_not be_enabled }
       end
 
-      context 'when enabled' do
+      context 'and enabled' do
         let(:hash) { { enabled: false } }
         it { should_not be_enabled }
       end

@@ -1,6 +1,8 @@
 require 'securerandom'
 
 class User < ActiveRecord::Base
+  autoload :Readability, 'models/user/readability'
+
   attr_accessible :email
 
   # Validations
@@ -11,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :feeds
   has_many :items, through: :feeds
 
-  serialize :readability, Hash
+  serialize :readability, Readability
 
   before_validation do
     self.token = SecureRandom.hex
@@ -26,55 +28,8 @@ class User < ActiveRecord::Base
     Subscription.new(url, user: self).subscribe
   end
 
-  def readability
-    @readability ||= Readability.new(read_attribute(:readability))
-  end
-
   def entity
     Entity.new(self)
-  end
-
-  class Readability < Hash
-    attr_reader :hash
-
-    def initialize(hash)
-      replace(hash || Hash.new)
-    end
-
-    def token
-      credentials[:token]
-    end
-
-    def token=(token)
-      credentials[:token] = token
-    end
-
-    def secret
-      credentials[:secret]
-    end
-
-    def secret=(secret)
-      credentials[:secret] = secret
-    end
-
-    def authorized?
-      token.present? && secret.present?
-    end
-
-    def enabled?
-      authorized? && self[:enabled]
-    end
-
-    def client
-      @client ||= Readit::API.new token, secret
-    end
-
-  private
-
-    def credentials
-      self[:credentials] ||= Hash.new
-    end
-
   end
 
   class Entity < Grape::Entity
