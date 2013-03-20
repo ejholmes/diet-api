@@ -4,8 +4,7 @@ require File.expand_path('../config/environment', __FILE__)
 desc 'Deploy'
 task :deploy do
   app = 'rss-reader'
-  sh "git push git@heroku.com:#{app}.git master:HEAD"
-  sh "heroku run rake db:migrate -a #{app}"
+  sh "git push git@heroku.com:#{app}.git HEAD:master"
 end
 
 desc 'Start an irb session'
