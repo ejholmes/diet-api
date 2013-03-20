@@ -1,4 +1,6 @@
 class API < Grape::API
+  logger Logger.new(STDOUT)
+
   version 'v1', using: :header, vendor: 'reader'
   format :json
 
