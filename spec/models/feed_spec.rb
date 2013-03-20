@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Feed do
   let(:feed) { create :feed }
 
+  it { should belong_to(:user) }
   it { should have_many(:items) }
 
   before do

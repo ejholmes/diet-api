@@ -1,12 +1,13 @@
 class Subscription
-  attr_reader :url
+  attr_reader :url, :user
 
-  def initialize(url)
+  def initialize(url, options = {})
     @url = url
+    @user = options.fetch(:user)
   end
 
   def subscribe
-    Feed.create(
+    feeds.create(
       xml_url: xml_url,
       html_url: html_url,
       title: title,
@@ -17,6 +18,10 @@ class Subscription
 private
 
   delegate :description, to: :feed
+
+  def feeds
+    user.feeds
+  end
 
   def feed
     @feed ||= Feedzirra::Feed.fetch_and_parse(url)

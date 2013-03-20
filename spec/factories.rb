@@ -8,6 +8,7 @@ FactoryGirl.define do
   end
 
   factory :feed do
+    user
     html_url { Faker::Internet.url }
     text { Faker::Lorem.paragraphs.join('\n') }
     title { Faker::Lorem.word }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319194832) do
+ActiveRecord::Schema.define(:version => 20130320055139) do
 
   create_table "feeds", :force => true do |t|
     t.string   "xml_url"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20130319194832) do
     t.datetime "updated_at",                     :null => false
     t.boolean  "updating",    :default => false
     t.datetime "last_update"
+    t.integer  "user_id"
   end
 
   create_table "items", :force => true do |t|

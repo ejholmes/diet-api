@@ -1,9 +1,10 @@
 module Importer
   class GoogleReader < Base
-    attr_reader :file
+    attr_reader :file, :user
 
-    def initialize(file)
+    def initialize(file, options = {})
       @file = file
+      @user = options.fetch(:user)
     end
 
     def import
@@ -15,7 +16,7 @@ module Importer
   private
 
     def subscribe(url)
-      Subscription.new(url).subscribe
+      user.subscribe_to(url)
     rescue
       # Whatever
     end

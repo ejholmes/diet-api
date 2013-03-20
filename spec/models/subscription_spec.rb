@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Subscription do
   let(:url) { 'http://github.com/blog.atom' }
-  let(:subscription) { described_class.new(url) }
+  let(:user) { double('user', feeds: Feed) }
+  let(:subscription) { described_class.new(url, user: user) }
 
   before do
     subscription.stub(:feed).and_return(Feedzirra::Feed.parse(rss_feed(:svn)))

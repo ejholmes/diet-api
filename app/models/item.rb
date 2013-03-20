@@ -1,17 +1,16 @@
 class Item < ActiveRecord::Base
   self.per_page = 25
 
+  # Associations
   belongs_to :feed
 
-  default_scope order('created_at DESC')
-
+  # Scopes
   scope :unread, -> { where(read: false) }
   scope :read,   -> { where(read: true)  }
 
   class << self
-    # TODO: Make this more efficient.
     def read!
-      scoped.update_all(read: true)
+      scoped.reorder('').update_all(read: true)
     end
 
     def filtered(params = {})
@@ -19,6 +18,10 @@ class Item < ActiveRecord::Base
       scope = scope.where(feed_id: params[:subscription]) if params[:subscription]
       scope
     end
+  end
+
+  def user
+    feed.user
   end
 
   def read!

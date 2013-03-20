@@ -10,7 +10,7 @@ class API < Grape::API
     end
 
     def feeds
-      Feed.includes(:items).scoped
+      current_user.feeds.includes(:items).order('title ASC')
     end
 
     def item
@@ -18,7 +18,7 @@ class API < Grape::API
     end
 
     def items
-      Item.includes(:feed).scoped
+      current_user.items.includes(:feed).order('created_at DESC')
     end
 
     def filtered_items
@@ -97,7 +97,7 @@ class API < Grape::API
     end
     post do
       authenticate!
-      present Subscription.new(params[:url]).subscribe
+      present current_user.subscribe_to(params[:url])
     end
 
     desc 'Unsubscribe from a feed.'
@@ -117,7 +117,7 @@ class API < Grape::API
     end
     post :google_reader do
       authenticate!
-      Importer::GoogleReader.new(params.file.tempfile.read).import
+      Importer::GoogleReader.new(params.file.tempfile.read, user: current_user).import
       'Ok'
     end
   end

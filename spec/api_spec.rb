@@ -7,14 +7,19 @@ describe API do
     API
   end
 
+  let(:current_user) { create :user }
+
   before do
     Subscription.any_instance.stub(:feed).and_return(Feedzirra::Feed.parse(atom_feed(:github)))
+    User.stub(:authenticate).and_return(current_user)
   end
 
   describe 'Items' do
+    let(:feed) { create :feed, user: current_user}
+
     describe 'GET /items' do
       it 'responds with a list of items' do
-        item = create :item
+        item = create :item, feed: feed
         get '/items'
         expect(last_response.status).to eq 200
         expect(last_response.body).to eq Array(item.entity).to_json
@@ -22,7 +27,6 @@ describe API do
 
       context 'with a feed specified' do
         it 'responds with a list of items in that feed' do
-          feed = create :feed
           item = create :item, feed: feed
           3.times { create :item }
           get "/items?subscription=#{feed.id}"
@@ -33,7 +37,7 @@ describe API do
 
       context 'with pagination' do
         it 'responds with a paginated list of items' do
-          100.times { create :item }
+          100.times { create :item, feed: feed }
           get '/items?page=2'
           expect(JSON.parse(last_response.body).length).to eq 25
         end
@@ -42,8 +46,8 @@ describe API do
 
     describe 'GET /items/unread' do
       it 'responds with a list of items that are unread' do
-        create :item, read: true
-        item = create :item
+        create :item, feed: feed, read: true
+        item = create :item, feed: feed
         get '/items/unread'
         expect(last_response.status).to eq 200
         expect(last_response.body).to eq Array(item.entity).to_json
@@ -52,10 +56,10 @@ describe API do
 
     describe 'PUT /items/read' do
       it 'marks all items as read' do
-        5.times { create :item, read: true  }
-        5.times { create :item, read: false }
+        5.times { create :item, feed: feed, read: true  }
+        5.times { create :item, feed: feed, read: false }
         put '/items/read'
-        Item.all.each { |item| expect(item).to be_read }
+        current_user.items.all.each { |item| expect(item).to be_read }
         expect(last_response.status).to eq 200
         expect(last_response.body).to eq '10'
       end
@@ -63,7 +67,7 @@ describe API do
 
     describe 'PUT /items/:id/read' do
       it 'marks the item as read' do
-        item = create :item
+        item = create :item, feed: feed
         put "/items/#{item.id}/read"
         item.assign_attributes(read: true)
         expect(last_response.status).to eq 200
@@ -73,7 +77,7 @@ describe API do
 
     describe 'PUT /items/:id/unread' do
       it 'marks the item as unread' do
-        item = create :item, read: true
+        item = create :item, feed: feed, read: true
         put "/items/#{item.id}/unread"
         item.assign_attributes(read: false)
         expect(last_response.status).to eq 200
@@ -85,7 +89,7 @@ describe API do
   describe 'Subscriptions' do
     describe 'GET /subscriptions' do
       it 'responds with a list of items' do
-        subscription = create :feed
+        subscription = create :feed, user: current_user
         get '/subscriptions'
         expect(last_response.status).to eq 200
         expect(last_response.body).to eq Array(subscription.entity).to_json
@@ -102,7 +106,7 @@ describe API do
 
     describe 'DELETE /subscriptions/:id' do
       it 'removes the subscription' do
-        subscription = create :feed
+        subscription = create :feed, user: current_user
         delete "/subscriptions/#{subscription.id}"
         expect(last_response.status).to eq 200
       end
@@ -127,7 +131,7 @@ describe API do
         it 'creates a new user' do
           post '/users?email=foo@example.com'
           expect(last_response.status).to eq 201
-          expect(last_response.body).to eq User.first.entity.to_json
+          expect(last_response.body).to eq User.last.entity.to_json
         end
       end
 
