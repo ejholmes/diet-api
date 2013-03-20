@@ -21,13 +21,12 @@ end
 
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
-  ENV['RACK_ENV'] ||= 'test'
+  ENV['RACK_ENV'] = 'test'
   ENV['DATABASE_URL'] ||= 'postgres://localhost:5432/reader_test'
 
-  require File.expand_path('../../api', __FILE__)
+  require File.expand_path('../../config/environment', __FILE__)
   Bundler.require :default, :test
   require 'rspec'
-  require 'shoulda/matchers/integrations/rspec'
   require 'rspec/autorun'
   require 'webmock/rspec'
   require 'factory_girl'
@@ -80,6 +79,13 @@ Spork.prefork do
 
     config.include FixtureHelpers
     config.include FactoryGirl::Syntax::Methods
+
+    if defined?(::ActiveRecord)
+      require 'shoulda/matchers/active_record'
+      require 'shoulda/matchers/active_model'
+      config.include Shoulda::Matchers::ActiveRecord
+      config.include Shoulda::Matchers::ActiveModel
+    end
   end
 end
 

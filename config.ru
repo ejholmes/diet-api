@@ -1,3 +1,3 @@
-require File.join(File.dirname(__FILE__), 'api')
+require File.expand_path('../config/environment', __FILE__)
 
-run API
+run App.new

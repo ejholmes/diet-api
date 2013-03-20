@@ -1,5 +1,3 @@
-require_relative './environment'
-
 class API < Grape::API
   version 'v1', using: :header, vendor: 'reader'
   format :json
