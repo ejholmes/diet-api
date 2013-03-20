@@ -1,4 +1,6 @@
 class Item < ActiveRecord::Base
+  include Grape::Entity::DSL
+
   self.per_page = 25
 
   # Associations
@@ -36,13 +38,7 @@ class Item < ActiveRecord::Base
     Entity.new(self)
   end
 
-  class Entity < Grape::Entity
-    expose :id
-    expose :title
-    expose :link
-    expose :read
-    expose :description
-    expose :pub_date
+  entity :id, :title, :link, :read, :description, :pub_date do
     expose :feed, using: Feed::Entity
   end
 end

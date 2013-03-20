@@ -1,4 +1,6 @@
 class Feed < ActiveRecord::Base
+  include Grape::Entity::DSL
+
   # Associations
   belongs_to :user
   has_many :items, dependent: :destroy
@@ -33,13 +35,7 @@ class Feed < ActiveRecord::Base
     Entity.new(self)
   end
 
-  class Entity < Grape::Entity
-    expose :id
-    expose :title
-    expose :text
-    expose :unread_count
-    expose :html_url
-    expose :xml_url
-    expose :last_update
+  entity :id, :title, :text, :html_url, :xml_url, :last_update do
+    expose :unread_count, as: :unread
   end
 end
