@@ -39,11 +39,16 @@ end
 
 task :default => [:spec]
 
-require 'rspec/core/rake_task'
-desc "Run specs"
-RSpec::Core::RakeTask.new do |t|
-  t.pattern = 'spec/**/*_spec.rb'
+begin
+  require 'rspec/core/rake_task'
+  desc "Run specs"
+  RSpec::Core::RakeTask.new do |t|
+    t.pattern = 'spec/**/*_spec.rb'
+  end
+rescue LoadError
+  # The gem shouldn't be installed in a production environment
 end
+
 
 namespace :db do
   desc 'Drop, create and migrate the databse'
