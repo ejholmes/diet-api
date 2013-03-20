@@ -63,6 +63,15 @@ class API < Grape::API
       items.read!
     end
 
+    desc 'Return a specifiy item.'
+    params do
+      requires :id, type: String, desc: 'Item id.'
+    end
+    get ':id' do
+      authenticate!
+      present item, type: :full
+    end
+
     desc 'Mark an item as read.'
     params do
       requires :id, type: String, desc: 'Item id.'

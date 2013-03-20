@@ -34,11 +34,12 @@ class Item < ActiveRecord::Base
     update_attributes!(read: false)
   end
 
-  def entity
-    Entity.new(self)
+  def entity(options = {})
+    Entity.new(self, options)
   end
 
-  entity :id, :title, :link, :read, :description, :pub_date do
+  entity :id, :title, :link, :read, :pub_date do
+    expose :description, if: { type: :full }
     expose :feed, using: Feed::Entity
   end
 end

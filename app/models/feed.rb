@@ -31,8 +31,8 @@ class Feed < ActiveRecord::Base
     Feed::Refresher.new(self).refresh
   end
 
-  def entity
-    Entity.new(self)
+  def entity(options = {})
+    Entity.new(self, options)
   end
 
   entity :id, :title, :text, :html_url, :xml_url, :last_update do

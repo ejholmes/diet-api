@@ -54,6 +54,15 @@ describe API do
       end
     end
 
+    describe 'GET /items/:id' do
+      it 'returns the item' do
+        item = create :item, feed: feed
+        get "/items/#{item.id}"
+        expect(last_response.status).to eq 200
+        expect(last_response.body).to eq item.entity(type: :full).to_json
+      end
+    end
+
     describe 'PUT /items/read' do
       it 'marks all items as read' do
         5.times { create :item, feed: feed, read: true  }
