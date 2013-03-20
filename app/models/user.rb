@@ -1,6 +1,8 @@
 require 'securerandom'
 
 class User < ActiveRecord::Base
+  include Grape::Entity::DSL
+
   autoload :Readability, 'models/user/readability'
 
   attr_accessible :email
@@ -15,7 +17,7 @@ class User < ActiveRecord::Base
 
   serialize :readability, Readability
 
-  before_validation do
+  before_validation on: :create do
     self.token = SecureRandom.hex
   end
 
@@ -32,8 +34,7 @@ class User < ActiveRecord::Base
     Entity.new(self)
   end
 
-  class Entity < Grape::Entity
-    expose :email
-    expose :token
+  entity :email, :token do
+    expose :readability, using: User::Readability::Entity
   end
 end

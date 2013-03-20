@@ -1,4 +1,6 @@
 class User::Readability < Hash
+  include Grape::Entity::DSL
+
   def token
     credentials[:token]
   end
@@ -20,7 +22,11 @@ class User::Readability < Hash
   end
 
   def enabled?
-    authorized? && self[:enabled]
+    authorized? && enabled
+  end
+
+  def enabled
+    self[:enabled]
   end
 
   def enable
@@ -47,6 +53,11 @@ class User::Readability < Hash
     self.class.new.tap { |o| o.replace(hash) }
   end
 
+  def entity(options = {})
+    Entity.new(self, options)
+  end
+
+  entity :enabled
 
 private
 
