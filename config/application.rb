@@ -31,7 +31,6 @@ def database_config
 end
 
 ActiveRecord::Base.establish_connection(database_config)
-ActiveRecord::Base.logger = Logger.new(STDOUT) unless ENV['RACK_ENV'] == 'test'
 
 require 'api'
 require 'app'
