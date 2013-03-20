@@ -40,6 +40,6 @@ class Item < ActiveRecord::Base
     expose :read
     expose :description
     expose :pub_date
-    expose :feed_id
+    expose :feed, using: Feed::Entity
   end
 end

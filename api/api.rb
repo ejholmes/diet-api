@@ -8,7 +8,7 @@ class API < Grape::API
     end
 
     def feeds
-      Feed.scoped
+      Feed.includes(:items).scoped
     end
 
     def item
@@ -16,7 +16,7 @@ class API < Grape::API
     end
 
     def items
-      Item.scoped
+      Item.includes(:feed).scoped
     end
 
     def filtered_items
