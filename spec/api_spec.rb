@@ -120,4 +120,25 @@ describe API do
       end
     end
   end
+
+  describe 'Users' do
+    describe 'POST /users' do
+      context 'with success' do
+        it 'creates a new user' do
+          post '/users?email=foo@example.com'
+          expect(last_response.status).to eq 201
+          expect(last_response.body).to eq User.first.entity.to_json
+        end
+      end
+
+      context 'with errors' do
+        it 'returns the errors' do
+          user = create :user
+          post "/users?email=#{user.email}"
+          expect(last_response.status).to eq 400
+          expect(last_response.body).to eq({ error: { email: ['has already been taken'] } }.to_json)
+        end
+      end
+    end
+  end
 end

@@ -108,4 +108,20 @@ class API < Grape::API
       'Ok'
     end
   end
+
+  namespace :users do
+    desc 'Signup for an account.'
+    params do
+      requires :email, type: String, desc: 'Your email.'
+    end
+    post do
+      user = User.new(params)
+      if user.save
+        present user
+      else
+        status 400
+        { error: user.errors }
+      end
+    end
+  end
 end
