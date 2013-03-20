@@ -30,7 +30,7 @@ class API < Grape::API
     end
 
     def current_user
-      @user ||= User.authenticate(params[:apikey])
+      @user ||= Authenticator.new.from_token(params[:apikey])
     end
 
     def current_user=(user)

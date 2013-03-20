@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
 
   autoload :Readability, 'models/user/readability'
 
-  attr_accessible :email
+  attr_accessible :email, :password
 
   # Validations
   validates :email, presence: true, uniqueness: true
+  validates :password, presence: true
   validates :token, presence: true
 
   # Associations
@@ -19,11 +20,6 @@ class User < ActiveRecord::Base
 
   before_validation on: :create do
     self.token = SecureRandom.hex
-  end
-
-  def self.authenticate(token)
-    return nil unless token.present?
-    User.where(token: token).first
   end
 
   def subscribe_to(url)

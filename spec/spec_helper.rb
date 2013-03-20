@@ -22,7 +22,7 @@ end
 module AuthenticationMacros
   def with_authenticated_user
     before do
-      User.stub(:authenticate).and_return(current_user)
+      Authenticator.any_instance.stub(:from_token).and_return(current_user)
     end
   end
 end
