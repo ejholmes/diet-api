@@ -10,6 +10,7 @@ gem 'json',          '~> 1.7.7'
 gem 'multi_json',    '~> 1.7.0'
 gem 'will_paginate', '~> 3.0.3'
 gem 'sanitize'
+gem 'nokogiri'
 gem 'thin',          '~> 1.5.0'
 
 # RSS/Atom

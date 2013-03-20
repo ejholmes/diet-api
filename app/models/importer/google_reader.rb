@@ -1,5 +1,3 @@
-require 'rexml/Document'
-
 module Importer
   class GoogleReader < Base
     attr_reader :file
@@ -9,20 +7,12 @@ module Importer
     end
 
     def import
-      process(elements)
+      outlines.each do |node|
+        subscribe node['xmlUrl'] if node['xmlUrl']
+      end
     end
 
   private
-
-    def process(node)
-      if node.elements.size > 0
-        node.elements.each('outline') do |node|
-          process(node)
-        end
-      else
-        subscribe node.attributes['xmlUrl']
-      end
-    end
 
     def subscribe(url)
       Subscription.new(url).subscribe
@@ -31,11 +21,11 @@ module Importer
     end
 
     def opml
-      @opml ||= REXML::Document.new(file)
+      @opml ||= Nokogiri::XML::Document.parse(file)
     end
 
-    def elements
-      opml.elements['opml/body']
+    def outlines
+      opml.xpath('//opml/body//outline')
     end
 
   end
