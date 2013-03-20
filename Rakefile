@@ -1,6 +1,13 @@
 #!/usr/bin/env rake
 require File.expand_path('../config/environment', __FILE__)
 
+desc 'Start an irb session'
+task :console do
+  require 'irb'
+  ARGV.clear
+  IRB.start
+end
+
 desc 'Display grape routes'
 task :routes do
   API.routes.each do |route|
@@ -31,6 +38,13 @@ RSpec::Core::RakeTask.new do |t|
 end
 
 namespace :db do
+  desc 'Drop, create and migrate the databse'
+  task :reset do
+    Rake::Task['db:drop'].invoke
+    Rake::Task['db:create'].invoke
+    Rake::Task['db:migrate'].invoke
+  end
+
   desc "Create the database using DATABASE_URL"
   task :create do
     ActiveRecord::Base.establish_connection(database_config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
