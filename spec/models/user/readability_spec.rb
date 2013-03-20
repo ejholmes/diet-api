@@ -84,4 +84,13 @@ describe User::Readability do
     subject { readability.client }
     it { should be_a Readit::API }
   end
+
+  describe '.bookmark' do
+    let(:url) { 'http://www.google.com' }
+
+    it 'creates a bookmark' do
+      readability.client.should_receive(:bookmark).with(url: url)
+      readability.bookmark(url)
+    end
+  end
 end

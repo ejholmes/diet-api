@@ -27,6 +27,10 @@ class User::Readability < Hash
     @client ||= Readit::API.new token, secret
   end
 
+  def bookmark(url)
+    client.bookmark url: url
+  end
+
   def dump(obj)
     obj
   end
