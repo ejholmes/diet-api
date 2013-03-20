@@ -1,5 +1,12 @@
 #!/usr/bin/env rake
-require File.expand_path('../environment', __FILE__)
+require File.expand_path('../api', __FILE__)
+
+desc 'Display grape routes'
+task :routes do
+  API.routes.each do |route|
+    puts route
+  end
+end
 
 namespace :updater do
   task :run do

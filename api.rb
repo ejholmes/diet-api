@@ -27,19 +27,20 @@ class API < Grape::API
   end
 
   resource :items do
-    INDEX_PARAMS = proc {
+    desc 'Lists all items.'
+    params do
       optional :subscription, type: String, desc: 'Subscription id to scope to.'
       optional :page, type: Integer, desc: 'Page to return. Defaults to first page.'
-    }
-
-    desc 'Lists all items.'
-    params &INDEX_PARAMS
+    end
     get do
       present filtered_items
     end
 
-    desc 'Lists only unread items.'
-    params &INDEX_PARAMS
+    desc 'Lists all unread items.'
+    params do
+      optional :subscription, type: String, desc: 'Subscription id to scope to.'
+      optional :page, type: Integer, desc: 'Page to return. Defaults to first page.'
+    end
     get :unread do
       present filtered_items.unread
     end
