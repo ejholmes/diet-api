@@ -25,14 +25,25 @@ class API < Grape::API
       items.filtered(params).paginate(page: params[:page])
     end
 
+    def session
+      env['rack.session']
+    end
+
     def current_user
-      @user ||= User.authenticate(params[:apikey])
+      @user ||= begin
+        if params[:apikey]
+          if user = User.authenticate(params[:apikey])
+            session[:user_id] = user.id
+            user
+          end
+        elsif user_id = session[:user_id]
+          User.find(user_id)
+        end
+      end
     end
 
     def authenticate!
-      unless ENV['RACK_ENV'] == 'test'
-        error!('401 Unauthorized', 401) unless current_user
-      end
+      error!('401 Unauthorized', 401) unless current_user
     end
   end
 
@@ -145,5 +156,30 @@ class API < Grape::API
         { error: user.errors }
       end
     end
+  end
+
+  namespace :user do
+    namespace :readability do
+      desc 'Authorize this account to post bookmarks to readability.'
+      get :authorize do
+        authenticate!
+        redirect '/auth/readability'
+      end
+    end
+  end
+
+  get '/auth/readability/callback' do
+    authenticate!
+    auth_hash = request.env['omniauth.auth']
+    current_user.readability_access_token = {
+      token: auth_hash.credentials.token,
+      secret: auth_hash.credentials.secret
+    }
+    current_user.save
+    'Ok'
+  end
+
+  get '/auth/failure' do
+    { error: "Authorization failed: #{params[:message]}" }
   end
 end

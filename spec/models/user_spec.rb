@@ -39,4 +39,15 @@ describe User do
       user.subscribe_to(url)
     end
   end
+
+  describe '.readability' do
+    before do
+      user.readability_access_token = {
+        token: 'token',
+        secret: 'secret'
+      }
+    end
+    subject { user.readability }
+    it { should be_a Readit::API }
+  end
 end

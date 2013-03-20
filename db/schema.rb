@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130320055139) do
+ActiveRecord::Schema.define(:version => 20130320071316) do
 
   create_table "feeds", :force => true do |t|
     t.string   "xml_url"
@@ -38,10 +38,11 @@ ActiveRecord::Schema.define(:version => 20130320055139) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",      :default => "", :null => false
+    t.string   "email",                    :default => "", :null => false
     t.string   "token"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.string   "readability_access_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

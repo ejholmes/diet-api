@@ -1,6 +1,13 @@
 #!/usr/bin/env rake
 require File.expand_path('../config/environment', __FILE__)
 
+desc 'Deploy'
+task :deploy do
+  app = 'rss-reader'
+  sh "git push git@heroku.com:#{app}.git master:HEAD"
+  sh "heroku run rake db:migrate -a #{app}"
+end
+
 desc 'Start an irb session'
 task :console do
   require 'irb'
@@ -20,15 +27,6 @@ namespace :updater do
     require 'updater'
     Updater.run
   end
-end
-
-begin
-  require 'heroku_san'
-  config_file = File.join(File.expand_path(File.dirname(__FILE__)), 'config', 'heroku.yml')
-  HerokuSan.project = HerokuSan::Project.new(config_file, :deploy => HerokuSan::Deploy::Sinatra)
-  load 'heroku_san/tasks.rb'
-rescue LoadError
-  # The gem shouldn't be installed in a production environment
 end
 
 task :default => [:spec]

@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :feeds
   has_many :items, through: :feeds
 
+  serialize :readability_access_token, Hash
+
   before_validation do
     self.token = SecureRandom.hex
   end
@@ -21,6 +23,15 @@ class User < ActiveRecord::Base
 
   def subscribe_to(url)
     Subscription.new(url, user: self).subscribe
+  end
+
+  def readability_authorized?
+    readability_access_token.present?
+  end
+
+  def readability
+    raise 'Readability not authorized' unless readability_authorized?
+    @readability ||= Readit::API.new readability_access_token[:token], readability_access_token[:secret]
   end
 
   def entity

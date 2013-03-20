@@ -4,7 +4,7 @@ describe API do
   include Rack::Test::Methods
 
   def app
-    API
+    App.app
   end
 
   let(:current_user) { create :user }
@@ -12,6 +12,7 @@ describe API do
   before do
     Subscription.any_instance.stub(:feed).and_return(Feedzirra::Feed.parse(atom_feed(:github)))
     User.stub(:authenticate).and_return(current_user)
+    get "/items?apikey=#{current_user.token}"
   end
 
   describe 'Items' do
@@ -151,6 +152,28 @@ describe API do
           expect(last_response.status).to eq 400
           expect(last_response.body).to eq({ error: { email: ['has already been taken'] } }.to_json)
         end
+      end
+    end
+  end
+
+  describe 'Readability Authorization' do
+    before do
+      OmniAuth.config.mock_auth[:readability] = OmniAuth::AuthHash.new(
+        provider: 'readability',
+        credentials: {
+          token: 'token',
+          secret: 'secret'
+        }
+      )
+    end
+
+    describe 'GET /users/readability/authorize' do
+      it 'authorizes readability for the current user' do
+        get '/user/readability/authorize'
+        follow_redirect!
+        follow_redirect!
+        expect(last_response.status).to eq 200
+        expect(last_response.body).to eq 'Ok'.to_json
       end
     end
   end
