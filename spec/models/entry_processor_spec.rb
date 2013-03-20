@@ -11,9 +11,32 @@ describe EntryProcessor do
   end
 
   describe '.create' do
-    it 'creates a feed item' do
-      feed_items.should_receive(:create)
-      processor.create
+    let(:readability) { double('readability') }
+
+    before do
+      feed.stub_chain(:user, :readability).and_return(readability)
+      feed_items.should_receive(:create).and_return(stub(link: 'http://www.google.com'))
+    end
+
+    context 'when readability is disabled' do
+      before do
+        readability.stub(:enabled?).and_return(false)
+      end
+
+      it 'creates a feed item' do
+        processor.create
+      end
+    end
+
+    context 'when readability is enabled' do
+      before do
+        readability.stub(:enabled?).and_return(true)
+        processor.should_receive(:bookmark).with('http://www.google.com')
+      end
+
+      it 'creates a feed item and bookmarks the link on readability' do
+        processor.create
+      end
     end
   end
 
