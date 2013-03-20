@@ -17,14 +17,8 @@ end
 
 namespace :updater do
   task :run do
-    STDOUT.sync = true
-    loop do
-      feed = Feed.next
-      if feed
-        puts "Updating #{feed.title}"
-        feed.refresh!
-      end
-    end
+    require 'updater'
+    Updater.run
   end
 end
 
