@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Importer::GoogleReader do
   let(:xml) { File.read(File.expand_path('../../../fixtures/importer/google_reader/subscriptions.xml', __FILE__)) }
-  let(:importer) { described_class.new(xml) }
+  let(:user) { double('user') }
+  let(:importer) { described_class.new(xml, user: user) }
 
   describe '.import' do
     it 'creates a new feed for each imported subscription' do

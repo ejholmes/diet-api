@@ -4,19 +4,13 @@ class API < Grape::API
   version 'v1', using: :header, vendor: 'reader'
   format :json
 
-  if ENV['BASIC_AUTH']
-    http_basic do |username, password|
-      ENV['BASIC_AUTH'].split(':') == [username, password]
-    end
-  end
-
   helpers do
     def feed
       feeds.find(params[:id])
     end
 
     def feeds
-      Feed.includes(:items).scoped
+      current_user.feeds.includes(:items).order('title ASC')
     end
 
     def item
@@ -24,11 +18,21 @@ class API < Grape::API
     end
 
     def items
-      Item.includes(:feed).scoped
+      current_user.items.includes(:feed).order('created_at DESC')
     end
 
     def filtered_items
       items.filtered(params).paginate(page: params[:page])
+    end
+
+    def current_user
+      @user ||= User.authenticate(params[:apikey])
+    end
+
+    def authenticate!
+      unless ENV['RACK_ENV'] == 'test'
+        error!('401 Unauthorized', 401) unless current_user
+      end
     end
   end
 
@@ -39,6 +43,7 @@ class API < Grape::API
       optional :page, type: Integer, desc: 'Page to return. Defaults to first page.'
     end
     get do
+      authenticate!
       present filtered_items
     end
 
@@ -48,11 +53,13 @@ class API < Grape::API
       optional :page, type: Integer, desc: 'Page to return. Defaults to first page.'
     end
     get :unread do
+      authenticate!
       present filtered_items.unread
     end
 
     desc 'Mark all items as read.'
     put :read do
+      authenticate!
       items.read!
     end
 
@@ -61,6 +68,7 @@ class API < Grape::API
       requires :id, type: String, desc: 'Item id.'
     end
     put ':id/read' do
+      authenticate!
       item.read!
       present item
     end
@@ -70,6 +78,7 @@ class API < Grape::API
       requires :id, type: String, desc: 'Item id.'
     end
     put ':id/unread' do
+      authenticate!
       item.unread!
       present item
     end
@@ -78,6 +87,7 @@ class API < Grape::API
   resource :subscriptions do
     desc 'Lists the authenticated users subscriptions.'
     get do
+      authenticate!
       present feeds
     end
 
@@ -86,7 +96,8 @@ class API < Grape::API
       requires :url, type: String, desc: 'URL to an RSS or Atom feed.'
     end
     post do
-      present Subscription.new(params[:url]).subscribe
+      authenticate!
+      present current_user.subscribe_to(params[:url])
     end
 
     desc 'Unsubscribe from a feed.'
@@ -94,6 +105,7 @@ class API < Grape::API
       requires :id, type: String, desc: 'Id of the subscription.'
     end
     delete ':id' do
+      authenticate!
       feed.destroy
     end
   end
@@ -104,8 +116,25 @@ class API < Grape::API
       requires :file
     end
     post :google_reader do
-      Importer::GoogleReader.new(params.file.tempfile.read).import
+      authenticate!
+      Importer::GoogleReader.new(params.file.tempfile.read, user: current_user).import
       'Ok'
+    end
+  end
+
+  namespace :users do
+    desc 'Signup for an account. Returns the user, which contains an api key to authorize requests.'
+    params do
+      requires :email, type: String, desc: 'Your email.'
+    end
+    post do
+      user = User.new(params)
+      if user.save
+        present user
+      else
+        status 400
+        { error: user.errors }
+      end
     end
   end
 end

@@ -1,7 +1,7 @@
 class Feed < ActiveRecord::Base
+  # Associations
+  belongs_to :user
   has_many :items, dependent: :destroy
-
-  default_scope order('title ASC')
 
   class << self
     def next
