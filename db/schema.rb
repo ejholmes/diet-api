@@ -38,11 +38,11 @@ ActiveRecord::Schema.define(:version => 20130320071316) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                    :default => "", :null => false
+    t.string   "email",       :default => "", :null => false
     t.string   "token"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.string   "readability_access_token"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.string   "readability"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

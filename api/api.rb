@@ -167,10 +167,8 @@ class API < Grape::API
   get '/auth/readability/callback' do
     current_user = User.find(session.delete(:user_id))
     auth_hash = request.env['omniauth.auth']
-    current_user.readability_access_token = {
-      token: auth_hash.credentials.token,
-      secret: auth_hash.credentials.secret
-    }
+    current_user.readability.token = auth_hash.credentials.token
+    current_user.readability.secret = auth_hash.credentials.secret
     current_user.save
     'Ok'
   end

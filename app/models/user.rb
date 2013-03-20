@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :feeds
   has_many :items, through: :feeds
 
-  serialize :readability_access_token, Hash
+  serialize :readability, Hash
 
   before_validation do
     self.token = SecureRandom.hex
@@ -26,17 +26,55 @@ class User < ActiveRecord::Base
     Subscription.new(url, user: self).subscribe
   end
 
-  def readability_authorized?
-    readability_access_token.present?
-  end
-
   def readability
-    raise 'Readability not authorized' unless readability_authorized?
-    @readability ||= Readit::API.new readability_access_token[:token], readability_access_token[:secret]
+    @readability ||= Readability.new(read_attribute(:readability))
   end
 
   def entity
     Entity.new(self)
+  end
+
+  class Readability < Hash
+    attr_reader :hash
+
+    def initialize(hash)
+      replace(hash || Hash.new)
+    end
+
+    def token
+      credentials[:token]
+    end
+
+    def token=(token)
+      credentials[:token] = token
+    end
+
+    def secret
+      credentials[:secret]
+    end
+
+    def secret=(secret)
+      credentials[:secret] = secret
+    end
+
+    def authorized?
+      token.present? && secret.present?
+    end
+
+    def enabled?
+      authorized? && self[:enabled]
+    end
+
+    def client
+      @client ||= Readit::API.new token, secret
+    end
+
+  private
+
+    def credentials
+      self[:credentials] ||= Hash.new
+    end
+
   end
 
   class Entity < Grape::Entity

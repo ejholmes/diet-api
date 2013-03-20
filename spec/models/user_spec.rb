@@ -9,6 +9,8 @@ describe User do
   it { should have_many(:feeds) }
   it { should have_many(:items).through(:feeds) }
 
+  it { should serialize(:readability).as(Hash) }
+
   describe '#new' do
     it 'initializes a token' do
       user = described_class.new(email: 'foo@example.com')
@@ -41,13 +43,7 @@ describe User do
   end
 
   describe '.readability' do
-    before do
-      user.readability_access_token = {
-        token: 'token',
-        secret: 'secret'
-      }
-    end
     subject { user.readability }
-    it { should be_a Readit::API }
+    it { should be_a User::Readability }
   end
 end

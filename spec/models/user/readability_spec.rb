@@ -1,0 +1,87 @@
+require 'spec_helper'
+
+describe User::Readability do
+  let(:hash) { Hash.new }
+  let(:readability) { described_class.new(hash) }
+  subject { readability }
+
+  describe '.token' do
+    subject { readability.token }
+
+    context 'when not present' do
+      it { should be_nil }
+    end
+
+    context 'when present' do
+      let(:hash) { { credentials: { token: 'foobar' } } }
+      it { should eq 'foobar' }
+    end
+  end
+
+  describe '.secret' do
+    subject { readability.secret }
+
+    context 'when not present' do
+      it { should be_nil }
+    end
+
+    context 'when present' do
+      let(:hash) { { credentials: { secret: 'foobar' } } }
+      it { should eq 'foobar' }
+    end
+  end
+
+  describe '.authorized?' do
+    context 'when the token and secret are not present' do
+      it { should_not be_authorized }
+    end
+    
+    context 'when token and secret are present' do
+      before do
+        readability.token  = 'foo'
+        readability.secret = 'bar'
+      end
+
+      it { should be_authorized }
+    end
+  end
+
+  describe '.enabled?' do
+    context 'when authorized' do
+      before do
+        readability.stub(:authorized?).and_return(true)
+      end
+
+      context 'when enabled' do
+        let(:hash) { { enabled: true } }
+        it { should be_enabled }
+      end
+
+      context 'when enabled' do
+        let(:hash) { { enabled: false } }
+        it { should_not be_enabled }
+      end
+    end
+
+    context 'when not authorized' do
+      before do
+        readability.stub(:authorized?).and_return(false)
+      end
+
+      context 'when enabled' do
+        let(:hash) { { enabled: true } }
+        it { should_not be_enabled }
+      end
+
+      context 'when enabled' do
+        let(:hash) { { enabled: false } }
+        it { should_not be_enabled }
+      end
+    end
+  end
+
+  describe '.client' do
+    subject { readability.client }
+    it { should be_a Readit::API }
+  end
+end
