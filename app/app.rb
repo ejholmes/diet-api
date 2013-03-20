@@ -1,5 +1,3 @@
-require 'sinatra/base'
-
 require 'models'
 
 class App

@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(token)
+    return nil unless token.present?
     User.where(token: token).first
   end
 

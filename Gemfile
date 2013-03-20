@@ -3,7 +3,6 @@ source :rubygems
 gem 'rake'
 gem 'rack',          '~> 1.5.2'
 gem 'grape',         '~> 0.4.0'
-gem 'sinatra'
 gem 'grape-entity',  '~> 0.2.0'
 gem 'i18n',          '~> 0.6.4'
 gem 'activesupport', '~> 3.2.12'

@@ -30,16 +30,11 @@ class API < Grape::API
     end
 
     def current_user
-      @user ||= begin
-        if params[:apikey]
-          if user = User.authenticate(params[:apikey])
-            session[:user_id] = user.id
-            user
-          end
-        elsif user_id = session[:user_id]
-          User.find(user_id)
-        end
-      end
+      @user ||= User.authenticate(params[:apikey])
+    end
+
+    def current_user=(user)
+      @user = user
     end
 
     def authenticate!
@@ -163,13 +158,14 @@ class API < Grape::API
       desc 'Authorize this account to post bookmarks to readability.'
       get :authorize do
         authenticate!
+        session[:user_id] = current_user.id
         redirect '/auth/readability'
       end
     end
   end
 
   get '/auth/readability/callback' do
-    authenticate!
+    current_user = User.find(session.delete(:user_id))
     auth_hash = request.env['omniauth.auth']
     current_user.readability_access_token = {
       token: auth_hash.credentials.token,

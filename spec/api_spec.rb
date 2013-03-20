@@ -11,11 +11,11 @@ describe API do
 
   before do
     Subscription.any_instance.stub(:feed).and_return(Feedzirra::Feed.parse(atom_feed(:github)))
-    User.stub(:authenticate).and_return(current_user)
-    get "/items?apikey=#{current_user.token}"
   end
 
   describe 'Items' do
+    with_authenticated_user
+
     let(:feed) { create :feed, user: current_user}
 
     describe 'GET /items' do
@@ -97,6 +97,8 @@ describe API do
   end
 
   describe 'Subscriptions' do
+    with_authenticated_user
+
     describe 'GET /subscriptions' do
       it 'responds with a list of items' do
         subscription = create :feed, user: current_user
@@ -124,6 +126,8 @@ describe API do
   end
 
   describe 'Import' do
+    with_authenticated_user
+
     describe 'POST /import/google_reader' do
       it 'imports all subscriptions' do
         Importer::GoogleReader.should_receive(:new).and_return(stub(import: nil))
@@ -157,6 +161,8 @@ describe API do
   end
 
   describe 'Readability Authorization' do
+    with_authenticated_user
+
     before do
       OmniAuth.config.mock_auth[:readability] = OmniAuth::AuthHash.new(
         provider: 'readability',

@@ -19,6 +19,14 @@ module FixtureHelpers
   end
 end
 
+module AuthenticationMacros
+  def with_authenticated_user
+    before do
+      User.stub(:authenticate).and_return(current_user)
+    end
+  end
+end
+
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV['RACK_ENV'] = 'test'
@@ -80,6 +88,7 @@ Spork.prefork do
     end
 
     config.include FixtureHelpers
+    config.extend AuthenticationMacros
     config.include FactoryGirl::Syntax::Methods
 
     if defined?(::ActiveRecord)
