@@ -97,6 +97,7 @@ class API < Grape::API
     end
     post :google_reader do
       Importer::GoogleReader.new(params.file.tempfile.read).import
+      'Ok'
     end
   end
 end
