@@ -117,6 +117,8 @@ GEM
     ruby_gntp (0.3.4)
     sax-machine (0.0.20)
       nokogiri (> 0.0.0)
+    shotgun (0.9)
+      rack (>= 1.0)
     shoulda-matchers (1.4.2)
       activesupport (>= 3.0.0)
       bourne (~> 1.1.2)
@@ -162,6 +164,7 @@ DEPENDENCIES
   rb-fsevent
   readit (~> 0.0.9)
   ruby_gntp
+  shotgun (~> 0.9)
   shoulda-matchers (~> 1.4.2)
   thin (~> 1.5.0)
   webmock (~> 1.11.0)

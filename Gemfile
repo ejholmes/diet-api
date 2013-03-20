@@ -21,6 +21,10 @@ gem 'readit',    '~> 0.0.9'
 gem 'pg',           '~> 0.14.1'
 gem 'activerecord', '~> 3.2.12'
 
+group :development do
+  gem 'shotgun', '~> 0.9'
+end
+
 group :development, :test do
   gem 'faker',   '~> 1.1.2'
   gem 'foreman', '~> 0.62.0'
