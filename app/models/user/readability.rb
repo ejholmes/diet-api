@@ -23,6 +23,14 @@ class User::Readability < Hash
     authorized? && self[:enabled]
   end
 
+  def enable
+    self[:enabled] = true
+  end
+
+  def disable
+    self[:enabled] = false
+  end
+
   def client
     @client ||= Readit::API.new token, secret
   end

@@ -80,6 +80,23 @@ describe User::Readability do
     end
   end
 
+  describe '.enable' do
+    it 'enables readability' do
+      readability.stub(:authorized?).and_return(true)
+      readability.enable
+      expect(readability).to be_enabled
+    end
+  end
+
+  describe '.disable' do
+    let(:hash) { { enabled: true }}
+    it 'disables readability' do
+      readability.stub(:authorized?).and_return(true)
+      readability.disable
+      expect(readability).to_not be_enabled
+    end
+  end
+
   describe '.client' do
     subject { readability.client }
     it { should be_a Readit::API }

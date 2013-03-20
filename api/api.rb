@@ -147,14 +147,33 @@ class API < Grape::API
       if user.save
         present user
       else
-        status 400
-        { error: user.errors }
+        error!(user.errors, 400)
       end
     end
   end
 
   namespace :user do
     namespace :readability do
+      desc 'Enable posting to readability.'
+      put do
+        authenticate!
+        if current_user.readability.authorized?
+          current_user.readability.enable
+          current_user.save!
+          present current_user
+        else
+          error!('You need to authorize readability first.', 400)
+        end
+      end
+
+      desc 'Disable posting to readability.'
+      delete do
+        authenticate!
+        current_user.readability.disable
+        current_user.save!
+        present current_user
+      end
+
       desc 'Authorize this account to post bookmarks to readability.'
       get :authorize do
         authenticate!

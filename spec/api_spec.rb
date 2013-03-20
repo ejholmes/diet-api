@@ -158,29 +158,66 @@ describe API do
         end
       end
     end
-  end
 
-  describe 'Readability Authorization' do
-    with_authenticated_user
+    describe 'Readability' do
+      with_authenticated_user
 
-    before do
-      OmniAuth.config.mock_auth[:readability] = OmniAuth::AuthHash.new(
-        provider: 'readability',
-        credentials: {
-          token: 'token',
-          secret: 'secret'
-        }
-      )
-    end
+      describe 'Authorize' do
+        before do
+          OmniAuth.config.mock_auth[:readability] = OmniAuth::AuthHash.new(
+            provider: 'readability',
+            credentials: {
+              token: 'token',
+              secret: 'secret'
+            }
+          )
+        end
 
-    describe 'GET /users/readability/authorize' do
-      it 'authorizes readability for the current user' do
-        get '/user/readability/authorize'
-        follow_redirect!
-        follow_redirect!
-        expect(last_response.status).to eq 200
-        expect(last_response.body).to eq 'Ok'.to_json
+        describe 'GET /users/readability/authorize' do
+          it 'authorizes readability for the current user' do
+            get '/user/readability/authorize'
+            follow_redirect!
+            follow_redirect!
+            expect(last_response.status).to eq 200
+            expect(last_response.body).to eq 'Ok'.to_json
+          end
+        end
+      end
+
+      describe 'PUT /user/readability' do
+        context 'when the user has already authorized readability' do
+          before do
+            current_user.readability.stub(:authorized?).and_return(true)
+          end
+
+          it 'enables readability' do
+            put '/user/readability'
+            expect(last_response.status).to eq 200
+            expect(last_response.body).to eq current_user.entity.to_json
+          end
+        end
+
+        context 'when the user has not authorized readability' do
+          before do
+            current_user.readability.stub(:authorized?).and_return(false)
+          end
+
+          it 'returns an error' do
+            put '/user/readability'
+            expect(last_response.status).to eq 400
+            expect(last_response.body).to eq({ error: 'You need to authorize readability first.'}.to_json)
+          end
+        end
+      end
+
+      describe 'DELETE /user/readability' do
+        it 'disables readability' do
+          delete '/user/readability'
+          expect(last_response.status).to eq 200
+          expect(last_response.body).to eq current_user.entity.to_json
+        end
       end
     end
   end
+
 end
