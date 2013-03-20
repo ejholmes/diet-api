@@ -1,6 +1,8 @@
 class Feed < ActiveRecord::Base
   has_many :items, dependent: :destroy
 
+  default_scope order('title ASC')
+
   class << self
     def next
       unscoped.where(updating: false).order('last_update ASC NULLS FIRST').first

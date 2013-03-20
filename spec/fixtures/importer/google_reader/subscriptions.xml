@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+    <head>
+        <title>Eric subscriptions in Google Reader</title>
+    </head>
+    <body>
+        <outline text="Boxee Blog" title="Boxee Blog" type="rss"
+            xmlUrl="http://blog.boxee.tv/feed/" htmlUrl="http://blog.boxee.tv"/>
+        <outline text="How To Node" title="How To Node" type="rss"
+            xmlUrl="http://howtonode.org/feed.xml" htmlUrl="http://howtonode.org"/>
+        <outline title="Programming" text="Programming">
+            <outline text="Code Climate Blog" title="Code Climate Blog"
+                type="rss"
+                xmlUrl="http://feeds.feedburner.com/codeclimate" htmlUrl="http://blog.codeclimate.com/"/>
+        </outline>
+        <outline title="Electronics" text="Electronics">
+            <outline text="SparkFun Electronics  - Recent News Posts"
+                title="SparkFun Electronics  - Recent News Posts"
+                type="rss" xmlUrl="http://www.sparkfun.com/feeds/news" htmlUrl="http://www.sparkfun.com"/>
+        </outline>
+    </body>
+</opml>

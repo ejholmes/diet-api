@@ -108,4 +108,13 @@ describe API do
       end
     end
   end
+
+  describe 'Import' do
+    describe 'POST /import/google_reader' do
+      it 'imports all subscriptions' do
+        post '/import/google_reader', 'file' => Rack::Test::UploadedFile.new(File.expand_path('../fixtures/importer/google_reader/subscriptions.xml', __FILE__), "image/jpeg")
+        expect(last_response.status).to eq 201
+      end
+    end
+  end
 end

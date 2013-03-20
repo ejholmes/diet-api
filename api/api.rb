@@ -89,4 +89,14 @@ class API < Grape::API
       feed.destroy
     end
   end
+
+  namespace :import do
+    desc 'Import google reader subscriptions (exported via google takeout).'
+    params do
+      requires :file
+    end
+    post :google_reader do
+      Importer::GoogleReader.new(params.file.tempfile.read).import
+    end
+  end
 end

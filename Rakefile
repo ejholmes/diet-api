@@ -24,7 +24,6 @@ namespace :updater do
         puts "Updating #{feed.title}"
         feed.refresh!
       end
-      sleep 5
     end
   end
 end
