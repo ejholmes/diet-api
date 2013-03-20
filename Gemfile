@@ -9,6 +9,7 @@ gem 'activesupport', '~> 3.2.12'
 gem 'json',          '~> 1.7.7'
 gem 'multi_json',    '~> 1.7.0'
 gem 'will_paginate', '~> 3.0.3'
+gem 'sanitize'
 gem 'thin',          '~> 1.5.0'
 
 # RSS/Atom

@@ -24,7 +24,7 @@ class EntryProcessor
 
 private
 
-  delegate :title, :content, :url, :published, to: :entry
+  delegate :url, :published, to: :entry
 
   def existing
     @existing ||= items.where(guid: guid).first
@@ -35,6 +35,14 @@ private
       description: content,
       link: url,
       pub_date: published }
+  end
+
+  def title
+    Sanitize.clean(entry.title)
+  end
+
+  def content
+    Sanitize.clean(entry.content, Sanitize::Config::RELAXED)
   end
 
   def items

@@ -16,10 +16,14 @@ class Subscription
 
 private
 
-  delegate :title, :description, to: :feed
+  delegate :description, to: :feed
 
   def feed
     @feed ||= Feedzirra::Feed.fetch_and_parse(url)
+  end
+
+  def title
+    Sanitize.clean(feed.title)
   end
 
   def html_url
