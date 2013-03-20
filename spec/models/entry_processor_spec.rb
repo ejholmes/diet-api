@@ -3,8 +3,8 @@ require 'spec_helper'
 describe EntryProcessor do
   let(:feed) { double('feed') }
   let(:feed_items) { double('feed items') }
-  let(:item) { double('item').as_null_object }
-  let(:processor) { described_class.new(feed, item) }
+  let(:entry) { double('entry').as_null_object }
+  let(:processor) { described_class.new(feed, entry) }
 
   before do
     feed.stub(:items).and_return(feed_items)
@@ -18,10 +18,10 @@ describe EntryProcessor do
   end
 
   describe '.update' do
-    it 'updates the feed item' do
-      item.stub(:guid).and_return(stub(:content => 'http://guid.org'))
-      feed_items.stub(:where).with(guid: 'http://guid.org').and_return(stub(:first => item))
-      item.should_receive(:update_attributes)
+    it 'updates the feed entry' do
+      entry.stub(:entry_id).and_return('http://guid.org')
+      feed_items.stub(:where).with(guid: 'http://guid.org').and_return(stub(:first => entry))
+      entry.should_receive(:update_attributes)
       processor.update
     end
   end
