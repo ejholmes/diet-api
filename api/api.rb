@@ -2,6 +2,12 @@ class API < Grape::API
   version 'v1', using: :header, vendor: 'reader'
   format :json
 
+  if ENV['BASIC_AUTH']
+    http_basic do |username, password|
+      ENV['BASIC_AUTH'].split(':') == [username, password]
+    end
+  end
+
   helpers do
     def feed
       feeds.find(params[:id])
