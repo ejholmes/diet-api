@@ -24,6 +24,7 @@ gem 'activerecord', '~> 3.2.12'
 
 group :development do
   gem 'shotgun', '~> 0.9'
+  gem 'heroku_san', '~> 4.2'
 end
 
 group :development, :test do

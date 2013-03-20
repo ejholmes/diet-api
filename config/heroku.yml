@@ -1,0 +1,3 @@
+production:
+  stack: cedar
+  app: rss-reader
