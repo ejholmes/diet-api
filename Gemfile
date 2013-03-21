@@ -10,10 +10,13 @@ gem 'json',          '~> 1.7.7'
 gem 'hashie',        '~> 1.2.0'
 gem 'multi_json',    '~> 1.7.0'
 gem 'will_paginate', '~> 3.0.3'
-gem 'warden'
 gem 'sanitize'
 gem 'nokogiri'
 gem 'thin',          '~> 1.5.0'
+
+# Authentication
+gem 'warden'
+gem 'bcrypt-ruby'
 
 # RSS/Atom
 gem 'feedzirra', '~> 0.0.31'

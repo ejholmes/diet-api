@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'bcrypt'
 
 class User < ActiveRecord::Base
   include Grape::Entity::DSL
@@ -25,7 +26,26 @@ class User < ActiveRecord::Base
     Entity.new(self)
   end
 
+  def password=(password)
+    write_attribute(:password, password_digest(password)) if password.present?
+  end
+
+  def valid_password?(password)
+    return false if password.blank?
+    bcrypt = ::BCrypt::Password.new(self.password)
+    password = ::BCrypt::Engine.hash_secret(password, bcrypt.salt)
+    self.password == password
+  end
+
   entity :email do
     expose :readability, using: User::Readability::Entity
   end
+
+private
+
+  # Digests the password using bcrypt.
+  def password_digest(password)
+    ::BCrypt::Password.create(password).to_s
+  end
+
 end
