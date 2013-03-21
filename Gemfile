@@ -10,9 +10,9 @@ gem 'json',          '~> 1.7.7'
 gem 'hashie',        '~> 1.2.0'
 gem 'multi_json',    '~> 1.7.0'
 gem 'will_paginate', '~> 3.0.3'
-gem 'sanitize'
-gem 'nokogiri'
-gem 'unicorn'
+gem 'sanitize',      '~> 2.0.3'
+gem 'nokogiri',      '~> 1.4.7'
+gem 'unicorn',       '~> 4.5.0'
 
 # Authentication
 gem 'warden'

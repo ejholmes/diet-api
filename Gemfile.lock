@@ -175,7 +175,7 @@ DEPENDENCIES
   i18n (~> 0.6.4)
   json (~> 1.7.7)
   multi_json (~> 1.7.0)
-  nokogiri
+  nokogiri (~> 1.4.7)
   omniauth-readability
   pg (~> 0.14.1)
   rack (~> 1.5.2)
@@ -184,10 +184,10 @@ DEPENDENCIES
   rb-fsevent
   readit (~> 0.0.9)
   ruby_gntp
-  sanitize
+  sanitize (~> 2.0.3)
   shotgun (~> 0.9)
   shoulda-matchers (~> 1.4.2)
-  unicorn
+  unicorn (~> 4.5.0)
   warden
   webmock (~> 1.11.0)
   will_paginate (~> 3.0.3)
