@@ -25,20 +25,19 @@ class API < Grape::API
       items.filtered(params).paginate(page: params[:page])
     end
 
-    def session
-      env['rack.session']
-    end
+    def session; env['rack.session'] end
+    def warden; env['warden'] end
 
     def current_user
-      @user ||= User.authenticate(params[:apikey])
+      warden.user
     end
 
     def current_user=(user)
-      @user = user
+      warden.set_user(user, store: false)
     end
 
     def authenticate!
-      error!('401 Unauthorized', 401) unless current_user
+      warden.authenticate!
     end
   end
 
@@ -141,6 +140,7 @@ class API < Grape::API
     desc 'Signup for an account. Returns the user, which contains an api key to authorize requests.'
     params do
       requires :email, type: String, desc: 'Your email.'
+      requires :password, type: String, desc: 'Your password.'
     end
     post do
       user = User.new(params)

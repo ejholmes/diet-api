@@ -110,7 +110,7 @@ describe API do
 
     describe 'POST /subscriptions' do
       it 'subscribes to a new feed' do
-        post '/subscriptions?url=http://github.com/blog.atom'
+        post '/subscriptions', url: 'http://github.com/blog.atom'
         expect(last_response.status).to eq 201
         expect(last_response.body).to eq Feed.first.entity.to_json
       end
@@ -143,7 +143,7 @@ describe API do
     describe 'POST /users' do
       context 'with success' do
         it 'creates a new user' do
-          post '/users?email=foo@example.com'
+          post '/users', email: 'foo@example.com', password: 'foobar'
           expect(last_response.status).to eq 201
           expect(last_response.body).to eq User.last.entity.to_json
         end
@@ -152,7 +152,7 @@ describe API do
       context 'with errors' do
         it 'returns the errors' do
           user = create :user
-          post "/users?email=#{user.email}"
+          post '/users', email: user.email, password: 'foobar'
           expect(last_response.status).to eq 400
           expect(last_response.body).to eq({ error: { email: ['has already been taken'] } }.to_json)
         end

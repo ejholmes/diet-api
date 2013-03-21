@@ -22,7 +22,11 @@ end
 module AuthenticationMacros
   def with_authenticated_user
     before do
-      User.stub(:authenticate).and_return(current_user)
+      login_as current_user
+    end
+
+    after do
+      Warden.test_reset!
     end
   end
 end
@@ -88,6 +92,7 @@ Spork.prefork do
     end
 
     config.include FixtureHelpers
+    config.include include Warden::Test::Helpers
     config.extend AuthenticationMacros
     config.include FactoryGirl::Syntax::Methods
 

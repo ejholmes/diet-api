@@ -14,6 +14,10 @@ gem 'sanitize'
 gem 'nokogiri'
 gem 'thin',          '~> 1.5.0'
 
+# Authentication
+gem 'warden'
+gem 'bcrypt-ruby'
+
 # RSS/Atom
 gem 'feedzirra', '~> 0.0.31'
 

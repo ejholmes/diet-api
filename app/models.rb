@@ -1,4 +1,5 @@
 require 'models/user'
+require 'models/authenticator'
 require 'models/feed'
 require 'models/feed/refresher'
 require 'models/item'
