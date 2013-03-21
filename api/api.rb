@@ -68,7 +68,7 @@ class API < Grape::API
       items.read!
     end
 
-    desc 'Return a specifiy item.'
+    desc 'Return a specific item.'
     params do
       requires :id, type: String, desc: 'Item id.'
     end
