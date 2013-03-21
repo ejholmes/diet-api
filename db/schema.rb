@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(:version => 20130320233913) do
 
   create_table "users", :force => true do |t|
     t.string   "email",       :default => "", :null => false
-    t.string   "token"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.string   "readability"

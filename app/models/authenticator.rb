@@ -1,6 +1,6 @@
 class Authenticator
-  def from_token(token)
-    return nil unless token.present?
-    User.where(token: token).first
+  def username_password(username, password)
+    return nil unless username.present? && password.present?
+    User.where(email: username, password: password).first
   end
 end

@@ -12,14 +12,6 @@ describe User do
 
   it { should serialize(:readability).as(User::Readability) }
 
-  describe '#new' do
-    it 'initializes a token' do
-      user = described_class.new(email: 'foo@example.com')
-      user.save
-      expect(user.token).to be_present
-    end
-  end
-
   describe '.subscribe_to' do
     let(:url) { 'http://github.com/blog.atom' }
 

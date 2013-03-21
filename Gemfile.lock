@@ -147,6 +147,8 @@ GEM
     virtus (0.5.4)
       backports (~> 2.6.1)
       descendants_tracker (~> 0.0.1)
+    warden (1.2.1)
+      rack (>= 1.0)
     webmock (1.11.0)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
@@ -184,5 +186,6 @@ DEPENDENCIES
   shotgun (~> 0.9)
   shoulda-matchers (~> 1.4.2)
   thin (~> 1.5.0)
+  warden
   webmock (~> 1.11.0)
   will_paginate (~> 3.0.3)
