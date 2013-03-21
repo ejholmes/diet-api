@@ -1,8 +1,7 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'api'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'app'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
 
-require 'boot'
+require File.expand_path('../boot', __FILE__)
 
 require 'i18n'
 require 'active_support'
@@ -19,7 +18,7 @@ require 'active_record'
 
 def database_config
   @database_config ||= begin
-    database = URI(ENV['DATABASE_URL'] || 'postgres://localhost:5432/reader_development')
+    database = URI(ENV['DATABASE_URL'] || 'postgresql://localhost:5432/reader_development')
     { adapter: 'postgresql',
       pool: 5,
       database: database.path[1..-1],
