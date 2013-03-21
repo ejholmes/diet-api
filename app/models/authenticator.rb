@@ -1,7 +1,4 @@
-class Authenticator
-  def username_password(username, password)
-    return nil unless username.present? && password.present?
-    user = User.where(email: username).first
-    user.valid_password?(password) ? user : nil
-  end
+module Authenticator
+  autoload :Base,             'models/authenticator/base'
+  autoload :UsernamePassword, 'models/authenticator/username_password'
 end

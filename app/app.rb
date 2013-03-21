@@ -13,7 +13,7 @@ Warden::Strategies.add(:basic) do
     return fail! unless auth.provided?
     return fail!(:bad_request) unless auth.basic?
     username, password = auth.credentials
-    user = Authenticator.new.username_password(username, password)
+    user = Authenticator::UsernamePassword.new(username, password).authenticate!
     user.nil? ? fail! : success!(user)
   end
 end
