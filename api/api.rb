@@ -140,6 +140,7 @@ class API < Grape::API
     desc 'Signup for an account. Returns the user, which contains an api key to authorize requests.'
     params do
       requires :email, type: String, desc: 'Your email.'
+      requires :password, type: String, desc: 'Your password.'
     end
     post do
       user = User.new(params)
