@@ -65,13 +65,28 @@ describe API do
     end
 
     describe 'PUT /items/read' do
-      it 'marks all items as read' do
+      before do
         5.times { create :item, feed: feed, read: true  }
         5.times { create :item, feed: feed, read: false }
-        put '/items/read'
-        current_user.items.all.each { |item| expect(item).to be_read }
-        expect(last_response.status).to eq 200
-        expect(last_response.body).to eq({ total: 5 }.to_json)
+      end
+
+      context 'without params' do
+        it 'marks all items as read' do
+          put '/items/read'
+          current_user.items.all.each { |item| expect(item).to be_read }
+          expect(last_response.status).to eq 200
+          expect(last_response.body).to eq({ total: 5 }.to_json)
+        end
+      end
+
+      context 'with params[:ids]' do
+        it 'marks those ids as read' do
+          ids = Item.unread.first(2).collect(&:id)
+          put '/items/read', ids: ids
+          current_user.items.where(id: ids).each { |item| expect(item).to be_read }
+          expect(last_response.status).to eq 200
+          expect(last_response.body).to eq({ total: 2 }.to_json)
+        end
       end
     end
 

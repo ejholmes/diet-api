@@ -63,9 +63,12 @@ class API < Grape::API
     end
 
     desc 'Mark all items as read.'
+    params do
+      optional :ids, type: Array[String], desc: 'List of ids to mark as read.'
+    end
     put :read do
       authenticate!
-      { total: items.unread.read! }
+      { total: (params.ids.present? ? items.unread.where(id: params.ids) : items.unread).read! }
     end
 
     desc 'Return a specific item.'
