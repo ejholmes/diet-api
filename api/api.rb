@@ -65,7 +65,7 @@ class API < Grape::API
     desc 'Mark all items as read.'
     put :read do
       authenticate!
-      items.read!
+      { total: items.unread.read! }
     end
 
     desc 'Return a specific item.'

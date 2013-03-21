@@ -71,7 +71,7 @@ describe API do
         put '/items/read'
         current_user.items.all.each { |item| expect(item).to be_read }
         expect(last_response.status).to eq 200
-        expect(last_response.body).to eq '10'
+        expect(last_response.body).to eq({ total: 5 }.to_json)
       end
     end
 
