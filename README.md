@@ -1,4 +1,6 @@
-# Reader
+# Diet
+
+**RSS on a diet**
 
 A lightweight webservice that offers an api for subscribing/unsubscribing to
-rss feeds.
+rss feeds, and consuming new items.
