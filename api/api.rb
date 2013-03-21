@@ -99,7 +99,7 @@ class API < Grape::API
   end
 
   resource :subscriptions do
-    desc 'Lists the authenticated users subscriptions.'
+    desc 'Lists subscriptions.'
     get do
       authenticate!
       present feeds
@@ -137,13 +137,13 @@ class API < Grape::API
   end
 
   namespace :users do
-    desc 'Signup for an account. Returns the user, which contains an api key to authorize requests.'
+    desc 'Create a new user account.'
     params do
       requires :email, type: String, desc: 'Your email.'
       requires :password, type: String, desc: 'Your password.'
     end
     post do
-      user = User.new(params)
+      user = User.new(declared(params))
       if user.save
         present user
       else
