@@ -11,7 +11,8 @@ describe Importer::GoogleReader do
       importer.should_receive(:subscribe).with('http://howtonode.org/feed.xml')
       importer.should_receive(:subscribe).with('http://feeds.feedburner.com/codeclimate')
       importer.should_receive(:subscribe).with('http://www.sparkfun.com/feeds/news')
-      importer.import
+      feeds = importer.import
+      expect(feeds).to have(4).feeds
     end
   end
 end

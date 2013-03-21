@@ -8,9 +8,11 @@ module Importer
     end
 
     def import
-      outlines.each do |node|
-        subscribe node['xmlUrl'] if node['xmlUrl']
+      subscriptions = []
+      outlines.collect do |node|
+        subscriptions << subscribe(node['xmlUrl']) if node['xmlUrl']
       end
+      subscriptions
     end
 
   private

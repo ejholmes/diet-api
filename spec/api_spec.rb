@@ -130,11 +130,11 @@ describe API do
 
     describe 'POST /import/google_reader' do
       it 'imports all subscriptions' do
-        Importer::GoogleReader.should_receive(:new).and_return(stub(import: nil))
+        Importer::GoogleReader.should_receive(:new).and_return(stub(import: Feed.all))
         post '/import/google_reader',
           'file' => Rack::Test::UploadedFile.new(File.expand_path('../fixtures/importer/google_reader/subscriptions.xml', __FILE__), "image/jpeg")
         expect(last_response.status).to eq 201
-        expect(last_response.body).to eq 'Ok'.to_json
+        expect(last_response.body).to eq Feed.all.to_json
       end
     end
   end

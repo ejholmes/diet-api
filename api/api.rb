@@ -131,8 +131,7 @@ class API < Grape::API
     end
     post :google_reader do
       authenticate!
-      Importer::GoogleReader.new(params.file.tempfile.read, user: current_user).import
-      'Ok'
+      present Importer::GoogleReader.new(params.file.tempfile.read, user: current_user).import
     end
   end
 
