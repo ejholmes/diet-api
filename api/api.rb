@@ -6,7 +6,7 @@ class API < Grape::API
 
   helpers do
     def feed
-      feeds.find(params[:id])
+      feeds.find(params.id)
     end
 
     def feeds
@@ -14,7 +14,7 @@ class API < Grape::API
     end
 
     def item
-      items.find(params[:id])
+      items.find(params.id)
     end
 
     def items
@@ -22,7 +22,7 @@ class API < Grape::API
     end
 
     def filtered_items
-      items.filtered(params).paginate(page: params[:page])
+      items.filtered(params).paginate(page: params.page)
     end
 
     def session; env['rack.session'] end
@@ -111,7 +111,7 @@ class API < Grape::API
     end
     post do
       authenticate!
-      present current_user.subscribe_to(params[:url])
+      present current_user.subscribe_to(params.url)
     end
 
     desc 'Unsubscribe from a feed.'
@@ -193,6 +193,6 @@ class API < Grape::API
   end
 
   get '/auth/failure' do
-    { error: "Authorization failed: #{params[:message]}" }
+    { error: "Authorization failed: #{params.message}" }
   end
 end
