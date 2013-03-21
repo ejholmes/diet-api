@@ -26,7 +26,7 @@ class User::Readability < Hash
   end
 
   def enabled
-    self[:enabled]
+    self.fetch(:enabled, false)
   end
 
   def enable

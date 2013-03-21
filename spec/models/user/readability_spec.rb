@@ -80,6 +80,13 @@ describe User::Readability do
     end
   end
 
+  describe '.enabled' do
+    subject { readability.enabled }
+    context 'when nil' do
+      it { should eq false }
+    end
+  end
+
   describe '.enable' do
     it 'enables readability' do
       readability.stub(:authorized?).and_return(true)
