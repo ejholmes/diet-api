@@ -45,21 +45,12 @@ class API < Grape::API
     desc 'Lists all items.'
     params do
       optional :subscription, type: String, desc: 'Subscription id to scope to.'
+      optional :unread, type: Boolean, desc: 'Return only items that are unread.'
       optional :page, type: Integer, desc: 'Page to return. Defaults to first page.'
     end
     get do
       authenticate!
-      present filtered_items
-    end
-
-    desc 'Lists all unread items.'
-    params do
-      optional :subscription, type: String, desc: 'Subscription id to scope to.'
-      optional :page, type: Integer, desc: 'Page to return. Defaults to first page.'
-    end
-    get :unread do
-      authenticate!
-      present filtered_items.unread
+      present params.unread ? filtered_items.unread : filtered_items
     end
 
     desc 'Mark all items as read.'

@@ -43,15 +43,15 @@ describe API do
           expect(JSON.parse(last_response.body).length).to eq 25
         end
       end
-    end
 
-    describe 'GET /items/unread' do
-      it 'responds with a list of items that are unread' do
-        create :item, feed: feed, read: true
-        item = create :item, feed: feed
-        get '/items/unread'
-        expect(last_response.status).to eq 200
-        expect(last_response.body).to eq Array(item.entity).to_json
+      context 'with unread' do
+        it 'responds with a list of items that are unread' do
+          create :item, feed: feed, read: true
+          item = create :item, feed: feed
+          get '/items?unread=1'
+          expect(last_response.status).to eq 200
+          expect(last_response.body).to eq Array(item.entity).to_json
+        end
       end
     end
 
