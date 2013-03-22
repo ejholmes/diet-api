@@ -26,9 +26,23 @@ Warden::Manager.serialize_from_session do |id|
   User.find(id)
 end
 
+class CORS
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    status, headers, body = @app.call(env)
+    headers['Access-Control-Allow-Origin'] = '*'
+    [status, headers, body]
+  end
+end
+
 class App
   def self.app
     @app ||= Rack::Builder.new {
+      use CORS
+
       use Rack::Session::Cookie, secret: ENV['COOKIE_SECRET'] || 'iebie5oKneequ1Ae'
 
       use Warden::Manager do |manager|
