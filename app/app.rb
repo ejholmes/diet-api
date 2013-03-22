@@ -32,6 +32,7 @@ class CORS
     headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, PATCH, DELETE, HEAD'
     headers['Access-Control-Allow-Headers'] = '*'
+    headers['Access-Control-Allow-Credentials'] = 'true'
     [status, headers, body]
   end
 end
