@@ -41,7 +41,6 @@ class API < Grape::API
     end
 
     def authenticate!
-      puts authenticated?
       warden.authenticate! unless authenticated?
     end
   end
