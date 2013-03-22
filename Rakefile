@@ -3,7 +3,7 @@ require File.expand_path('../config/environment', __FILE__)
 
 desc 'Deploy'
 task :deploy do
-  app = 'rss-reader'
+  app = 'diet-api'
   sh "git push git@heroku.com:#{app}.git HEAD:master"
 end
 
