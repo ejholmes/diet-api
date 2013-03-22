@@ -29,7 +29,7 @@ class CORS
 
   def call(env)
     status, headers, body = @app.call(env)
-    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Origin'] = ENV['ALLOWED_ORIGIN'] || '*'
     headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, PATCH, DELETE, HEAD'
     headers['Access-Control-Allow-Headers'] = '*'
     headers['Access-Control-Allow-Credentials'] = 'true'
