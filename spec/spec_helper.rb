@@ -34,7 +34,6 @@ end
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV['RACK_ENV'] = 'test'
-  ENV['DATABASE_URL'] ||= 'postgres://localhost:5432/reader_test'
 
   require File.expand_path('../../config/environment', __FILE__)
   Bundler.require :default, :test
