@@ -41,7 +41,7 @@ class API < Grape::API
     end
 
     def authenticate!
-      warden.set_user(User.first) unless authenticated?
+      warden.authenticate! unless authenticated?
     end
   end
 
