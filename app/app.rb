@@ -39,7 +39,7 @@ class App
     @app ||= Rack::Builder.new {
       use CORS
 
-      use Rack::Session::Cookie, secret: ENV['COOKIE_SECRET'] || 'iebie5oKneequ1Ae'
+      use Rack::Session::Cookie, key: '_diet_session', domain: ENV['COOKIE_DOMAIN'], secret: ENV['COOKIE_SECRET'] || 'iebie5oKneequ1Ae'
 
       use Warden::Manager do |manager|
         manager.default_strategies :basic
