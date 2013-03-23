@@ -1,5 +1,6 @@
 #!/usr/bin/env rake
 require File.expand_path('../config/environment', __FILE__)
+Diet.setup
 
 desc 'Deploy'
 task :deploy do
@@ -24,7 +25,7 @@ end
 namespace :updater do
   task :run do
     require 'updater'
-    Updater.run
+    Diet::Updater.run
   end
 end
 
@@ -51,15 +52,15 @@ namespace :db do
 
   desc "Create the database using DATABASE_URL"
   task :create do
-    ActiveRecord::Base.establish_connection(database_config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
-    ActiveRecord::Base.connection.create_database(database_config['database'])
-    ActiveRecord::Base.establish_connection(database_config)
+    ActiveRecord::Base.establish_connection(Diet.database_config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
+    ActiveRecord::Base.connection.create_database(Diet.database_config['database'])
+    ActiveRecord::Base.establish_connection(Diet.database_config)
   end
 
   desc "Drop the database using DATABASE_URL"
   task :drop do
-    ActiveRecord::Base.establish_connection(database_config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
-    ActiveRecord::Base.connection.drop_database database_config['database']
+    ActiveRecord::Base.establish_connection(Diet.database_config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
+    ActiveRecord::Base.connection.drop_database Diet.database_config['database']
   end
 
   desc "Run the migration(s)"

@@ -102,6 +102,8 @@ Spork.prefork do
       config.include Shoulda::Matchers::ActiveModel
     end
   end
+
+  Diet.setup
 end
 
 Spork.each_run do

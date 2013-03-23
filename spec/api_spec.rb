@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe API do
+describe Diet::API::App do
   include Rack::Test::Methods
 
   def app
-    App.app
+    Diet::API.app
   end
 
   let(:current_user) { create :user }

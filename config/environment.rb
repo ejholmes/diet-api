@@ -1,3 +1,4 @@
 ENV['RACK_ENV'] ||= 'development'
 
-require File.expand_path('../application', __FILE__)
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'diet'
