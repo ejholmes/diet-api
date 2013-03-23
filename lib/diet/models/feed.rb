@@ -25,6 +25,10 @@ class Feed < ActiveRecord::Base
     html_uri.host
   end
 
+  def favicon
+    "http://s2.googleusercontent.com/s2/favicons?domain=#{domain}&alt=feed"
+  end
+
   def xml
     @xml ||= Feedzirra::Feed.fetch_and_parse(xml_url)
   end
@@ -37,7 +41,7 @@ class Feed < ActiveRecord::Base
     Entity.new(self, options)
   end
 
-  entity :id, :title, :text, :html_url, :xml_url, :last_update do
+  entity :id, :title, :text, :html_url, :xml_url, :favicon, :last_update do
     expose :unread_count, as: :unread
   end
 end
