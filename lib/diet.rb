@@ -11,24 +11,25 @@ end
 
 require 'active_record'
 
-autoload :User,    'diet/models/user'
-autoload :Item,    'diet/models/item'
-autoload :Feed,    'diet/models/feed'
-autoload :Updater, 'diet/updater'
-autoload :Subscription, 'diet/models/subscription'
+autoload :User,           'diet/models/user'
+autoload :Item,           'diet/models/item'
+autoload :Feed,           'diet/models/feed'
+autoload :Subscription,   'diet/models/subscription'
 autoload :EntryProcessor, 'diet/models/entry_processor'
 
 module Authenticator
-  autoload :Base, 'diet/models/authenticator/base'
+  autoload :Base,             'diet/models/authenticator/base'
   autoload :UsernamePassword, 'diet/models/authenticator/username_password'
 end
 
 module Importer
-  autoload :Base, 'diet/models/importer/base'
+  autoload :Base,         'diet/models/importer/base'
   autoload :GoogleReader, 'diet/models/importer/google_reader'
 end
 
 module Diet
+  autoload :Updater, 'diet/updater'
+
   module Middleware
     autoload :CORS, 'diet/middleware/cors'
   end
@@ -52,7 +53,6 @@ module Diet
                 401,
                 {
                   'Content-Type' => 'application/json',
-                  'Content-Length' => '0',
                   'WWW-Authenticate' => %(Basic realm="API Authentication")
                 },
                 [{ error: '401 Unauthorized'}.to_json]

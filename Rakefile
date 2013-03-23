@@ -24,7 +24,6 @@ end
 
 namespace :updater do
   task :run do
-    require 'updater'
     Diet::Updater.run
   end
 end
