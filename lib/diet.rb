@@ -58,9 +58,6 @@ module Diet
                 [{ error: '401 Unauthorized'}.to_json]
               ]
             }
-
-            def unauthorized
-            end
           end
 
           use OmniAuth::Builder do
