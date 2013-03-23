@@ -120,7 +120,7 @@ module Diet
         end
         delete ':id' do
           authenticate!
-          feed.destroy
+          present feed.destroy
         end
       end
 

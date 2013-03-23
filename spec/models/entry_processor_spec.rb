@@ -15,7 +15,7 @@ describe EntryProcessor do
 
     before do
       feed.stub_chain(:user, :readability).and_return(readability)
-      feed_items.should_receive(:create).and_return(stub(link: 'http://www.google.com'))
+      feed_items.should_receive(:create).and_return(stub(link: 'http://www.google.com', entity: nil))
     end
 
     context 'when readability is disabled' do

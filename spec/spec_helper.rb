@@ -109,4 +109,10 @@ end
 Spork.each_run do
   FactoryGirl.reload
   I18n.backend.reload!
+
+  RSpec.configure do |config|
+    config.before do
+      Diet.stub(:pusher).and_return(stub(:[] => double('channel').as_null_object))
+    end
+  end
 end

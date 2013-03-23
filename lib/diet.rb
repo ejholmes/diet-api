@@ -4,6 +4,7 @@ require 'bundler/setup'
 Bundler.require :default, ENV['RACK_ENV']
 require 'grape'
 require 'uri'
+require 'pusher'
 
 ActiveSupport.on_load :active_record do
   require 'will_paginate/active_record'
@@ -101,6 +102,19 @@ module Diet
 
       Warden::Manager.serialize_from_session do |id|
         User.find(id)
+      end
+    end
+
+    def pusher
+      @pusher ||= begin
+        if url = ENV['PUSHER_URL']
+          uri = URI(url)
+          Pusher.app_id = uri.path.gsub('/apps/', '').to_i
+          Pusher.key    = uri.user
+          Pusher.secret = uri.password
+        end
+
+        Pusher
       end
     end
 

@@ -21,6 +21,7 @@ class EntryProcessor
   def create
     item = items.create(attributes.merge(guid: guid))
     bookmark item.link if readability.enabled?
+    push item
     item
   end
 
@@ -30,6 +31,11 @@ private
   delegate :user, to: :feed
   delegate :readability, to: :user
   delegate :bookmark, to: :readability
+  delegate :pusher, to: Diet
+
+  def push(item)
+    pusher['common'].trigger('item:created', item.entity)
+  end
 
   def existing
     @existing ||= items.where(guid: guid).first

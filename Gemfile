@@ -13,6 +13,7 @@ gem 'will_paginate', '~> 3.0.3'
 gem 'sanitize',      '~> 2.0.3'
 gem 'nokogiri',      '~> 1.4.7'
 gem 'unicorn',       '~> 4.5.0'
+gem 'pusher'
 
 # Authentication
 gem 'warden'
