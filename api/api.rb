@@ -1,5 +1,5 @@
 class API < Grape::API
-  logger Logger.new(STDOUT)
+  logger Diet.logger
 
   version 'v1', using: :header, vendor: 'reader'
   format :json

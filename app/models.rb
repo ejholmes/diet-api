@@ -1,8 +1,0 @@
-require 'models/user'
-require 'models/authenticator'
-require 'models/feed'
-require 'models/feed/refresher'
-require 'models/item'
-require 'models/entry_processor'
-require 'models/subscription'
-require 'models/importer'

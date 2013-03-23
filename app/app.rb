@@ -1,5 +1,3 @@
-require 'models'
-
 Warden::Strategies.add(:basic) do
   def auth
     @auth ||= Rack::Auth::Basic::Request.new(env)
