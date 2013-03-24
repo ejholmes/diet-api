@@ -17,7 +17,7 @@ module Diet
       def set_headers(headers)
         headers['Access-Control-Allow-Origin'] = ENV['ALLOWED_ORIGIN'] || '*'
         headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, PATCH, DELETE, HEAD'
-        headers['Access-Control-Allow-Headers'] = 'Content-Type'
+        headers['Access-Control-Allow-Headers'] = 'Content-Type, Accept, Origin'
         headers['Access-Control-Allow-Credentials'] = 'true'
         headers
       end
