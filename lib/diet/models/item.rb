@@ -38,7 +38,7 @@ class Item < ActiveRecord::Base
     Entity.new(self, options)
   end
 
-  entity :id, :title, :link, :read, :pub_date do
+  entity :id, :title, :link, :read, :pub_date, :feed_id do
     expose :description, if: { type: :full }
     expose :feed, using: Feed::Entity
   end
