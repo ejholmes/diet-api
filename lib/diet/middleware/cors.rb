@@ -6,12 +6,20 @@ module Diet
       end
 
       def call(env)
-        status, headers, body = @app.call(env)
+        if env['REQUEST_METHOD'] == 'OPTIONS'
+          [200, set_headers({}), []]
+        else
+          status, headers, body = @app.call(env)
+          [status, set_headers(headers), body]
+        end
+      end
+
+      def set_headers(headers)
         headers['Access-Control-Allow-Origin'] = ENV['ALLOWED_ORIGIN'] || '*'
         headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, PATCH, DELETE, HEAD'
         headers['Access-Control-Allow-Headers'] = 'Content-Type'
         headers['Access-Control-Allow-Credentials'] = 'true'
-        [status, headers, body]
+        headers
       end
     end
   end
