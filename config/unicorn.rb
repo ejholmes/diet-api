@@ -1,4 +1,4 @@
-worker_processes 16
+worker_processes ENV['UNICORNS'] || 4
 timeout 30
 preload_app true
 
