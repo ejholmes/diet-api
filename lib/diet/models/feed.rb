@@ -19,9 +19,12 @@ class Feed < ActiveRecord::Base
 
   def html_uri
     @html_uri ||= URI(html_url)
+  rescue
+    nil
   end
 
   def domain
+    return nil unless html_uri
     html_uri.host
   end
 
