@@ -1,4 +1,4 @@
-worker_processes ENV['UNICORNS'] || 4
+worker_processes ENV['UNICORNS'] ? ENV['UNICORNS'].to_i : 4
 timeout 30
 preload_app true
 
