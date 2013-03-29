@@ -4,8 +4,18 @@ Diet.setup
 
 desc 'Deploy'
 task :deploy do
-  app = 'diet-api'
-  sh "git push git@heroku.com:#{app}.git HEAD:master"
+  deploy = lambda { |app|
+    sh "heroku maintenance:on -a #{app}"
+    sh "git push git@heroku.com:#{app}.git HEAD:master"
+    sh "heroku run rake db:migrate -a #{app}"
+    sh "heroku restart -a #{app}"
+    sh "heroku maintenance:off -a #{app}"
+  }
+
+  Bundler.with_clean_env do
+    deploy['diet-api']
+    deploy['diet-workers']
+  end
 end
 
 desc 'Start an irb session'
