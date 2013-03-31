@@ -16,7 +16,7 @@ gem 'unicorn',       '~> 4.5.0'
 gem 'pusher'
 
 # Metrics
-gem 'librato-rack'
+gem 'librato-rack', github: 'ejholmes/librato-rack'
 
 # Authentication
 gem 'warden'

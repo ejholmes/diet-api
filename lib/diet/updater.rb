@@ -14,16 +14,23 @@ module Diet
         if feed
           log "Updating #{feed.title}"
           begin
-            feed.refresh!
-          rescue
+            Librato.increment 'feed.refresh.count'
+            Librato.timing 'feed.refresh.time' do
+              feed.refresh!
+            end
+          rescue => e
+            Librato.increment 'feed.refresh.failed.count'
             # Whatever
           end
         end
       end
     end
 
+  private
+
     def log(*args)
       Diet.logger.info *args
     end
+
   end
 end
