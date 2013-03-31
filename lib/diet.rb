@@ -65,6 +65,8 @@ module Diet
             provider :readability, ENV['READABILITY_KEY'], ENV['READABILITY_SECRET']
           end
 
+          use Librato::Rack if Diet.env.production?
+
           run Diet::API::App
         end
       end
@@ -72,6 +74,10 @@ module Diet
   end
 
   class << self
+    def env
+      ActiveSupport::StringInquirer.new(ENV['RACK_ENV'])
+    end
+
     def logger
       @logger ||= Logger.new(STDOUT)
     end
