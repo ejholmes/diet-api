@@ -5,6 +5,7 @@ module Diet
     end
 
     def initialize
+      Librato.tracker.check_worker
       STDOUT.sync = true
     end
 
