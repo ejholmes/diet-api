@@ -15,9 +15,6 @@ gem 'nokogiri',      '~> 1.4.7'
 gem 'unicorn',       '~> 4.5.0'
 gem 'pusher',        '~> 0.11.2'
 
-# Metrics
-gem 'librato-rack', github: 'ejholmes/librato-rack'
-
 # Authentication
 gem 'warden'
 gem 'bcrypt-ruby'

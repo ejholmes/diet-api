@@ -77,8 +77,6 @@ module Diet
           provider :readability, ENV['READABILITY_KEY'], ENV['READABILITY_SECRET']
         end
 
-        use Librato::Rack if Diet.env.production?
-
         run Diet::API
       end
     end
