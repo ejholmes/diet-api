@@ -11,18 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130320233913) do
+ActiveRecord::Schema.define(:version => 20130501233913) do
 
   create_table "feeds", :force => true do |t|
     t.string   "xml_url"
     t.string   "html_url"
     t.text     "text"
     t.string   "title"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "updating",    :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "updating",     :default => false
     t.datetime "last_update"
     t.integer  "user_id"
+    t.integer  "unread_count", :default => 0,     :null => false
   end
 
   create_table "items", :force => true do |t|

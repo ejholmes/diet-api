@@ -5,6 +5,7 @@ class Item < ActiveRecord::Base
 
   # Associations
   belongs_to :feed
+  belongs_to :feed, inverse_of: :unread_items, counter_cache: :unread_count
 
   # Scopes
   scope :unread, -> { where(read: false) }

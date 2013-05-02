@@ -6,15 +6,12 @@ class Feed < ActiveRecord::Base
   # Associations
   belongs_to :user
   has_many :items, dependent: :destroy
+  has_many :unread_items, class_name: 'Item', conditions: { read: false }
 
   class << self
     def next
       unscoped.where(updating: false).order('last_update ASC NULLS FIRST').first
     end
-  end
-
-  def unread_count
-    items.unread.count
   end
 
   def html_uri
