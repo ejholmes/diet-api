@@ -55,7 +55,7 @@ module Diet
       end
       get do
         authenticate!
-        present params.unread ? filtered_items.unread : filtered_items
+        present (params.unread ? filtered_items.unread : filtered_items).to_ary
       end
 
       desc 'Mark all items as read.'
@@ -101,7 +101,7 @@ module Diet
       desc 'Lists subscriptions.'
       get do
         authenticate!
-        present feeds
+        present feeds.to_ary
       end
 
       desc 'Subscribe to a new feed.'
