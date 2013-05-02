@@ -11,7 +11,7 @@ module Diet
       end
 
       def feeds
-        current_user.feeds.includes(:items).order('title ASC')
+        current_user.feeds.order('title ASC')
       end
 
       def item
@@ -19,7 +19,7 @@ module Diet
       end
 
       def items
-        current_user.items.includes(:feed).order('created_at DESC')
+        current_user.items.order('created_at DESC')
       end
 
       def filtered_items
