@@ -12,6 +12,6 @@ end
 
 after_fork do |server, worker|
   if defined?(ActiveRecord::Base)
-    ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+    Diet.connect!
   end
 end
