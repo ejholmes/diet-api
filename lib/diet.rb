@@ -30,47 +30,10 @@ end
 
 module Diet
   autoload :Updater, 'diet/updater'
+  autoload :API,     'diet/api'
 
   module Middleware
     autoload :CORS, 'diet/middleware/cors'
-  end
-
-  module API
-    autoload :App, 'diet/api/app'
-
-    class << self
-      def app
-        @app ||= Rack::Builder.new do
-          use Diet::Middleware::CORS
-
-          use Rack::Session::Cookie, key: '_diet_session',
-            domain: ENV['COOKIE_DOMAIN'],
-            secret: ENV['COOKIE_SECRET'] || 'iebie5oKneequ1Ae'
-
-          use Warden::Manager do |manager|
-            manager.default_strategies :basic
-            manager.failure_app = lambda { |env|
-              [
-                401,
-                {
-                  'Content-Type' => 'application/json',
-                  'WWW-Authenticate' => %(Basic realm="API Authentication")
-                },
-                [{ error: '401 Unauthorized'}.to_json]
-              ]
-            }
-          end
-
-          use OmniAuth::Builder do
-            provider :readability, ENV['READABILITY_KEY'], ENV['READABILITY_SECRET']
-          end
-
-          use Librato::Rack if Diet.env.production?
-
-          run Diet::API::App
-        end
-      end
-    end
   end
 
   class << self
@@ -108,6 +71,38 @@ module Diet
 
       Warden::Manager.serialize_from_session do |id|
         User.find(id)
+      end
+    end
+
+    def app
+      @app ||= Rack::Builder.new do
+        use Diet::Middleware::CORS
+
+        use Rack::Session::Cookie, key: '_diet_session',
+          domain: ENV['COOKIE_DOMAIN'],
+          secret: ENV['COOKIE_SECRET'] || 'iebie5oKneequ1Ae'
+
+        use Warden::Manager do |manager|
+          manager.default_strategies :basic
+          manager.failure_app = lambda do |env|
+            [
+              401,
+              {
+                'Content-Type' => 'application/json',
+                'WWW-Authenticate' => %(Basic realm="API Authentication")
+              },
+              [ { error: '401 Unauthorized' }.to_json ]
+            ]
+          end
+        end
+
+        use OmniAuth::Builder do
+          provider :readability, ENV['READABILITY_KEY'], ENV['READABILITY_SECRET']
+        end
+
+        use Librato::Rack if Diet.env.production?
+
+        run Diet::API
       end
     end
 

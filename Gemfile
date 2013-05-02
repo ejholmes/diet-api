@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'rake'
 gem 'activesupport', '~> 3.2.12'

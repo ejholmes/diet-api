@@ -5,7 +5,7 @@ describe Feed::Refresher do
   let(:refresher) { described_class.new(feed) }
 
   before do
-    feed.stub(:xml).and_return(Feedzirra::Feed.parse(rss_feed(:svn)))
+    feed.stub xml: Feedzirra::Feed.parse(rss_feed(:svn))
   end
 
   describe '.refresh' do

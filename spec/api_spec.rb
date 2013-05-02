@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe Diet::API::App do
+describe Diet::API do
   include Rack::Test::Methods
 
   def app
-    Diet::API.app
+    Diet.app
   end
 
   let(:current_user) { create :user }
 
   before do
-    Subscription.any_instance.stub(:feed).and_return(Feedzirra::Feed.parse(atom_feed(:github)))
+    Subscription.any_instance.stub feed: Feedzirra::Feed.parse(atom_feed(:github))
   end
 
   describe 'Items' do
