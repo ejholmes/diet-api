@@ -197,7 +197,7 @@ DEPENDENCIES
   nokogiri (~> 1.4.7)
   omniauth-readability
   pg (~> 0.14.1)
-  pusher
+  pusher (~> 0.11.2)
   rack (~> 1.5.2)
   rack-test (~> 0.6.2)
   rake

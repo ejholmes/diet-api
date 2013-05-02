@@ -6,7 +6,7 @@ desc 'Deploy'
 task :deploy do
   deploy = lambda { |app|
     sh "heroku maintenance:on -a #{app}"
-    sh "git push git@heroku.com:#{app}.git HEAD:master"
+    sh "git push --force git@heroku.com:#{app}.git HEAD:master"
     sh "heroku run rake db:migrate -a #{app}"
     sh "heroku restart -a #{app}"
     sh "heroku maintenance:off -a #{app}"

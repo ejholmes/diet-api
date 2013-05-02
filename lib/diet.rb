@@ -82,8 +82,8 @@ module Diet
       @logger ||= Logger.new(STDOUT)
     end
 
-    def setup(env = nil)
-      ActiveRecord::Base.establish_connection(database_config(env))
+    def setup
+      ActiveRecord::Base.establish_connection(database_config)
 
       Readit::Config.consumer_key = ENV['READABILITY_KEY']
       Readit::Config.consumer_secret = ENV['READABILITY_SECRET']
@@ -124,10 +124,9 @@ module Diet
       end
     end
 
-    def database_config(env = nil)
-      env ||= ENV
+    def database_config
       @database_config ||= begin
-        database = URI(env['DATABASE_URL'] || "postgresql://localhost:5432/diet_api_#{env['RACK_ENV']}")
+        database = URI(ENV['DATABASE_URL'] || "postgresql://localhost:5432/diet_api_#{ENV['RACK_ENV']}")
         { adapter: 'postgresql',
           pool: 5,
           database: database.path[1..-1],
