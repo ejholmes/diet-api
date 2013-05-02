@@ -40,6 +40,5 @@ class Item < ActiveRecord::Base
 
   entity :id, :title, :link, :read, :pub_date, :feed_id do
     expose :description, if: { type: :full }
-    expose :feed, using: Feed::Entity
   end
 end
