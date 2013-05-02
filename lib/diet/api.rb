@@ -44,6 +44,13 @@ module Diet
       def authenticate!
         warden.authenticate! unless authenticated?
       end
+
+      # Convert ActiveRecord::Relation's to arrays so we don't trigger multiple
+      # db queries.
+      def present(object, options = {})
+        object = object.to_ary if object.is_a?(ActiveRecord::Relation)
+        super
+      end
     end
 
     resource :items do
@@ -55,7 +62,7 @@ module Diet
       end
       get do
         authenticate!
-        present (params.unread ? filtered_items.unread : filtered_items).to_ary
+        present params.unread ? filtered_items.unread : filtered_items
       end
 
       desc 'Mark all items as read.'
@@ -101,7 +108,7 @@ module Diet
       desc 'Lists subscriptions.'
       get do
         authenticate!
-        present feeds.to_ary
+        present feeds
       end
 
       desc 'Subscribe to a new feed.'
