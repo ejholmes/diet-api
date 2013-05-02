@@ -70,5 +70,3 @@ RSpec.configure do |config|
   end
 
 end
-
-Diet.setup
