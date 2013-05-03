@@ -17,9 +17,14 @@ module GrapeEntityExampleGroup
       @attribute = attribute
     end
 
+    chain :when do |options|
+      @options = options
+    end
+
     match do |entity|
       attribute = @attribute ? @attribute : exposure
       entity.object.stub(attribute).and_return(Object.new)
+      entity.stub(:options).and_return(@options) if @options
       expect(entity.serializable_hash[exposure]).to be entity.object.send(attribute)
     end
   end

@@ -7,9 +7,5 @@ describe Item::Entity do
   it { should expose(:read) }
   it { should expose(:pub_date) }
   it { should expose(:feed_id) }
-
-  context 'with type: :full' do
-    let(:options) { { type: :full } }
-    it { should expose(:description) }
-  end
+  it { should expose(:description).when(type: :full) }
 end
