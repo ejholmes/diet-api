@@ -47,7 +47,7 @@ module Diet
 
       # Convert ActiveRecord::Relation's to arrays so we don't trigger multiple
       # db queries.
-      def present(object, options = {})
+      def present(object, *args)
         object = object.to_ary if object.is_a?(ActiveRecord::Relation)
         super
       end
